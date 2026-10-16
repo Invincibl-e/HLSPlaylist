@@ -79,6 +79,17 @@ targets: [
 Or in Xcode, choose **File › Add Package Dependencies…** and enter
 `https://github.com/CreatureSurvive/HLSPlaylist`.
 
+### CocoaPods
+
+Add the repository to your `Podfile`:
+
+```ruby
+pod 'HLSPlaylist', :git => 'https://github.com/CreatureSurvive/HLSPlaylist.git', :branch => 'main'
+```
+
+Then run `pod install`. The pod compiles in Swift 6 language mode and supports the same
+platform versions as the Swift package.
+
 ### Requirements
 
 | Platform | Minimum |
@@ -151,6 +162,11 @@ let text = proxied.render()
 
 let absolute = master.resolvingURIs(against: masterURL)
 ```
+
+URI transforms also receive content steering `SERVER-URI` values (`.contentSteering`) and
+Apple interstitial `X-ASSET-URI` / `X-ASSET-LIST` values (`.interstitialAsset` /
+`.interstitialAssetList`). Other client-defined date-range attributes are preserved.
+URIs inside steering or asset-list JSON responses must be handled separately.
 
 ### Writing
 
