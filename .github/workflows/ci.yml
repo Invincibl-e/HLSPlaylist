@@ -25,6 +25,19 @@ jobs:
       - name: Test
         run: swift test
 
+  cocoapods:
+    name: CocoaPods (iOS, macOS)
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+      - name: Install CocoaPods
+        run: gem install cocoapods --no-document
+      - name: Lint and build pod
+        run: pod lib lint HLSPlaylist.podspec --platforms=ios,osx
+
   platforms:
     name: Build (iOS, tvOS)
     runs-on: macos-26
