@@ -12,6 +12,9 @@ public enum URIRole: Sendable, Hashable {
     case sessionData
     case preloadHint
     case renditionReport
+    case contentSteering
+    case interstitialAsset
+    case interstitialAssetList
 }
 
 extension MultivariantPlaylist {
@@ -33,6 +36,9 @@ extension MultivariantPlaylist {
         }
         for index in copy.sessionKeys.indices {
             if let uri = copy.sessionKeys[index].uri { copy.sessionKeys[index].uri = try transform(uri, .key) }
+        }
+        if let uri = copy.contentSteering?["SERVER-URI"]?.rawValue {
+            copy.contentSteering?["SERVER-URI"] = .quoted(try transform(uri, .contentSteering))
         }
         return copy
     }
@@ -79,6 +85,14 @@ extension MediaPlaylist {
             segment.keys = try segment.keys.map(mapKey)
             segment.map = try segment.map.map(mapMap)
             segment.parts = try mapParts(segment.parts)
+            for rangeIndex in segment.dateRanges.indices where segment.dateRanges[rangeIndex].classIdentifier == "com.apple.hls.interstitial" {
+                if let uri = segment.dateRanges[rangeIndex].otherAttributes["X-ASSET-URI"]?.rawValue {
+                    segment.dateRanges[rangeIndex].otherAttributes["X-ASSET-URI"] = .quoted(try transform(uri, .interstitialAsset))
+                }
+                if let uri = segment.dateRanges[rangeIndex].otherAttributes["X-ASSET-LIST"]?.rawValue {
+                    segment.dateRanges[rangeIndex].otherAttributes["X-ASSET-LIST"] = .quoted(try transform(uri, .interstitialAssetList))
+                }
+            }
             copy.segments[index] = segment
         }
         copy.trailingParts = try mapParts(copy.trailingParts)
