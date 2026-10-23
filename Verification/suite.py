@@ -112,7 +112,8 @@ def main():
                 print(f"Running {label}", flush=True)
                 try:
                     with (results / f"{label}.log").open("w") as log:
-                        code = run_step(command, env, log, 2700 if label == "device" else 900)
+                        timeout = 2700 if label == "device" else 1200 if label == "ios-simulator-uris" else 900
+                        code = run_step(command, env, log, timeout)
                     row = {"name": label, "command": command, "exit": code, "seconds": time.monotonic() - started}
                 except Exception as error:
                     row = {"name": label, "command": command, "error": str(error), "exit": None}

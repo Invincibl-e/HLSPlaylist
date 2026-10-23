@@ -14,7 +14,7 @@ import urllib.parse
 import urllib.request
 
 HERE = pathlib.Path(__file__).resolve().parent
-SCRATCH = pathlib.Path(os.environ.get("HLS_VERIFICATION_WORK", "/tmp/hlsplaylist-validation"))
+SCRATCH = pathlib.Path(os.environ.get("HLS_VERIFICATION_WORK", "/tmp/hlsplaylist-validation")).resolve()
 RESULTS = pathlib.Path(os.environ.get("HLS_VERIFICATION_RESULTS", str(HERE / "results")))
 CORPUS = HERE / "corpus"
 PROBE = SCRATCH / "probe-build/debug/Probe"
