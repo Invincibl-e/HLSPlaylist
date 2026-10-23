@@ -17,7 +17,7 @@ independently of Probe's decisions in [standards.py](standards.py).
 
 | Area / bis-22 section | Executable checks | External obligations |
 |---|---|---|
-| Text, attributes, numbers, URI (§4.1–4.3) | Swift StandardsTests, AttributeList tests; fixed grammar/BOM/NFC/UTF-8/numeric oracles; 54 shared URI gold vectors (all 42 RFC 3986 §5.4 strict examples), 2,000 constructed properties, 4 deep paths; three public APIs checked independently on Mac/iOS simulator and full-profile iOS device; original 28 HLS attribute vectors and 12 direct dot-segment vectors retained | HTTP Content-Type, redirect URL passed by caller; untested OS versions and URI inputs |
+| Text, attributes, numbers, URI (§4.1–4.3) | Swift StandardsTests, AttributeList tests; fixed grammar/BOM/NFC/UTF-8/numeric oracles; 54 shared URI gold vectors (all 42 RFC 3986 §5.4 strict examples), 2,000 constructed properties, 4 deep paths; three public APIs checked independently on Mac/iOS simulator and full-profile iOS device; 31 HLS attribute vectors and 17 direct dot-segment vectors | HTTP Content-Type, redirect URL passed by caller; untested OS versions and URI inputs |
 | Basic/shared tags (§4.4.1–4.4.2) | Header, singleton flags, START, DEFINE scope, imports/query decoding, substitution | Matching START across parent/child responses |
 | Media playlist tags (§4.4.3) | Required target, integer bounds, sequences/order/overflow, versions, LL target/control bounds | Across-refresh target stability, EVENT/VOD immutability |
 | Segment tags (§4.4.4) | EXTINF precision/version/target; range predecessor; KEY/MAP declaration context; PDT/calendar; PART bounds/order/exceptions | Actual media duration, discontinuities, byte layout, BITRATE accuracy |
