@@ -1,5 +1,30 @@
 # HLSPlaylist 完整验证入口
 
+本仓库现在独立维护，不再追踪 HLSPlaylist 上游实现；见
+[MAINTENANCE.md](../MAINTENANCE.md)。本轮完整规范目录及覆盖边界见
+[Coverage.md](Coverage.md)、[NormativeInventory.json](NormativeInventory.json)。
+它们明确区分清单数据规则、实际媒体、跨刷新服务器和播放器义务。
+本轮最终结论和新证据见 [INDEPENDENT_REPORT.md](INDEPENDENT_REPORT.md)；
+旧报告及计数保留为历史记录。
+
+统一入口（Swift ASan/覆盖率、Release/性能、固定规范 oracle、归档、外部语料、
+属性/边界、验证器失败注入测试）：
+
+```sh
+python3 Verification/suite.py
+HLS_APPLE_BIN=/usr/local/bin python3 Verification/suite.py \
+  --live --apple --fixtures /path/to/prepared/playback-fixtures
+```
+
+每次生成独立的 `results/suite-<UTC timestamp>`，失败日志不会被覆盖。
+Apple 工具或媒体缺失时 `--apple` 会失败；未请求的实时/官方测试显式记为 skipped。
+`summary.json` 包含命令、退出码、耗时、Swift/Python 版本、源码与证据 SHA-256。
+有已知验收边界时状态为 `passed-with-limitations`，不可转述为完整协议认证。
+Apple LL 场景仍保留官方 HTTP/2 错误 551002，静态 PART 媒体检查与完整 LL
+服务端验收分开记录。Apple AES 工具不做解密，需看独立真机证据。
+原始媒体可先按本文后续 `playback_server.py --prepare` 的步骤准备；
+脚本不会自动下载或分发 Apple 官方验证工具。
+
 测试、固定语料、修复和证据保存在本项目。当前修复基于
 `fix/uri-rewriting-cocoapods` 的
 `716ea58772b7ab2a274880d0d4ec33bdc68be4d4`。后续用户已授权本地提交；

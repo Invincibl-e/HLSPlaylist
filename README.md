@@ -1,12 +1,16 @@
 # HLSPlaylist
 
-[![CI](https://github.com/CreatureSurvive/HLSPlaylist/actions/workflows/ci.yml/badge.svg)](https://github.com/CreatureSurvive/HLSPlaylist/actions/workflows/ci.yml)
+[![CI](https://github.com/Invincibl-e/HLSPlaylist/actions/workflows/ci.yml/badge.svg)](https://github.com/Invincibl-e/HLSPlaylist/actions/workflows/ci.yml)
 [![Swift 6.1+](https://img.shields.io/badge/Swift-6.1+-F05138?logo=swift&logoColor=white)](https://swift.org)
 [![Platforms](https://img.shields.io/badge/platforms-iOS%20%7C%20macOS%20%7C%20tvOS%20%7C%20watchOS%20%7C%20visionOS-blue)](#requirements)
 [![Swift Package Manager](https://img.shields.io/badge/SwiftPM-compatible-brightgreen)](#installation)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 
 A pure-Swift parser and writer for HTTP Live Streaming (`.m3u8`) playlists.
+
+This is an independently maintained fork; upstream is not a synchronization
+target. See [maintenance policy](MAINTENANCE.md) and
+[standards coverage](Verification/Coverage.md).
 
 HLSPlaylist models tags from RFC 8216 and its successor
 [draft-pantos-hls-rfc8216bis](https://datatracker.ietf.org/doc/draft-pantos-hls-rfc8216bis/),
@@ -17,7 +21,7 @@ Parsing rejects invalid syntax and supported constraints observable in a playlis
 RFC 8216 and HLS bis-22. Unknown tags and enumerated values follow the standard's forward
 compatibility rules. Rendering validates the model and can throw. Decimal integers use
 `UInt64`; floating-point values retain their stored `Double` precision, and frame rates render
-to three decimal places. See [the standards audit](Verification/STANDARDS_REPORT.md) for
+to three decimal places. See [the standards audit](Verification/INDEPENDENT_REPORT.md) for
 verification evidence and scope.
 
 ```swift

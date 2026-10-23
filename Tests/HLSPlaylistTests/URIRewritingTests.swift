@@ -17,10 +17,10 @@ struct URIRewritingTests {
     #EXT-X-VERSION:10
     #EXT-X-TARGETDURATION:6
     #EXT-X-PROGRAM-DATE-TIME:2026-10-16T12:00:00Z
-    #EXT-X-DATERANGE:ID="asset",CLASS="com.apple.hls.interstitial",START-DATE="2026-10-16T12:00:00Z",X-ASSET-URI="../ads/asset.m3u8",X-RESUME-OFFSET=0
+    #EXT-X-DATERANGE:ID="asset",CLASS="com.apple.hls.interstitial",START-DATE="2026-10-16T12:00:00Z",X-ASSET-URI="https://cdn.example.com/ads/asset.m3u8",X-RESUME-OFFSET=0
     #EXT-X-DATERANGE:ID="list",CLASS="com.apple.hls.interstitial",START-DATE="2026-10-16T12:00:06Z",X-ASSET-LIST="/ads/list.json?token=a,b",X-RESTRICT="SKIP,JUMP"
     #EXT-X-DATERANGE:ID="metadata",CLASS="com.example.metadata",START-DATE="2026-10-16T12:00:00Z",X-ASSET-URI="metadata.txt",X-ASSET-LIST="metadata.json"
-    #EXT-X-DATERANGE:ID="empty",CLASS="com.apple.hls.interstitial",START-DATE="2026-10-16T12:00:12Z"
+    #EXT-X-DATERANGE:ID="empty",CLASS="com.example.metadata",START-DATE="2026-10-16T12:00:12Z"
     #EXTINF:6,
     first.ts
     #EXT-X-DATERANGE:ID="later",CLASS="com.apple.hls.interstitial",START-DATE="2026-10-16T12:00:06Z",X-ASSET-URI="https://ads.example.com/second.m3u8"
@@ -53,7 +53,7 @@ struct URIRewritingTests {
         }
         #expect(roles == [.segment, .interstitialAsset, .interstitialAssetList, .segment, .interstitialAsset])
         let ranges = mapped.segments[0].dateRanges
-        #expect(ranges[0].otherAttributes["X-ASSET-URI"] == .quoted("proxy://../ads/asset.m3u8"))
+        #expect(ranges[0].otherAttributes["X-ASSET-URI"] == .quoted("proxy://https://cdn.example.com/ads/asset.m3u8"))
         #expect(ranges[1].otherAttributes["X-ASSET-LIST"] == .quoted("proxy:///ads/list.json?token=a,b"))
         #expect(ranges[0].otherAttributes["X-RESUME-OFFSET"] == .unquoted("0"))
         #expect(ranges[1].otherAttributes["X-RESTRICT"] == .quoted("SKIP,JUMP"))
@@ -61,7 +61,7 @@ struct URIRewritingTests {
         #expect(ranges[2] == playlist.segments[0].dateRanges[2])
         #expect(ranges[3] == playlist.segments[0].dateRanges[3])
         #expect(mapped.segments[1].dateRanges[0].otherAttributes["X-ASSET-URI"] == .quoted("proxy://https://ads.example.com/second.m3u8"))
-        #expect(playlist.segments[0].dateRanges[0].otherAttributes["X-ASSET-URI"] == .quoted("../ads/asset.m3u8"))
+        #expect(playlist.segments[0].dateRanges[0].otherAttributes["X-ASSET-URI"] == .quoted("https://cdn.example.com/ads/asset.m3u8"))
         #expect(try Playlist(mapped.render()).media == mapped)
     }
 

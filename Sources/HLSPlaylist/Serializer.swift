@@ -34,10 +34,12 @@ extension MultivariantPlaylist {
         }
         if !iFrameVariants.isEmpty { out.blank() }
         for variant in iFrameVariants {
+            for tag in variant.unknownTags { out.line(tag) }
             out.tag("EXT-X-I-FRAME-STREAM-INF", variant.attributes(includeURI: true))
         }
         if !imageVariants.isEmpty { out.blank() }
         for variant in imageVariants {
+            for tag in variant.unknownTags { out.line(tag) }
             out.tag("EXT-X-IMAGE-STREAM-INF", variant.attributes(includeURI: true))
         }
         try HLSStandard.text(out.text)
@@ -80,7 +82,7 @@ extension MediaPlaylist {
         for segment in segments {
             for tag in segment.unknownTags { out.line(tag) }
             for range in segment.dateRanges { out.tag("EXT-X-DATERANGE", range.attributes) }
-            if segment.discontinuity { out.line("#EXT-X-DISCONTINUITY") }
+            try out.discontinuities(segment.discontinuityCount)
             if segment.map != map, let newMap = segment.map {
                 out.keys(newMap.keys, current: &keys)
                 out.tag("EXT-X-MAP", newMap.attributes)
@@ -98,7 +100,7 @@ extension MediaPlaylist {
         }
 
         for range in trailingDateRanges { out.tag("EXT-X-DATERANGE", range.attributes) }
-        if trailingDiscontinuity { out.line("#EXT-X-DISCONTINUITY") }
+        try out.discontinuities(trailingDiscontinuityCount)
         if trailingMap != map, let section = trailingMap {
             out.keys(section.keys, current: &keys)
             out.tag("EXT-X-MAP", section.attributes)
@@ -117,6 +119,13 @@ extension MediaPlaylist {
 
 private struct M3U8Writer {
     var text = ""
+
+    mutating func discontinuities(_ count: UInt64) throws {
+        guard let count = Int(exactly: count), count <= Int.max / 21 else {
+            throw PlaylistError.invalidTag("Discontinuity output exceeds addressable string size", line: 0)
+        }
+        text += String(repeating: "#EXT-X-DISCONTINUITY\n", count: count)
+    }
 
     mutating func line(_ line: String) {
         text += line

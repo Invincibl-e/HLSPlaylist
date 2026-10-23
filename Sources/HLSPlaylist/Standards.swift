@@ -12,7 +12,8 @@ enum HLSStandard {
     static let flags: Set<String> = ["#EXT-X-INDEPENDENT-SEGMENTS", "#EXT-X-I-FRAMES-ONLY", "#EXT-X-ENDLIST", "#EXT-X-DISCONTINUITY", "#EXT-X-GAP"]
     static let singletons = flags.subtracting(["#EXT-X-DISCONTINUITY", "#EXT-X-GAP"]).union([
         "#EXT-X-VERSION", "#EXT-X-START", "#EXT-X-TARGETDURATION", "#EXT-X-MEDIA-SEQUENCE",
-        "#EXT-X-DISCONTINUITY-SEQUENCE", "#EXT-X-PLAYLIST-TYPE", "#EXT-X-PART-INF", "#EXT-X-SERVER-CONTROL", "#EXT-X-SKIP"
+        "#EXT-X-DISCONTINUITY-SEQUENCE", "#EXT-X-PLAYLIST-TYPE", "#EXT-X-PART-INF", "#EXT-X-SERVER-CONTROL", "#EXT-X-SKIP",
+        "#EXT-X-CONTENT-STEERING"
     ])
     static let parameterTags = singletons.subtracting(flags).union([
         "#EXTINF", "#EXT-X-BYTERANGE", "#EXT-X-PROGRAM-DATE-TIME", "#EXT-X-BITRATE"
@@ -101,6 +102,8 @@ enum HLSStandard {
         case "#EXT-X-SERVER-CONTROL":
             enums = ["CAN-BLOCK-RELOAD": ["YES"], "CAN-SKIP-DATERANGES": ["YES"]]
         case "#EXT-X-START": enums = ["PRECISE": ["YES", "NO"]]
+        case "#EXT-X-SESSION-DATA":
+            if a["URI"] != nil { enums = ["FORMAT": ["JSON", "RAW"]] }
         case "#EXT-X-DATERANGE": enums = ["END-ON-NEXT": ["YES"]]
         case "#EXT-X-STREAM-INF", "#EXT-X-I-FRAME-STREAM-INF":
             enums = ["HDCP-LEVEL": ["NONE", "TYPE-0", "TYPE-1"], "VIDEO-RANGE": ["SDR", "HLG", "PQ"]]
@@ -153,6 +156,7 @@ enum HLSStandard {
         case "#EXT-X-DEFINE": quoted = ["NAME", "VALUE", "IMPORT", "QUERYPARAM"]
         case "#EXT-X-SESSION-DATA":
             quoted = ["DATA-ID", "VALUE", "URI", "LANGUAGE"]; required = ["DATA-ID"]
+            if a["URI"] != nil { enums = ["FORMAT"] }
         case "#EXT-X-CONTENT-STEERING":
             quoted = ["SERVER-URI", "PATHWAY-ID"]; required = ["SERVER-URI"]
         case "#EXT-X-DATERANGE":
@@ -224,6 +228,15 @@ enum HLSStandard {
             }
             try require(type == "SUBTITLES" || a["FORCED"] == nil, "FORCED requires SUBTITLES", line: line)
             try require(type == "AUDIO" || (a["BIT-DEPTH"] == nil && a["SAMPLE-RATE"] == nil && a["CHANNELS"] == nil), "Audio attribute on non-audio rendition", line: line)
+            if let channels = a["CHANNELS"]?.rawValue {
+                let parameters = channels.split(separator: "/", omittingEmptySubsequences: false)
+                try require(HLSNumber.integer(String(parameters[0])) != nil, "Invalid CHANNELS count", line: line)
+                for parameter in parameters.dropFirst() {
+                    try require(parameter.split(separator: ",", omittingEmptySubsequences: false).allSatisfy {
+                        !$0.isEmpty && $0.utf8.allSatisfy { (65...90).contains($0) || (48...57).contains($0) || $0 == 45 }
+                    }, "Invalid CHANNELS identifier", line: line)
+                }
+            }
             try require(a["DEFAULT"]?.rawValue != "YES" || a["AUTOSELECT"] == nil || a["AUTOSELECT"]?.rawValue == "YES", "DEFAULT requires AUTOSELECT=YES when present", line: line)
         }
         if ["#EXT-X-KEY", "#EXT-X-SESSION-KEY"].contains(tag) {
@@ -265,6 +278,11 @@ enum HLSStandard {
             if a["END-ON-NEXT"]?.rawValue == "YES" {
                 try require(a["CLASS"] != nil && a["END-DATE"] == nil && a["DURATION"] == nil, "Invalid END-ON-NEXT", line: line)
             }
+            if let cue = a["CUE"]?.rawValue {
+                try require(cue.split(separator: ",", omittingEmptySubsequences: false).allSatisfy {
+                    !$0.isEmpty && !$0.contains(where: \.isWhitespace)
+                }, "Invalid CUE enumerated-string-list", line: line)
+            }
             let cues = Set((a["CUE"]?.rawValue ?? "").split(separator: ",").map(String.init))
             try require(!cues.contains("PRE") || !cues.contains("POST"), "Conflicting CUE", line: line)
         }
@@ -285,6 +303,16 @@ enum HLSStandard {
             v = max(v, a["TYPE"]?.rawValue == "CLOSED-CAPTIONS" ? (id.hasPrefix("SERVICE") ? 7 : 1) : 13)
         }
         return v
+    }
+
+    static func keyContext(_ keys: [EncryptionKey]) throws {
+        var formats: Set<String> = []
+        for key in keys {
+            try require(key.method != .none, "Effective key context cannot contain METHOD=NONE")
+            try require(formats.insert(key.keyFormat ?? "identity").inserted, "Duplicate effective KEYFORMAT")
+            try require(key.iv == nil || key.iv!.count == 16, "IV must contain 16 bytes")
+            try attributes("#EXT-X-KEY", key.attributes)
+        }
     }
 
     static func common(_ version: UInt64?, _ start: StartPoint?, _ definitions: [VariableDefinition]) throws -> UInt64 {
@@ -316,6 +344,19 @@ enum HLSStandard {
             if rendition.isDefault { try require(defaults.insert(group).inserted, "Multiple DEFAULT renditions in group") }
             minimum = max(minimum, attributeVersion("#EXT-X-MEDIA", a))
         }
+        // GROUP-ID identifies the group itself and is not a member attribute.
+        let varying: Set<String> = ["GROUP-ID", "URI", "CHANNELS", "BIT-DEPTH", "STABLE-RENDITION-ID", "INSTREAM-ID", "SAMPLE-RATE"]
+        for type in Set(playlist.renditions.map(\.type)) {
+            let groups = Dictionary(grouping: playlist.renditions.filter { $0.type == type }, by: \.groupID)
+            var reference: [String: [String: AttributeValue]]?
+            for members in groups.values {
+                let values = Dictionary(uniqueKeysWithValues: members.map { member in
+                    (member.name, Dictionary(uniqueKeysWithValues: member.attributes.filter { !varying.contains($0.key) }.map { ($0.key, $0.value) }))
+                })
+                if let reference { try require(values == reference, "Inconsistent members across rendition groups of the same TYPE") }
+                else { reference = values }
+            }
+        }
         for (tag, variants) in [("#EXT-X-STREAM-INF", playlist.variants), ("#EXT-X-I-FRAME-STREAM-INF", playlist.iFrameVariants), ("#EXT-X-IMAGE-STREAM-INF", playlist.imageVariants)] {
             for variant in variants {
                 let a = variant.attributes(includeURI: tag != "#EXT-X-STREAM-INF")
@@ -345,7 +386,12 @@ enum HLSStandard {
             try require(keys.insert(identity).inserted, "Duplicate SESSION-KEY")
             minimum = max(minimum, attributeVersion("#EXT-X-SESSION-KEY", key.attributes))
         }
-        if let a = playlist.contentSteering { try attributes("#EXT-X-CONTENT-STEERING", a) }
+        if let a = playlist.contentSteering {
+            try attributes("#EXT-X-CONTENT-STEERING", a)
+            if let pathway = a["PATHWAY-ID"]?.rawValue {
+                try require(playlist.variants.contains { $0.pathwayID == pathway }, "CONTENT-STEERING references missing pathway")
+            }
+        }
         return minimum
     }
 
@@ -400,25 +446,25 @@ enum HLSStandard {
                 }
             }
             if segment.discontinuity {
-                let (next, overflow) = discontinuities.addingReportingOverflow(1)
+                let (next, overflow) = discontinuities.addingReportingOverflow(segment.discontinuityCount)
                 try require(!overflow, "Discontinuity sequence overflow")
                 discontinuities = next
             }
         }
-        if playlist.trailingDiscontinuity { try require(discontinuities != UInt64.max, "Discontinuity sequence overflow") }
+        let (_, trailingOverflow) = discontinuities.addingReportingOverflow(playlist.trailingDiscontinuityCount)
+        try require(!trailingOverflow, "Discontinuity sequence overflow")
         try require(playlist.trailingProgramDateTime?.timeIntervalSince1970.isFinite != false, "Invalid PROGRAM-DATE-TIME")
         let contexts = playlist.segments.map { ($0.keys, $0.map) } + [(playlist.trailingKeys, playlist.trailingMap)]
         for (keys, map) in contexts {
+            try keyContext(keys)
             for key in keys {
-                try attributes("#EXT-X-KEY", key.attributes)
-                try require(key.iv == nil || key.iv!.count == 16, "IV must contain 16 bytes")
                 minimum = max(minimum, attributeVersion("#EXT-X-KEY", key.attributes))
             }
             if let map {
                 try attributes("#EXT-X-MAP", map.attributes)
                 minimum = max(minimum, playlist.iFramesOnly ? 5 : 6)
+                try keyContext(map.keys)
                 for key in map.keys {
-                    try attributes("#EXT-X-KEY", key.attributes)
                     minimum = max(minimum, attributeVersion("#EXT-X-KEY", key.attributes))
                 }
                 try require(!map.keys.contains { $0.method == .aes128 && $0.iv == nil }, "AES-128 encrypted MAP requires explicit IV")
@@ -443,6 +489,18 @@ enum HLSStandard {
             }
             try require(combined["START-DATE"] != nil, "First DATERANGE requires START-DATE")
             try attributes("#EXT-X-DATERANGE", combined)
+            if combined["CLASS"]?.rawValue == "com.apple.hls.interstitial" {
+                try require((combined["X-ASSET-URI"] != nil) != (combined["X-ASSET-LIST"] != nil), "Interstitial requires exactly one asset URI or asset list")
+                for key in ["X-ASSET-URI", "X-ASSET-LIST"] {
+                    if let value = combined[key] {
+                        guard case .quoted(let value) = value else { throw PlaylistError.invalidTag("Interstitial URI must be quoted", line: 0) }
+                        try require(uri(value), "Invalid interstitial URI")
+                        if key == "X-ASSET-URI" {
+                            try require(value.firstIndex(of: ":").map { !value[..<$0].contains(where: { "/?#".contains($0) }) } == true, "X-ASSET-URI must be absolute")
+                        }
+                    }
+                }
+            }
             let start = combined["START-DATE"].flatMap { HLSDate.parse($0.rawValue) }
             let end = combined["END-DATE"].flatMap { HLSDate.parse($0.rawValue) }
             if let start, let end {
@@ -453,6 +511,19 @@ enum HLSStandard {
                 }
             }
             merged[range.id] = combined
+        }
+        for a in merged.values where a["END-ON-NEXT"]?.rawValue == "YES" {
+            let start = HLSDate.parse(a["START-DATE"]!.rawValue)!
+            for other in merged.values where other["ID"] != a["ID"] && other["CLASS"] == a["CLASS"] {
+                let otherStart = HLSDate.parse(other["START-DATE"]!.rawValue)!
+                var otherEnd = other["END-DATE"].flatMap { HLSDate.parse($0.rawValue) }
+                    ?? other["DURATION"]?.double.map { otherStart.addingTimeInterval($0) }
+                if other["END-ON-NEXT"]?.rawValue == "YES" {
+                    otherEnd = merged.values.filter { $0["CLASS"] == other["CLASS"] }
+                        .compactMap { HLSDate.parse($0["START-DATE"]!.rawValue) }.filter { $0 > otherStart }.min()
+                }
+                try require(otherStart != start && !(otherStart < start && otherEnd.map { $0 > start } == true), "Overlapping END-ON-NEXT date ranges")
+            }
         }
         return minimum
     }

@@ -47,8 +47,12 @@ public struct Segment: Sendable, Hashable {
     /// `EXTINF` title (after the comma).
     public var title: String?
     public var byteRange: ByteRange?
-    /// `EXT-X-DISCONTINUITY` precedes this segment.
-    public var discontinuity: Bool
+    /// Number of `EXT-X-DISCONTINUITY` tags preceding this segment.
+    public var discontinuityCount: UInt64
+    public var discontinuity: Bool {
+        get { discontinuityCount != 0 }
+        set { discontinuityCount = newValue ? max(1, discontinuityCount) : 0 }
+    }
     /// Keys in effect for this segment (empty when unencrypted).
     public var keys: [EncryptionKey]
     /// Initialization section in effect for this segment.
@@ -70,7 +74,7 @@ public struct Segment: Sendable, Hashable {
         self.duration = duration
         self.title = title
         self.byteRange = byteRange
-        self.discontinuity = discontinuity
+        self.discontinuityCount = discontinuity ? 1 : 0
         self.keys = keys
         self.map = map
         self.programDateTime = programDateTime
@@ -217,7 +221,11 @@ public struct MediaPlaylist: Sendable, Hashable {
     /// Context of the incomplete parent segment at the live edge.
     public var trailingKeys: [EncryptionKey] = []
     public var trailingMap: MediaInitializationSection?
-    public var trailingDiscontinuity = false
+    public var trailingDiscontinuityCount: UInt64 = 0
+    public var trailingDiscontinuity: Bool {
+        get { trailingDiscontinuityCount != 0 }
+        set { trailingDiscontinuityCount = newValue ? max(1, trailingDiscontinuityCount) : 0 }
+    }
     public var trailingProgramDateTime: Date?
     public var preloadHints: [PreloadHint]
     public var renditionReports: [RenditionReport]
