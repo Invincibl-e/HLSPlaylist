@@ -126,7 +126,7 @@ extension MediaPlaylist {
 
     /// Absolute URLs of every segment, resolved against `baseURL`.
     public func segmentURLs(relativeTo baseURL: URL) -> [URL] {
-        segments.compactMap { URL(string: $0.uri, relativeTo: baseURL)?.absoluteURL }
+        segments.compactMap { URL(string: resolve($0.uri, against: baseURL)) }
     }
 }
 
@@ -150,5 +150,51 @@ private func resolve(_ uri: String, against baseURL: URL) -> String {
     // delimiters. Foundation's implicit encoding differs across OS versions.
     let allowed = CharacterSet(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~:/?#[]@!$&'()*+,;=%")
     guard let encoded = uri.addingPercentEncoding(withAllowedCharacters: allowed) else { return uri }
-    return URL(string: encoded, relativeTo: baseURL)?.absoluteURL.absoluteString ?? uri
+    guard let absolute = URL(string: encoded, relativeTo: baseURL)?.absoluteURL,
+          var components = URLComponents(url: absolute, resolvingAgainstBaseURL: false) else { return uri }
+    let path = components.percentEncodedPath
+    let normalized = removingDotSegments(path)
+    guard normalized != path else { return absolute.absoluteString }
+    components.percentEncodedPath = normalized
+    return components.string ?? absolute.absoluteString
+}
+
+/// RFC 3986 §5.2.4. Older Foundation leaves absolute /./ and /../ paths intact.
+/// Operate on encoded path bytes: escaped dots, slashes, queries and fragments
+/// must not acquire path-navigation semantics.
+private func removingDotSegments(_ path: String) -> String {
+    var input = path[...]
+    var output = ""
+    func removeLastSegment() {
+        if let slash = output.lastIndex(of: "/") {
+            output.removeSubrange(slash...)
+        } else {
+            output.removeAll(keepingCapacity: true)
+        }
+    }
+    while !input.isEmpty {
+        if input.hasPrefix("../") {
+            input = input.dropFirst(3)
+        } else if input.hasPrefix("./") {
+            input = input.dropFirst(2)
+        } else if input.hasPrefix("/./") {
+            input = input.dropFirst(2)
+        } else if input == "/." {
+            input = "/"
+        } else if input.hasPrefix("/../") {
+            input = input.dropFirst(3)
+            removeLastSegment()
+        } else if input == "/.." {
+            input = "/"
+            removeLastSegment()
+        } else if input == "." || input == ".." {
+            input = ""
+        } else {
+            let start = input.hasPrefix("/") ? input.index(after: input.startIndex) : input.startIndex
+            let end = input[start...].firstIndex(of: "/") ?? input.endIndex
+            output.append(contentsOf: input[..<end])
+            input = input[end...]
+        }
+    }
+    return output
 }
