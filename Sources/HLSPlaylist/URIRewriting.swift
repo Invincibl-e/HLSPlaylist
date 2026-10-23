@@ -146,6 +146,13 @@ extension Playlist {
 }
 
 private func resolve(_ uri: String, against baseURL: URL) -> String {
+    // RFC 3986 §5.2.2: an empty reference inherits path/query, never fragment.
+    // Some Foundation releases return nil for URL(string: "", relativeTo:).
+    if uri.isEmpty {
+        var components = URLComponents(url: baseURL.absoluteURL, resolvingAgainstBaseURL: false)
+        components?.fragment = nil
+        return components?.string ?? uri
+    }
     // Encode only characters outside RFC 3986, retaining existing escapes and
     // delimiters. Foundation's implicit encoding differs across OS versions.
     let allowed = CharacterSet(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~:/?#[]@!$&'()*+,;=%")
