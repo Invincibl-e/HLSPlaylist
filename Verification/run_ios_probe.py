@@ -5,6 +5,7 @@ import atexit
 import json
 import subprocess
 from run import CORPUS, RESULTS, SCRATCH, probe, probe_input, write
+from uri_oracles import cases as uri_cases, require as require_uris
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--ssh-port", type=int, default=2239)
@@ -30,6 +31,7 @@ if args.extended:
     rows += [{**row, "rewrite": True} for row in json.loads((CORPUS / "external-inputs.json").read_text())]
     rows += [row["input"] for row in json.loads((RESULTS / "boundaries.json").read_text())]
     rows += [row["input"] for row in json.loads((RESULTS / "standards-oracles.json").read_text())]
+    rows += [row["input"] for row in uri_cases()]
 process = subprocess.run(ssh + [remote + "/Probe"],
                          input="".join(probe_input(row) for row in rows),
                          text=True, capture_output=True, timeout=90)
@@ -41,6 +43,8 @@ output = [json.loads(line) for line in process.stdout.splitlines() if line.start
 write(RESULTS / f"ios-{label}.json", output)
 if len(output) != len(rows) or [x.get("name") for x in output] != [x.get("name") for x in rows]:
     raise RuntimeError("iOS Probe output count or input identity mismatch")
+if args.extended:
+    summary_uris = require_uris(uri_cases(), output[-len(uri_cases()):], "ios-device")
 mac = probe(rows) if args.extended else json.loads((RESULTS / "archive.json").read_text())
 write(RESULTS / f"mac-{label}.json", mac)
 different = [a["name"] for a, b in zip(mac, output) if a != b]
@@ -48,6 +52,8 @@ summary = {"deviceOS": args.device_os, "inputs": len(rows), "outputs": len(outpu
            "accepted": sum(row.get("status") == "accepted" for row in output),
            "exactlyEqualToMac": len(output) == len(mac) and not different,
            "differentCases": different}
+if args.extended:
+    summary["uriOracleCases"] = summary_uris["cases"]
 write(RESULTS / f"ios-{label}-summary.json", summary)
 print(json.dumps(summary))
 if not summary["exactlyEqualToMac"]:

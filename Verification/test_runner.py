@@ -11,6 +11,7 @@ import run
 from device_checks import verify
 from suite import run_step
 import tls_identity
+import uri_oracles
 
 class RunnerTests(unittest.TestCase):
     def check_output(self, stdout="", returncode=0):
@@ -43,6 +44,23 @@ class RunnerTests(unittest.TestCase):
     def test_expected_rejection_is_valid_response(self):
         with self.check_output('{"name":"a","status":"rejected"}\n'):
             self.assertEqual(run.probe([{"name": "a", "text": "#EXTM3U"}])[0]["status"], "rejected")
+
+    def test_uri_oracle_requires_gold_for_each_public_api(self):
+        expected = [{"input": {"name": "a"}, "expected": ["https://a/g"]}]
+        valid = {"name": "a", "status": "accepted",
+                 **{key: ["https://a/g"] for key in ["resolvedURIs", "segmentURLs", "playlistURIs"]}}
+        self.assertEqual(uri_oracles.verify(expected, [valid])["failures"], [])
+        for key in valid:
+            with self.subTest(key=key):
+                missing = {k: v for k, v in valid.items() if k != key}
+                self.assertTrue(uri_oracles.verify(expected, [missing])["failures"])
+        for key in ["resolvedURIs", "segmentURLs", "playlistURIs"]:
+            self.assertTrue(uri_oracles.verify(expected, [{**valid, key: ["https://a/wrong"]}])["failures"])
+        for output in [[], [valid, valid]]:
+            with self.assertRaises(RuntimeError):
+                uri_oracles.verify(expected, output)
+        with self.assertRaises(RuntimeError):
+            uri_oracles.verify([], [])
 
     def test_device_empty_incomplete_simulated_or_missing_cases_fail(self):
         base = {"simulator": False, "complete": True, "plannedCases": ["aes/original"],

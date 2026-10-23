@@ -10,7 +10,7 @@
 
 | 范围 | 命令 | 能证明什么 |
 |---|---|---|
-| 离线回归 | `python3 Verification/suite.py` | Swift ASan/Release、固定语料、独立 oracle、属性/边界、runner 失败判定 |
+| 离线回归 | `python3 Verification/suite.py` | Swift ASan/Release、固定语料、独立 oracle、属性/边界、真实 iOS 模拟器 URI 断言、runner 失败判定 |
 | 官方静态追加 | `python3 Verification/suite.py --apple --fixtures /path/to/playback-fixtures` | 离线回归加静态真实媒体的 Apple 验证，不含动态 LL 或真机 |
 | 完整验收 | `python3 Verification/suite.py --profile full --live` | 上述测试加动态 HTTP/2、官方 LL、真实 iOS Probe、AVPlayer 全部场景 |
 | 构建兼容性 | CI 的 platforms / cocoapods jobs | iOS/tvOS 构建、CocoaPods iOS/macOS lint，与 full 的媒体验收互补 |
@@ -19,6 +19,21 @@
 仅修改测试基础设施时至少跑对应回归与真实 transport；若没有重新跑完整
 真机，报告必须保留上一轮整套验收的提交身份。
 full 缺工具/设备/证书、空用例或漏结果必须失败，不能删除步骤使运行变绿。
+
+URI 回归使用 `corpus/uri-oracles.json` 的 54 个固定预期（包含 RFC 3986
+§5.4.1/§5.4.2 的全部 42 个 strict 示例），以及 seed 3986 的 2,000 个
+路径构造用例（相对、根路径、network-path、绝对引用及重复斜杠）和
+4 个深度边界；三项公开 API 均须与独立预期一致。
+预期不使用 Foundation、被测库或 Python urljoin 生成。Swift 单元测试也
+读取相同固定预期；保留原有 HLS URI 属性测试和直接 encoded-path 测试。
+空引用只通过程序构造模型测试 RFC 工具行为，HLS `URI=""` 仍须拒绝。
+模拟器直接编译同一份 library/Probe 源码并在实际 iOS runtime 执行；
+`HLS_SIMULATOR_UDID` 可选定设备，否则复用已启动的 iOS 或启动可用设备，
+只关闭本次启动的模拟器。缺少可用 iOS runtime 会让离线回归失败。
+full 的 `ios-extended` 追加同一批 URI 用例，真机先独立检查 gold，再检查
+与 Mac 完全相等。结果相等不能代替正确性断言。检查
+`mac-uri-summary.json`、`ios-simulator-uri-summary.json`、
+`simulator-summary.json` 和 full 的 `ios-device-uri-summary.json`。
 
 ## 2. 一次配置 localhost 证书，后续测试复用
 

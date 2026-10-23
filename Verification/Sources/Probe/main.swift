@@ -11,6 +11,7 @@ private struct ProbeInput: Decodable {
     var rewrite: Bool?
     var proxy: String?
     var liveOffset: Bool?
+    var uriReferences: [String]?
 }
 
 // One JSON object per line; a hostile input can be isolated in its own process.
@@ -22,6 +23,12 @@ while let line = readLine() {
         let input = try JSONDecoder().decode(ProbeInput.self, from: Data(line.utf8))
         row["name"] = input.name
         let url = URL(string: input.url ?? "https://fixture.test/path/master.m3u8")!
+        if let references = input.uriReferences {
+            let media = MediaPlaylist(targetDuration: 1, segments: references.map { Segment(uri: $0, duration: 1) })
+            row["resolvedURIs"] = media.resolvingURIs(against: url).segments.map(\.uri)
+            row["segmentURLs"] = media.segmentURLs(relativeTo: url).map(\.absoluteString)
+            row["playlistURIs"] = Playlist.media(media).resolvingURIs(against: url).media?.segments.map(\.uri)
+        }
         let options = ParseOptions(importedVariables: input.imports ?? [:], playlistURL: url)
         row["stage"] = "parse"
         let parsed = try PlaylistParser(options: options).parse(input.textUTF8 ?? Data(input.text.utf8))

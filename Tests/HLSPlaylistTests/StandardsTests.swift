@@ -17,6 +17,26 @@ struct StandardsTests {
         #expect(try Playlist(text.replacingOccurrences(of: "\n", with: "\r\n")).media == parsed)
     }
 
+    @Test func sharedURIOracles() throws {
+        struct Oracle: Decodable {
+            var base: String
+            var reference: String
+            var expected: String
+        }
+        let root = URL(fileURLWithPath: #filePath).deletingLastPathComponent()
+            .deletingLastPathComponent().deletingLastPathComponent()
+        let cases = try JSONDecoder().decode([Oracle].self, from: Data(contentsOf:
+            root.appendingPathComponent("Verification/corpus/uri-oracles.json")))
+        #expect(cases.count >= 54)
+        for row in cases {
+            let base = try #require(URL(string: row.base))
+            let media = MediaPlaylist(targetDuration: 1, segments: [Segment(uri: row.reference, duration: 1)])
+            #expect(media.resolvingURIs(against: base).segments[0].uri == row.expected)
+            #expect(media.segmentURLs(relativeTo: base).map(\.absoluteString) == [row.expected])
+            #expect(Playlist.media(media).resolvingURIs(against: base).media?.segments[0].uri == row.expected)
+        }
+    }
+
     @Test(arguments: [
         "#EXT-X-SKIP:SKIPPED-SEGMENTS=2,RECENTLY-REMOVED-DATERANGES=\"a\tb\",X-OTHER=\"c\td\"",
         "#EXT-X-SKIP:SKIPPED-SEGMENTS=2,\tRECENTLY-REMOVED-DATERANGES=\"a\tb\"",
