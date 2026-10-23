@@ -178,8 +178,8 @@ final class Keys: NSObject, AVContentKeySessionDelegate {
             "live": "http://127.0.0.1:8899/fixture/live.m3u8",
         ]
         var cases: [(String, String)] = []
-        for kind in ["ts", "fmp4", "aes", "range", "live", "ll", "fairplay", "tracks"] {
-            for candidate in (["ts", "fmp4"].contains(kind) ? ["original", "render", "rewrite"] : ["original", "rewrite"]) {
+        for kind in ["local-ll", "ts", "fmp4", "aes", "range", "live", "ll", "fairplay", "tracks"] {
+            for candidate in (["ts", "fmp4", "local-ll"].contains(kind) ? ["original", "render", "rewrite"] : ["original", "rewrite"]) {
                 cases.append((kind, candidate))
             }
         }
@@ -205,7 +205,9 @@ final class Keys: NSObject, AVContentKeySessionDelegate {
             let (kind, candidate) = entry
             label.text = "\(kind) / \(candidate)\n\(results.count) completed"
             let address: String
-            if ["original", "render"].contains(candidate), let origin = origins[kind] {
+            if kind == "local-ll" {
+                address = "https://localhost:8898/ll/\(candidate)/master.m3u8"
+            } else if ["original", "render"].contains(candidate), let origin = origins[kind] {
                 if origin.hasPrefix("https://") {
                     address = "http://127.0.0.1:8899/\(candidate == "original" ? "raw" : "render")/https/" +
                         origin.dropFirst("https://".count)
@@ -251,7 +253,7 @@ final class Keys: NSObject, AVContentKeySessionDelegate {
                 row["pause"] = abs(player.currentTime().seconds - paused) < 0.2
                 player.play()
                 row["resume"] = await wait(10) { player.currentTime().seconds > paused + 1 }
-                if !["live", "ll"].contains(kind) {
+                if !["live", "ll", "local-ll"].contains(kind) {
                     let target = max(0, player.currentTime().seconds - 4)
                     let seekOK = await withCheckedContinuation { continuation in
                         player.seek(to: CMTime(seconds: target, preferredTimescale: 600), toleranceBefore: .zero, toleranceAfter: .zero) {

@@ -5,14 +5,42 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
+    inputs:
+      full:
+        description: Run official HTTP/2 and connected iOS device verification
+        type: boolean
+        default: true
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
+  full:
+    name: Full verification (official tools + iOS device)
+    if: github.event_name == 'workflow_dispatch' && inputs.full
+    runs-on: [self-hosted, macOS, hls-device]
+    timeout-minutes: 90
+    env:
+      HLS_APPLE_BIN: ${{ vars.HLS_APPLE_BIN }}
+      HLS_DEVICE_HELPER: ${{ vars.HLS_DEVICE_HELPER }}
+      HLS_DEVICE_SSH_PORT: ${{ vars.HLS_DEVICE_SSH_PORT }}
+      HLS_SSH_CONTROL: ${{ vars.HLS_SSH_CONTROL }}
+      HLS_DEVICE_UDID: ${{ vars.HLS_DEVICE_UDID }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Full profile (missing prerequisites fail)
+        run: python3 Verification/suite.py --profile full
+      - name: Preserve full verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hls-full-verification
+          path: Verification/results/suite-*
+          if-no-files-found: error
+
   test:
-    name: Test (${{ matrix.os }})
+    name: Offline tests (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false

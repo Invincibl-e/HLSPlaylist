@@ -9,6 +9,7 @@ import pathlib
 import plistlib
 import subprocess
 from run import HERE, SCRATCH
+from device_checks import CASES
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--simulator", action="store_true")
@@ -20,6 +21,10 @@ parser.add_argument("--certificate-delay", type=int, choices=range(46), default=
 parser.add_argument("--on-demand-certificate", action="store_true",
                     help="Reproduce the earlier test harness fetching its certificate during an active key request")
 args = parser.parse_args()
+if args.cases is not None:
+    selected = args.cases.split(",")
+    if len(set(selected)) != len(selected) or any(case not in CASES for case in selected):
+        parser.error("--cases must contain known, nonempty, unique case names")
 sdk = "iphonesimulator" if args.simulator else "iphoneos"
 target = "arm64-apple-ios15.0-simulator" if args.simulator else "arm64-apple-ios15.0"
 app = SCRATCH / ("sim" if args.simulator else "device") / "HLSVerification.app"

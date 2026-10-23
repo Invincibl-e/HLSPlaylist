@@ -20,7 +20,7 @@ prefix = ["sshpass", "-e"] if os.environ.get("SSHPASS") else []
 options = ["-o", "PubkeyAuthentication=no"] if prefix else []
 options += ["-o", "NumberOfPasswordPrompts=1", "-o", "ConnectTimeout=10",
             "-o", "ControlMaster=auto", "-o", "ControlPersist=600",
-            "-o", "ControlPath=" + str(SCRATCH / "ssh-control"),
+            "-o", "ControlPath=" + os.environ.get("HLS_SSH_CONTROL", str(SCRATCH / "ssh-control")),
             "-o", "UserKnownHostsFile=" + str(SCRATCH / "phone-known-hosts"),
             "-o", "StrictHostKeyChecking=accept-new"]
 ssh = prefix + ["ssh", *options, "-p", str(args.ssh_port), "root@127.0.0.1"]
