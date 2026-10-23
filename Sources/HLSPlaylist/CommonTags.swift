@@ -2,21 +2,21 @@ import Foundation
 
 /// A byte range, `length[@offset]`.
 public struct ByteRange: Sendable, Hashable, CustomStringConvertible {
-    public var length: Int
+    public var length: UInt64
     /// Start offset; `nil` means "immediately after the previous range".
-    public var offset: Int?
+    public var offset: UInt64?
 
-    public init(length: Int, offset: Int? = nil) {
+    public init(length: UInt64, offset: UInt64? = nil) {
         self.length = length
         self.offset = offset
     }
 
     public init?(_ text: String) {
-        let parts = text.split(separator: "@", maxSplits: 1)
-        guard let first = parts.first, let length = Int(first.trimmingCharacters(in: .whitespaces)) else { return nil }
+        let parts = text.split(separator: "@", omittingEmptySubsequences: false)
+        guard (1...2).contains(parts.count), let first = parts.first, let length = HLSNumber.integer(String(first)) else { return nil }
         self.length = length
         if parts.count == 2 {
-            guard let offset = Int(parts[1].trimmingCharacters(in: .whitespaces)) else { return nil }
+            guard let offset = HLSNumber.integer(String(parts[1])) else { return nil }
             self.offset = offset
         }
     }
@@ -27,7 +27,7 @@ public struct ByteRange: Sendable, Hashable, CustomStringConvertible {
 /// `EXT-X-KEY` / `EXT-X-SESSION-KEY`: how media segments are encrypted.
 public struct EncryptionKey: Sendable, Hashable {
     public enum Method: Sendable, Hashable, CustomStringConvertible {
-        case none, aes128, sampleAES, sampleAESCTR
+        case none, aes128, sampleAES, sampleAESCTR, aes256GCM
         case other(String)
 
         init(_ raw: String) {
@@ -36,6 +36,7 @@ public struct EncryptionKey: Sendable, Hashable {
             case "AES-128": self = .aes128
             case "SAMPLE-AES": self = .sampleAES
             case "SAMPLE-AES-CTR": self = .sampleAESCTR
+            case "AES-256-GCM": self = .aes256GCM
             default: self = .other(raw)
             }
         }
@@ -46,6 +47,7 @@ public struct EncryptionKey: Sendable, Hashable {
             case .aes128: "AES-128"
             case .sampleAES: "SAMPLE-AES"
             case .sampleAESCTR: "SAMPLE-AES-CTR"
+            case .aes256GCM: "AES-256-GCM"
             case .other(let raw): raw
             }
         }
@@ -74,7 +76,7 @@ public struct EncryptionKey: Sendable, Hashable {
     init(attributes a: AttributeList) {
         method = Method(a["METHOD"]?.rawValue ?? "NONE")
         uri = a["URI"]?.rawValue
-        iv = a["IV"]?.hexBytes
+        iv = a["IV"]?.hexBytes.map { Array(repeating: 0, count: max(0, 16 - $0.count)) + $0 }
         keyFormat = a["KEYFORMAT"]?.rawValue
         keyFormatVersions = a["KEYFORMATVERSIONS"]?.rawValue
         otherAttributes = a.excluding(Self.known)
@@ -93,10 +95,10 @@ public struct EncryptionKey: Sendable, Hashable {
 
     /// The IV to use for a segment: the explicit IV, or (per RFC 8216) the
     /// segment's media sequence number as a big-endian 128-bit integer.
-    public func initializationVector(forMediaSequence sequence: Int) -> [UInt8] {
+    public func initializationVector(forMediaSequence sequence: UInt64) -> [UInt8] {
         if let iv { return iv }
         var bytes = [UInt8](repeating: 0, count: 16)
-        var value = UInt64(truncatingIfNeeded: sequence)
+        var value = sequence
         for index in stride(from: 15, through: 8, by: -1) {
             bytes[index] = UInt8(value & 0xFF)
             value >>= 8
@@ -109,17 +111,21 @@ public struct EncryptionKey: Sendable, Hashable {
 public struct MediaInitializationSection: Sendable, Hashable {
     public var uri: String
     public var byteRange: ByteRange?
+    /// Encryption in effect when this MAP was declared.
+    public var keys: [EncryptionKey]
     public var otherAttributes: AttributeList
 
-    public init(uri: String, byteRange: ByteRange? = nil, otherAttributes: AttributeList = AttributeList()) {
+    public init(uri: String, byteRange: ByteRange? = nil, keys: [EncryptionKey] = [], otherAttributes: AttributeList = AttributeList()) {
         self.uri = uri
         self.byteRange = byteRange
+        self.keys = keys
         self.otherAttributes = otherAttributes
     }
 
     init(attributes a: AttributeList) {
         uri = a["URI"]?.rawValue ?? ""
         byteRange = a["BYTERANGE"].flatMap { ByteRange($0.rawValue) }
+        keys = []
         otherAttributes = a.excluding(["URI", "BYTERANGE"])
     }
 
@@ -288,12 +294,6 @@ public struct DateRange: Sendable, Hashable {
 /// ISO 8601 date handling for `EXT-X-PROGRAM-DATE-TIME` and `EXT-X-DATERANGE`.
 enum HLSDate {
     // ISO8601DateFormatter is thread-safe; creating one is expensive.
-    nonisolated(unsafe) private static let fractional: ISO8601DateFormatter = {
-        let formatter = ISO8601DateFormatter()
-        formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-        return formatter
-    }()
-
     nonisolated(unsafe) private static let plain: ISO8601DateFormatter = {
         let formatter = ISO8601DateFormatter()
         formatter.formatOptions = [.withInternetDateTime]
@@ -301,29 +301,14 @@ enum HLSDate {
     }()
 
     static func parse(_ text: String) -> Date? {
-        let trimmed = text.trimmingCharacters(in: .whitespaces)
-        if let date = fastParse(trimmed) { return date }
-        if let date = fractional.date(from: trimmed) ?? plain.date(from: trimmed) { return date }
-        // Some encoders emit offsets without a colon (e.g. +0000).
-        if let match = trimmed.range(of: #"[+-]\d{4}$"#, options: .regularExpression) {
-            var fixed = trimmed
-            fixed.insert(":", at: fixed.index(match.lowerBound, offsetBy: 3))
-            return fractional.date(from: fixed) ?? plain.date(from: fixed)
-        }
-        return nil
+        fastParse(text)
     }
 
-    /// Allocation-free parser for `YYYY-MM-DDTHH:MM:SS[.fraction](Z|±HH[:]MM)`,
+    /// Direct parser for `YYYY-MM-DDTHH:MM:SS[.fraction](Z|±HH[:]MM)`,
     /// which is what virtually every packager emits. Returns `nil` for
-    /// anything else so the caller can fall back to `ISO8601DateFormatter`.
+    /// anything else. Calendar dates are validated before conversion.
     static func fastParse(_ text: String) -> Date? {
-        var utf8 = text.utf8.makeIterator()
-        var bytes: [UInt8] = []
-        bytes.reserveCapacity(32)
-        while let byte = utf8.next() {
-            bytes.append(byte)
-            if bytes.count > 40 { return nil }
-        }
+        let bytes = Array(text.utf8)
         func digits(_ start: Int, _ count: Int) -> Int? {
             guard start + count <= bytes.count else { return nil }
             var value = 0
@@ -334,27 +319,29 @@ enum HLSDate {
             }
             return value
         }
-        guard bytes.count >= 20,
+        guard bytes.count >= 19,
               bytes[4] == 45, bytes[7] == 45, bytes[10] == 84 || bytes[10] == 116, bytes[13] == 58, bytes[16] == 58,
               let year = digits(0, 4), let month = digits(5, 2), let day = digits(8, 2),
               let hour = digits(11, 2), let minute = digits(14, 2), let second = digits(17, 2),
               (1...12).contains(month), (1...31).contains(day), hour < 24, minute < 60, second < 61
         else { return nil }
+        let leap = year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)
+        let monthDays = [31, leap ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        guard day <= monthDays[month - 1] else { return nil }
 
         var index = 19
         var fraction = 0.0
         if index < bytes.count, bytes[index] == 46 {
             index += 1
-            var scale = 0.1
             let start = index
             while index < bytes.count, bytes[index] >= 48, bytes[index] <= 57 {
-                fraction += Double(bytes[index] - 48) * scale
-                scale /= 10
                 index += 1
             }
             guard index > start else { return nil }
+            fraction = Double("0." + String(decoding: bytes[start..<index], as: UTF8.self)) ?? 0
         }
-        guard index < bytes.count else { return nil }
+        // bis §4.4.4.6: an omitted time zone is treated as UTC.
+        if index == bytes.count { return fastParse(text + "Z") }
         var offsetSeconds = 0
         switch bytes[index] {
         case 90, 122: // Z
@@ -364,7 +351,8 @@ enum HLSDate {
             guard let hours = digits(index + 1, 2) else { return nil }
             var minuteStart = index + 3
             if minuteStart < bytes.count, bytes[minuteStart] == 58 { minuteStart += 1 }
-            guard let minutes = digits(minuteStart, 2), minuteStart + 2 == bytes.count else { return nil }
+            guard let minutes = digits(minuteStart, 2), minuteStart + 2 == bytes.count,
+                  hours < 24, minutes < 60 else { return nil }
             offsetSeconds = sign * (hours * 3600 + minutes * 60)
         default:
             return nil
@@ -382,6 +370,12 @@ enum HLSDate {
     }
 
     static func format(_ date: Date) -> String {
-        fractional.string(from: date)
+        let seconds = date.timeIntervalSince1970
+        guard seconds.isFinite else { return "invalid-date" }
+        let whole = seconds.rounded(.down)
+        let fraction = seconds - whole
+        let base = plain.string(from: Date(timeIntervalSince1970: whole))
+        let suffix = fraction == 0 ? ".000" : String(formatDecimal(fraction).dropFirst())
+        return String(base.dropLast()) + suffix + "Z"
     }
 }

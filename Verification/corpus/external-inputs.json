@@ -1,0 +1,1976 @@
+[
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:27",
+    "text": "#EXTM3U#EXTXSTREAMINF:PROGRAM-ID=1,BANDWIDTH=836280,CODECS=\"mp4a.40.2,avc1.64001f\",RESOLUTION=848x360,NAME=\"480\"\nhttp://proxy-62.dailymotion.com/sec(3ae40f708f79ca9471f52b86da76a3a8)/video/107/282/158282701_mp4_h264_aac_hq.m3u8#cell=core",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:39",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=836280,CODECS=\"mp4a.40.2,avc1.64001f\",RESOLUTION=848x360,NAME=\"480\"\nhttp://proxy-62.dailymotion.com/sec(3ae40f708f79ca9471f52b86da76a3a8)/video/107/282/158282701_mp4_h264_aac_hq.m3u8#cell=core",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:62",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=7700000,RESOLUTION=1920x1080,CODECS=\"avc1.64002a\"\nvideo.m3u8\n#EXT-X-I-FRAME-STREAM-INF:BANDWIDTH=300000,CODECS=\"avc1.64002a\",RESOLUTION=1920x1080,URI=\"iframe.m3u8\"",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:83",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=836280,CODECS=\"mp4a.40.2,avc1.64001f\",RESOLUTION=848x360,NAME=\"480\"\n# some comment\nhttp://proxy-62.dailymotion.com/sec(3ae40f708f79ca9471f52b86da76a3a8)/video/107/282/158282701_mp4_h264_aac_hq.m3u8#cell=core",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:100",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=836280,RESOLUTION=848x360,NAME=\"480\"\nhttp://proxy-62.dailymotion.com/sec(3ae40f708f79ca9471f52b86da76a3a8)/video/107/282/158282701_mp4_h264_aac_hq.m3u8#cell=core",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:123",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:NAME=\"480\",PROGRAM-ID=1,BANDWIDTH=836280,CODECS=\"mp4a.40.2,avc1.64001f\",RESOLUTION=848x360\nhttp://proxy-62.dailymotion.com/sec(3ae40f708f79ca9471f52b86da76a3a8)/video/107/282/158282701_mp4_h264_aac_hq.m3u8#cell=core",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:145",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:NAME=\"480\",RESOLUTION=848x360,PROGRAM-ID=1,BANDWIDTH=836280,CODECS=\"mp4a.40.2,avc1.64001f\"\nhttp://proxy-62.dailymotion.com/sec(3ae40f708f79ca9471f52b86da76a3a8)/video/107/282/158282701_mp4_h264_aac_hq.m3u8#cell=core",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:166",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:CODECS=\"mp4a.40.2,avc1.64001f\",NAME=\"480\",RESOLUTION=848x360,PROGRAM-ID=1,BANDWIDTH=836280\nhttp://proxy-62.dailymotion.com/sec(3ae40f708f79ca9471f52b86da76a3a8)/video/107/282/158282701_mp4_h264_aac_hq.m3u8#cell=core",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:189",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=836280,CODECS=\"mp4a.40.2,avc1.64001f\",RESOLUTION=848x360,NAME=\"480\"\nhttp://proxy-62.dailymotion.com/sec(3ae40f708f79ca9471f52b86da76a3a8)/video/107/282/158282701_mp4_h264_aac_hq.m3u8#cell=core\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=836280,CODECS=\"mp4a.40.2,avc1.64001f\",RESOLUTION=848x360,NAME=\"480\"\nhttp://proxy-21.dailymotion.com/sec(3ae40f708f79ca9471f52b86da76a3a8)/video/107/282/158282701_mp4_h264_aac_hq.m3u8#cell=core\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=246440,CODECS=\"mp4a.40.5,avc1.42000d\",RESOLUTION=320x136,NAME=\"240\"\nhttp://proxy-62.dailymotion.com/sec(65b989b17536b5158360dfc008542daa)/video/107/282/158282701_mp4_h264_aac_ld.m3u8#cell=core\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=246440,CODECS=\"mp4a.40.5,avc1.42000d\",RESOLUTION=320x136,NAME=\"240\"\nhttp://proxy-21.dailymotion.com/sec(65b989b17536b5158360dfc008542daa)/video/107/282/158282701_mp4_h264_aac_ld.m3u8#cell=core\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=460560,CODECS=\"mp4a.40.5,avc1.420016\",RESOLUTION=512x216,NAME=\"380\"\nhttp://proxy-62.dailymotion.com/sec(b90a363ba42fd9eab9313f0cd2e4d38b)/video/107/282/158282701_mp4_h264_aac.m3u8#cell=core\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=460560,CODECS=\"mp4a.40.5,avc1.420016\",RESOLUTION=512x216,NAME=\"380\"\nhttp://proxy-21.dailymotion.com/sec(b90a363ba42fd9eab9313f0cd2e4d38b)/video/107/282/158282701_mp4_h264_aac.m3u8#cell=core\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=2149280,CODECS=\"mp4a.40.2,avc1.64001f\",RESOLUTION=1280x544,NAME=\"720\"\nhttp://proxy-62.dailymotion.com/sec(c16ad76fb8641c41d759e20880043e47)/video/107/282/158282701_mp4_h264_aac_hd.m3u8#cell=core\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=2149280,CODECS=\"mp4a.40.2,avc1.64001f\",RESOLUTION=1280x544,NAME=\"720\"\nhttp://proxy-21.dailymotion.com/sec(c16ad76fb8641c41d759e20880043e47)/video/107/282/158282701_mp4_h264_aac_hd.m3u8#cell=core\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=6221600,CODECS=\"mp4a.40.2,avc1.640028\",RESOLUTION=1920x816,NAME=\"1080\"\nhttp://proxy-62.dailymotion.com/sec(2a991e17f08fcd94f95637a6dd718ddd)/video/107/282/158282701_mp4_h264_aac_fhd.m3u8#cell=core\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=6221600,CODECS=\"mp4a.40.2,avc1.640028\",RESOLUTION=1920x816,NAME=\"1080\"\nhttp://proxy-21.dailymotion.com/sec(2a991e17f08fcd94f95637a6dd718ddd)/video/107/282/158282701_mp4_h264_aac_fhd.m3u8#cell=core",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:231",
+    "text": "#EXTM3U\n#EXT-X-SESSION-DATA:DATA-ID=\"com.dailymotion.sessiondata.test\",VALUE=\"some data\"\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=836280,CODECS=\"mp4a.40.2,avc1.64001f\",RESOLUTION=848x360,NAME=\"480\"\nhttp://proxy-62.dailymotion.com/sec(3ae40f708f79ca9471f52b86da76a3a8)/video/107/282/158282701_mp4_h264_aac_hq.m3u8#cell=core",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:252",
+    "text": "#EXTM3U\n#EXT-X-SESSION-DATA:DATA-ID=\"com.dailymotion.sessiondata.test\",VALUE=\"some data\"\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=836280,CODECS=\"mp4a.40.2,avc1.64001f\",RESOLUTION=848x360,NAME=\"480\"\nhttp://proxy-62.dailymotion.com/sec(3ae40f708f79ca9471f52b86da76a3a8)/video/107/282/158282701_mp4_h264_aac_hq.m3u8#cell=core\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=836280,CODECS=\"mp4a.40.2,avc1.64001f\",RESOLUTION=848x360,NAME=\"480\"\nhttp://proxy-21.dailymotion.com/sec(3ae40f708f79ca9471f52b86da76a3a8)/video/107/282/158282701_mp4_h264_aac_hq.m3u8#cell=core\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=246440,CODECS=\"mp4a.40.5,avc1.42000d\",RESOLUTION=320x136,NAME=\"240\"\nhttp://proxy-62.dailymotion.com/sec(65b989b17536b5158360dfc008542daa)/video/107/282/158282701_mp4_h264_aac_ld.m3u8#cell=core\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=246440,CODECS=\"mp4a.40.5,avc1.42000d\",RESOLUTION=320x136,NAME=\"240\"\nhttp://proxy-21.dailymotion.com/sec(65b989b17536b5158360dfc008542daa)/video/107/282/158282701_mp4_h264_aac_ld.m3u8#cell=core\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=460560,CODECS=\"mp4a.40.5,avc1.420016\",RESOLUTION=512x216,NAME=\"380\"\nhttp://proxy-62.dailymotion.com/sec(b90a363ba42fd9eab9313f0cd2e4d38b)/video/107/282/158282701_mp4_h264_aac.m3u8#cell=core\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=460560,CODECS=\"mp4a.40.5,avc1.420016\",RESOLUTION=512x216,NAME=\"380\"\nhttp://proxy-21.dailymotion.com/sec(b90a363ba42fd9eab9313f0cd2e4d38b)/video/107/282/158282701_mp4_h264_aac.m3u8#cell=core\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=2149280,CODECS=\"mp4a.40.2,avc1.64001f\",RESOLUTION=1280x544,NAME=\"720\"\nhttp://proxy-62.dailymotion.com/sec(c16ad76fb8641c41d759e20880043e47)/video/107/282/158282701_mp4_h264_aac_hd.m3u8#cell=core\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=2149280,CODECS=\"mp4a.40.2,avc1.64001f\",RESOLUTION=1280x544,NAME=\"720\"\nhttp://proxy-21.dailymotion.com/sec(c16ad76fb8641c41d759e20880043e47)/video/107/282/158282701_mp4_h264_aac_hd.m3u8#cell=core\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=6221600,CODECS=\"mp4a.40.2,avc1.640028\",RESOLUTION=1920x816,NAME=\"1080\"\nhttp://proxy-62.dailymotion.com/sec(2a991e17f08fcd94f95637a6dd718ddd)/video/107/282/158282701_mp4_h264_aac_fhd.m3u8#cell=core\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=6221600,CODECS=\"mp4a.40.2,avc1.640028\",RESOLUTION=1920x816,NAME=\"1080\"\nhttp://proxy-21.dailymotion.com/sec(2a991e17f08fcd94f95637a6dd718ddd)/video/107/282/158282701_mp4_h264_aac_fhd.m3u8#cell=core",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:291",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=3000000,VIDEO-RANGE=PQ,CODECS=\"hvc1.2.4.L93.b0,ec-3\",SUPPLEMENTAL-CODECS=\"dvh1.08.01/db1p\",RESOLUTION=1920x1080,FRAME-RATE=30.000\ndb1p.m3u8\n#EXT-X-STREAM-INF:BANDWIDTH=3602443,VIDEO-RANGE=HLG,CODECS=\"hvc1.2.4.L150,ec-3\",SUPPLEMENTAL-CODECS=\"dvh1.08.07/db4h\",RESOLUTION=1920x1080,FRAME-RATE=30.000\ndb4h.m3u8\n#EXT-X-STREAM-INF:BANDWIDTH=3000000,VIDEO-RANGE=HLG,CODECS=\"av01.0.13M.10.0.112,ec-3\",SUPPLEMENTAL-CODECS=\"dav1.10.09/db4h\",RESOLUTION=1920x1080,FRAME-RATE=30.000\ndav1.m3u8\n#EXT-X-STREAM-INF:BANDWIDTH=3602443,VIDEO-RANGE=PQ,CODECS=\"av01.0.05M.10.0.112,ec-3\",SUPPLEMENTAL-CODECS=\"av01.0.05M.10.0.112/cdm4\",RESOLUTION=1920x1080,FRAME-RATE=30.000\ncdm4.m3u8",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:389",
+    "text": "#EXTM3U\n#EXT-X-SESSION-DATA:DATA-ID=\"com.dailymotion.sessiondata.test\",VALUE=\"some data\"\n#EXT-X-SESSION-DATA:DATA-ID=\"com.dailymotion.sessiondata.test2\",VALUE=\"different data\"\n#EXT-X-SESSION-DATA:DATA-ID=\"com.dailymotion.sessiondata.test3\",VALUE=\"more different data\",URI=\"http://www.dailymotion.com/\"\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=836280,CODECS=\"mp4a.40.2,avc1.64001f\",RESOLUTION=848x360,NAME=\"480\"\nhttp://proxy-62.dailymotion.com/sec(3ae40f708f79ca9471f52b86da76a3a8)/video/107/282/158282701_mp4_h264_aac_hq.m3u8#cell=core",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:437",
+    "text": "#EXTM3U\n#EXT-X-VERSION:3\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-TARGETDURATION:14",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:455",
+    "text": "#EXTM3U\n#EXT-X-VERSION:3\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-TARGETDURATION:2.5",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:472",
+    "text": "#EXTM3U\n#EXT-X-VERSION:3\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-TARGETDURATION:0.5",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:489",
+    "text": "#EXTM3U\n#EXT-X-VERSION:3\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-TARGETDURATION:14\n#EXTINF:11.360,\n/sec(3ae40f708f79ca9471f52b86da76a3a8)/frag(1)/video/107/282/158282701_mp4_h264_aac_hq.ts\n#EXTINF: 11.320,\n/sec(3ae40f708f79ca9471f52b86da76a3a8)/frag(2)/video/107/282/158282701_mp4_h264_aac_hq.ts\n#EXTINF: 13.480,\n# general comment\n/sec(3ae40f708f79ca9471f52b86da76a3a8)/frag(3)/video/107/282/158282701_mp4_h264_aac_hq.ts\n#EXTINF:11.200,\n/sec(3ae40f708f79ca9471f52b86da76a3a8)/frag(4)/video/107/282/158282701_mp4_h264_aac_hq.ts\n#EXTINF:3.880,\n/sec(3ae40f708f79ca9471f52b86da76a3a8)/frag(5)/video/107/282/158282701_mp4_h264_aac_hq.ts\n#EXT-X-ENDLIST",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:538",
+    "text": "#EXTM3U\n#EXT-X-ALLOW-CACHE:NO\n#EXT-X-TARGETDURATION:2\n#EXTINF:2,\n0\n#EXTINF:2,\n1\n#EXT-X-ENDLIST",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:596",
+    "text": "#EXTM3U\n#EXT-X-VERSION:3\n#EXT-X-MEDIA-SEQUENCE:0\n#EXT-X-TARGETDURATION:6\n#EXT-X-INDEPENDENT-SEGMENTS\n#EXTINF:6.000000\nchop/segment-1.ts\n#EXTINF:6.000000\nchop/segment-2.ts\n#EXTINF:6.000000\nchop/segment-3.ts\n#EXTINF:6.000000\nchop/segment-4.ts\n#EXTINF:6.000000\nchop/segment-5.ts\n#EXTINF:6.000000\n#EXT-X-ENDLIST",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:642",
+    "text": "#EXTM3U\n#EXT-X-VERSION:3\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-TARGETDURATION:14\n#EXT-X-START:TIME-OFFSET=10.3\n#EXTINF:11.360,\n/sec(3ae40f708f79ca9471f52b86da76a3a8)/frag(1)/video/107/282/158282701_mp4_h264_aac_hq.ts\n#EXTINF:11.320,\n/sec(3ae40f708f79ca9471f52b86da76a3a8)/frag(2)/video/107/282/158282701_mp4_h264_aac_hq.ts\n#EXTINF:13.480,\n/sec(3ae40f708f79ca9471f52b86da76a3a8)/frag(3)/video/107/282/158282701_mp4_h264_aac_hq.ts\n#EXTINF:11.200,\n/sec(3ae40f708f79ca9471f52b86da76a3a8)/frag(4)/video/107/282/158282701_mp4_h264_aac_hq.ts\n#EXTINF:3.880,\n/sec(3ae40f708f79ca9471f52b86da76a3a8)/frag(5)/video/107/282/158282701_mp4_h264_aac_hq.ts\n#EXT-X-ENDLIST",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:675",
+    "text": "#EXTM3U\n#EXT-X-VERSION:1\n## Created with Unified Streaming Platform(version=1.6.7)\n#EXT-X-MEDIA-SEQUENCE:1\n#EXT-X-ALLOW-CACHE:NO\n#EXT-X-TARGETDURATION:11\n#EXT-X-KEY:METHOD=AES-128,URI=\"skd://assetid?keyId=1234\",KEYFORMAT=\"com.apple.streamingkeydelivery\"\n#EXTINF:11,no desc\noceans_aes-audio=65000-video=236000-1.ts\n#EXTINF:7,no desc\noceans_aes-audio=65000-video=236000-2.ts\n#EXTINF:7,no desc\noceans_aes-audio=65000-video=236000-3.ts\n#EXT-X-ENDLIST",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:725",
+    "text": "#EXTM3U\n#EXT-X-VERSION:1\n## Created with Unified Streaming Platform(version=1.6.7)\n#EXT-X-MEDIA-SEQUENCE:1\n#EXT-X-ALLOW-CACHE:NO\n#EXT-X-TARGETDURATION:11\n#EXT-X-KEY:METHOD=AES-128,URI=\"oceans.key\"\n#EXTINF:11,no desc\noceans_aes-audio=65000-video=236000-1.ts\n#EXTINF:7,no desc\noceans_aes-audio=65000-video=236000-2.ts\n#EXTINF:7,no desc\noceans_aes-audio=65000-video=236000-3.ts\n#EXT-X-ENDLIST",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:783",
+    "text": "#EXTM3U\n#EXT-X-VERSION:1\n## Created with Unified Streaming Platform(version=1.6.7)\n#EXT-X-MEDIA-SEQUENCE:1\n#EXT-X-ALLOW-CACHE:NO\n#EXT-X-TARGETDURATION:11\n#EXT-X-KEY:METHOD=AES-256,URI=\"bob1.key256\",IV=0x10000000000000000000000000001234\n#EXTINF:11,no desc\nbob_1.m4s\n#EXT-X-KEY:METHOD=AES-256-CTR,URI=\"bob2.key256\",IV=0x10000000000000000000000000004567\n#EXTINF:11,no desc\nbob_2.m4s\n#EXT-X-ENDLIST",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:833",
+    "text": "#EXTM3U\n#EXT-X-VERSION:4\n#EXT-X-ALLOW-CACHE:YES\n#EXT-X-TARGETDURATION:1\n#EXT-X-MEDIA-SEQUENCE:7478\n#EXT-X-BYTERANGE:140060@803136\n#EXTINF:1000000,\nlo007ts\n#EXT-X-BYTERANGE:96256@943196\n#EXTINF:1000000,\nlo007ts\n#EXT-X-BYTERANGE:143068@1039452\n#EXTINF:1000000,\nlo007ts\n#EXT-X-BYTERANGE:124080@0\n#EXTINF:1000000,\nlo008ts\n#EXT-X-BYTERANGE:117688@124080\n#EXTINF:1000000,\nlo008ts\n#EXT-X-BYTERANGE:102272@241768\n#EXTINF:1000000,\nlo008ts\n#EXT-X-BYTERANGE:100580@344040\n#EXTINF:1000000,\nlo008ts\n#EXT-X-BYTERANGE:113740@444620\n#EXTINF:1000000,\nlo008ts\n#EXT-X-BYTERANGE:126148@558360\n#EXTINF:1000000,\nlo008ts\n#EXT-X-BYTERANGE:133480@684508\n#EXTINF:1000000,\nlo008ts",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:891",
+    "text": "#EXTM3U\n#EXT-X-VERSION:4\n#EXT-X-ALLOW-CACHE:YES\n#EXT-X-TARGETDURATION:1\n#EXT-X-MEDIA-SEQUENCE:7478\n#EXTINF:1000000,\n#EXT-X-BYTERANGE:140060@803136\nlo007ts\n#EXTINF:1000000,\n#EXT-X-BYTERANGE:96256@943196\nlo007ts\n#EXTINF:1000000,\n#EXT-X-BYTERANGE:143068@1039452\nlo007ts\n#EXTINF:1000000,\n#EXT-X-BYTERANGE:124080@0\nlo008ts\n#EXTINF:1000000,\n#EXT-X-BYTERANGE:117688@124080\nlo008ts\n#EXTINF:1000000,\n#EXT-X-BYTERANGE:102272@241768\nlo008ts\n#EXTINF:1000000,\n#EXT-X-BYTERANGE:100580@344040\nlo008ts\n#EXTINF:1000000,\n#EXT-X-BYTERANGE:113740@444620\nlo008ts\n#EXTINF:1000000,\n#EXT-X-BYTERANGE:126148@558360\nlo008ts\n#EXTINF:1000000,\n#EXT-X-BYTERANGE:133480@684508\nlo008ts",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:949",
+    "text": "#EXTM3U\n#EXT-X-ALLOW-CACHE:YES\n#EXT-X-VERSION:6\n#EXT-X-TARGETDURATION:4\n#EXT-X-MEDIA-SEQUENCE:1\n#EXT-X-BYTERANGE:10000@24000\n#EXT-X-MAP:URI=\"initsegment.m4v\",BYTERANGE=\"24000@0\"\n#EXTINF:4.000,\nlo007.m4v\n#EXT-X-BYTERANGE:30000@34000\n#EXTINF:4.000,\nlo007.m4v\n#EXT-X-BYTERANGE:40000@64000\n#EXTINF:4.000,\nlo007.m4v\n#EXT-X-ENDLIST",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:997",
+    "text": "#EXTM3U\n#EXT-X-VERSION:4\n#EXT-X-ALLOW-CACHE:YES\n#EXT-X-TARGETDURATION:1\n#EXT-X-MEDIA-SEQUENCE:7478\n#EXTINF:1000000,\n#EXT-X-BYTERANGE:140060@803136\nlo007ts\n#EXTINF:1000000,\n#EXT-X-BYTERANGE:96256\nlo007ts\n#EXTINF:1000000,\n#EXT-X-BYTERANGE:143068\nlo007ts",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:1033",
+    "text": "#EXTM3U\n#EXTM3U\n#EXT-X-VERSION:3\n#EXT-X-TARGETDURATION:10\n#EXT-X-MEDIA-SEQUENCE:0\n#EXTINF:10,\n0001.ts\n#EXTINF:10,\n0002.ts\n#EXTINF:5,\n0003.ts\n#EXT-X-DISCONTINUITY\n#EXTINF:10,\n0005.ts\n#EXTINF:10,\n0006.ts\n#EXT-X-ENDLIST\n    ",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:1067",
+    "text": "#EXTM3U\n#EXTM3U\n#EXT-X-VERSION:3\n#EXT-X-TARGETDURATION:10\n#EXT-X-MEDIA-SEQUENCE:0\n#EXT-X-DISCONTINUITY-SEQUENCE:20\n#EXTINF:10,\n0001.ts\n#EXTINF:10,\n0002.ts\n#EXTINF:5,\n0003.ts\n#EXT-X-DISCONTINUITY\n#EXTINF:10,\n0005.ts\n#EXTINF:10,\n0006.ts\n#EXT-X-ENDLIST\n    ",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:1103",
+    "text": "#EXTM3U\n#EXT-X-VERSION:6\n#EXT-X-TARGETDURATION:5\n#EXT-X-MEDIA-SEQUENCE:1\n#EXTINF:4\n1.mp4\n#EXT-X-DISCONTINUITY-SEQUENCE:3\n#EXTINF:4\n2.mp4\n#EXTINF:4\n3.mp4",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:1131",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:6\n#EXT-X-SERVER-CONTROL:CAN-SKIP-UNTIL=36.0\n#EXT-X-MEDIA-SEQUENCE:661\n#EXT-X-SKIP:SKIPPED-SEGMENTS=5054\n#EXT-X-DISCONTINUITY-SEQUENCE:99\n#EXT-X-VERSION:9\n#EXT-X-KEY:METHOD=NONE\n#EXT-X-MAP:URI=\"https://sample-host/init.m4i\"\n#EXT-X-PROGRAM-DATE-TIME:2025-09-23T23:10:56.316Z\n#EXTINF:4.0110,\nhttps://sample-host/segment1.m4a",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:1163",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"600k\",LANGUAGE=\"eng\",NAME=\"Audio\",AUTOSELECT=YES,DEFAULT=YES,URI=\"/videos/ZakEbrahim_2014/audio/600k.m3u8?qr=true&preroll=Blank\",BANDWIDTH=614400",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:1194",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:10\n#EXT-X-VERSION:3\n#EXT-X-MEDIA-SEQUENCE:0\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXTINF:10,\n#EXT-X-KEY:METHOD=AES-128,URI=\"https://dummy.com/crypt-0.key\"\n0001.ts\n#EXTINF:10,\n0002.ts\n#EXTINF:10,\n0003.ts\n#EXTINF:10,\n0004.ts\n#EXTINF:10,\n0005.ts\n#EXTINF:10,\n0006.ts\n#EXTINF:10,\n0007.ts\n#EXTINF:10,\n0008.ts",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:1256",
+    "text": "#EXTM3U\n#EXT-X-VERSION:3\n#EXT-X-TARGETDURATION:10\n#EXT-X-MEDIA-SEQUENCE:719926\n#EXTINF:9.40,\nhttp://dummy.url.com/hls/live/segment/segment_022916_164500865_719926.ts\n#EXTINF:9.56,\nhttp://dummy.url.com/hls/live/segment/segment_022916_164500865_719927.ts\n#EXT-X-CUE-OUT:DURATION=150,BREAKID=0x0\n#EXTINF:9.23,\nhttp://dummy.url.com/hls/live/segment/segment_022916_164500865_719928.ts\n#EXTINF:0.50,\nhttp://dummy.url.com/hls/live/segment/segment_022916_164500865_719929.ts\n#EXT-X-CUE-IN\n#EXTINF:8.50,\nhttp://dummy.url.com/hls/live/segment/segment_022916_164500865_719930.ts\n#EXTINF:9.43,\nhttp://dummy.url.com/hls/live/segment/segment_022916_164500865_719931.ts\n#EXTINF:9.78,\nhttp://dummy.url.com/hls/live/segment/segment_022916_164500865_719932.ts\n#EXTINF:9.31,\nhttp://dummy.url.com/hls/live/segment/segment_022916_164500865_719933.ts\n#EXTINF:9.98,\nhttp://dummy.url.com/hls/live/segment/segment_022916_164500865_719934.ts\n#EXTINF:9.25,\nhttp://dummy.url.com/hls/live/segment/segment_022916_164500865_719935.ts",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:1516",
+    "text": "#EXTM3U\n#EXT-X-VERSION:2\n#EXT-X-TARGETDURATION:10\n#EXT-X-MEDIA-SEQUENCE:69844067\n#EXTINF:10, no desc\n#EXT-X-PROGRAM-DATE-TIME:2016-05-27T16:34:44Z\nRollover38803/20160525T064049-01-69844067.ts\n#EXTINF:10, no desc\n#EXT-X-PROGRAM-DATE-TIME:2016-05-27T16:34:54Z\nRollover38803/20160525T064049-01-69844068.ts\n#EXTINF:10, no desc\n#EXT-X-PROGRAM-DATE-TIME:2016-05-27T16:35:04Z\nRollover38803/20160525T064049-01-69844069.ts\n    ",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:1353",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:6\n#EXT-X-VERSION:9\n#EXT-X-MAP:URI=\"fileSequence1.mp4\"\n#EXT-X-SKIP:SKIPPED-SEGMENTS=17\n#EXTINF:6.00000,\t\nfileSequence18.m4s\n#EXTINF:6.00000,\t\nfileSequence19.m4s\n#EXTINF:6.00000,\t\nfileSequence20.m4s\n#EXTINF:6.00000,\t\nfileSequence21.m4s\n#EXTINF:6.00000,\t\nfileSequence22.m4s\n#EXTINF:6.00000,\t\nfileSequence23.m4s\n#EXTINF:6.00000,\t\nfileSequence24.m4s\n#EXT-X-PROGRAM-DATE-TIME:2026-05-11T19:03:26.000Z\n",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:1401",
+    "text": "#EXTM3U\n#EXT-X-VERSION:3\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-TARGETDURATION:14\n#EXTINF:.360,\n/sec(3ae40f708f79ca9471f52b86da76a3a8)/frag(1)/video/107/282/158282701_mp4_h264_aac_hq.ts\n#EXT-X-ENDLIST",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:1422",
+    "text": "#EXTM3U\n#EXT-X-VERSION:3\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-TARGETDURATION:10\n#EXTINF:10.,\nsegment-1.ts\n#EXTINF:4.,title\nsegment-2.ts\n#EXT-X-ENDLIST",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:1451",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:6\n#EXT-X-VERSION:7\n#EXT-X-MEDIA-SEQUENCE:1\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-INDEPENDENT-SEGMENTS\n#EXT-X-MAP:URI=\"main.mp4\",BYTERANGE=\"718@0\"\n#EXTINF:6.00600,\n#EXT-X-BYTERANGE:1543597@718\nmain.mp4",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:1481",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:6\n#EXT-X-VERSION:7\n#EXT-X-MEDIA-SEQUENCE:1\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-INDEPENDENT-SEGMENTS\n#EXT-X-MAP:URI=\"main.mp4\"\n#EXTINF:6.00600,\nfrag1.mp4\n#EXT-X-DISCONTINUITY\n#EXT-X-MAP:URI=\"alt.mp4\"\n#EXTINF:4.0\nfrag2.mp4\n",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:1555",
+    "text": "#EXTM3U\n#EXT-X-VERSION:6\n#EXT-X-TARGETDURATION:10\n#EXTINF:10\nfrag0.ts\n#EXTINF:10\nfrag1.ts\n#EXTINF:10\n#EXT-X-PROGRAM-DATE-TIME:2016-05-27T16:35:04Z\nfrag2.ts\n    ",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:1585",
+    "text": "#EXTM3U\n#EXT-X-VERSION:6\n#EXT-X-TARGETDURATION:10\n#EXTINF:10\n#EXT-X-PROGRAM-DATE-TIME:2016-05-27T16:35:04Z\nfrag0.ts\n#EXTINF:10\nfrag1.ts\n#EXTINF:10\nfrag2.ts\n    ",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:1615",
+    "text": "#EXTM3U\n#EXT-X-VERSION:6\n#EXT-X-TARGETDURATION:10\n#EXT-X-DISCONTINUITY\n#EXT-X-PROGRAM-DATE-TIME:2016-05-27T16:35:04Z\n#EXTINF:10\nfrag0.ts\n#EXTINF:10\nfrag1.ts\n#EXT-X-DISCONTINUITY\n#EXT-X-PROGRAM-DATE-TIME:2017-05-27T16:35:04Z\n#EXTINF:10\nfrag2.ts\n#EXTINF:10\nfrag3.ts\n#EXT-X-DISCONTINUITY\n#EXT-X-PROGRAM-DATE-TIME:2015-05-27T11:42:03Z\n#EXTINF:10\nfrag4.ts\n#EXTINF:10\nfrag5.ts\n    ",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:1666",
+    "text": "#EXTM3U\n#EXT-X-VERSION:6\n#EXT-X-TARGETDURATION:10\n#EXTINF:10\n#EXT-X-PROGRAM-DATE-TIME:2016-05-27T16:35:04Z\n#EXT-X-MAP\nfrag0.ts\n#EXTINF:10\nfrag1.ts\n    ",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:1693",
+    "text": "#EXTM3U\n#EXT-X-VERSION:6\n#EXT-X-TARGETDURATION:10\n#EXTINF:10\n#EXT-X-PROGRAM-DATE-TIME:foo\nfrag0.ts\n#EXTINF:10\nfrag1.ts\n    ",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:1718",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:4\n#EXT-X-VERSION:3\n#EXT-X-PART-INF:PART-TARGET=1.004000\n#EXT-X-MEDIA-SEQUENCE:1151226\n#EXTINF:4.00000,\nfileSequence1151226.ts\n#EXT-X-PROGRAM-DATE-TIME:2020-08-11T23:02:18.003Z\n#EXTINF:4.00000,\nfileSequence1151227.ts\n#EXTINF:4.00000,\nfileSequence1151228.ts\n#EXTINF:4.00000,\nfileSequence1151229.ts\n#EXTINF:4.00000,\nfileSequence1151230.ts\n#EXTINF:4.00000,\nfileSequence1151231.ts\n#EXT-X-PROGRAM-DATE-TIME:2020-08-11T23:02:38.003Z\n#EXT-X-PART:DURATION=1.00000,INDEPENDENT=YES,URI=\"lowLatencyHLS.php?segment=filePart1151232.1.ts\"\n#EXT-X-PART:DURATION=1.00001,INDEPENDENT=NO,URI=\"lowLatencyHLS.php?segment=filePart1151232.2.ts\"\n#EXT-X-PART:DURATION=1.00000,INDEPENDENT=YES,URI=\"lowLatencyHLS.php?segment=filePart1151232.3.ts\"\n#EXT-X-PART:DURATION=1.00000,INDEPENDENT=YES,URI=\"lowLatencyHLS.php?segment=filePart1151232.4.ts\"\n#EXTINF:4.00000,\nfileSequence1151232.ts\n#EXT-X-PART:DURATION=1.00000,INDEPENDENT=YES,URI=\"lowLatencyHLS.php?segment=filePart1151233.1.ts\"\n#EXT-X-PART:DURATION=0.99999,INDEPENDENT=YES,URI=\"lowLatencyHLS.php?segment=filePart1151233.2.ts\"\n#EXT-X-PART:DURATION=1.00000,URI=\"lowLatencyHLS.php?segment=filePart1151233.3.ts\"\n#EXT-X-PART:DURATION=1.00000,GAP=YES,INDEPENDENT=YES,URI=\"lowLatencyHLS.php?segment=filePart1151233.4.ts\"\n#EXTINF:4.00000,\nfileSequence1151233.ts\n#EXT-X-PRELOAD-HINT:TYPE=PART,URI=\"lowLatencyHLS.php?segment=filePart1151234.1.ts\"\n#EXT-X-SERVER-CONTROL:CAN-BLOCK-RELOAD=YES,CAN-SKIP-UNTIL=24,PART-HOLD-BACK=3.012\n#EXT-X-RENDITION-REPORT:URI=\"/media0/lowLatencyHLS.php\",LAST-MSN=1151201,LAST-PART=3\n#EXT-X-RENDITION-REPORT:URI=\"/media2/lowLatencyHLS.php\",LAST-MSN=1151201,LAST-PART=3",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:1774",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:4\n#EXT-X-VERSION:3\n#EXT-X-SERVER-CONTROL:CAN-SKIP-UNTIL=20,CAN-SKIP-DATERANGES=YES,HOLD-BACK=15.1\n#EXTINF:4.00000,\nfileSequence1151226.ts",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:1927",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:4\n#EXT-X-VERSION:9\n#EXT-X-SERVER-CONTROL:CAN-BLOCK-RELOAD=YES,CAN-SKIP-UNTIL=24,PART-HOLD-BACK=3.012\n#EXT-X-PART-INF:PART-TARGET=1.004000\n#EXT-X-MEDIA-SEQUENCE:81541\n#EXT-X-SKIP:SKIPPED-SEGMENTS=9,RECENTLY-REMOVED-DATERANGES=\"DrTag\ttdl\"\n#EXTINF:3.98933,\nfileSequence81635.m4s\n#EXTINF:3.98933,\nfileSequence81636.m4s\n#EXTINF:3.98933,\nfileSequence81637.m4s\n#EXT-X-PROGRAM-DATE-TIME:2023-01-15T02:28:01.425Z\n#EXTINF:3.98933,\nfileSequence81638.m4s\n#EXTINF:3.98933,\nfileSequence81639.m4s\n#EXT-X-PART:DURATION=1.00267,URI=\"lowLatencySeg.m4s?segment=filePart81640.1.m4s\"\n#EXT-X-PART:DURATION=1.00267,URI=\"lowLatencySeg.m4s?segment=filePart81640.2.m4s\"\n#EXT-X-PART:DURATION=1.00267,URI=\"lowLatencySeg.m4s?segment=filePart81640.3.m4s\"\n#EXT-X-PART:DURATION=0.98133,URI=\"lowLatencySeg.m4s?segment=filePart81640.4.m4s\"\n#EXTINF:3.98933,\nfileSequence81640.m4s\n#EXT-X-PART:DURATION=1.00267,URI=\"lowLatencySeg.m4s?segment=filePart81641.1.m4s\"\n#EXT-X-PART:DURATION=1.00267,URI=\"lowLatencySeg.m4s?segment=filePart81641.2.m4s\"\n#EXT-X-PART:DURATION=1.00267,URI=\"lowLatencySeg.m4s?segment=filePart81641.3.m4s\"\n#EXT-X-PART:DURATION=0.98133,URI=\"lowLatencySeg.m4s?segment=filePart81641.4.m4s\"\n#EXTINF:3.98933,\nfileSequence81641.m4s\n#EXT-X-PART:DURATION=1.00267,URI=\"lowLatencySeg.m4s?segment=filePart81642.1.m4s\"\n#EXT-X-PART:DURATION=1.00267,URI=\"lowLatencySeg.m4s?segment=filePart81642.2.m4s\"\n#EXT-X-PART:DURATION=1.00267,URI=\"lowLatencySeg.m4s?segment=filePart81642.3.m4s\"\n#EXT-X-PRELOAD-HINT:TYPE=PART,URI=\"lowLatencySeg.m4s?segment=filePart81642.4.m4s\"\n#",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:1986",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:6\n#EXT-X-VERSION:3\n#EXT-X-MEDIA-SEQUENCE:0\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXTINF:5.97263,\t\n#EXT-X-BITRATE:5083\nfileSequence0.ts\n#EXTINF:5.97263,\t\n#EXT-X-BITRATE:5453\nfileSequence1.ts\n#EXTINF:5.97263,\t\n#EXT-X-BITRATE:4802\nfileSequence2.ts\n",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:2031",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:6\n#EXT-X-VERSION:3\n#EXT-X-MEDIA-SEQUENCE:0\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXTINF:5\n#EXT-X-BITRATE:1000\nfileSequence0.ts\n#EXTINF:5\n#EXT-X-BYTERANGE:600000@123456\nfileSequence1.ts\n#EXTINF: 5\nfileSequence2.ts\n",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:2083",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-VERSION:3\n#EXT-X-MEDIA-SEQUENCE:0\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXTINF:5,title\nfileSequence0.ts\n#EXTINF:5,\n#EXT-X-GAP\nfileSequence1.ts\n#EXTINF:5,\nfileSequence2.ts\n",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:2121",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:6\n#EXT-X-VERSION:10\n#EXT-X-DISCONTINUITY-SEQUENCE:1\n#EXT-X-MEDIA-SEQUENCE:1\n#EXT-X-TIMESTAMP:1705081564\n#EXT-X-PROGRAM-DATE-TIME:2024-01-12T10:00:00.000Z\n#EXT-X-DATERANGE:ID=\"pre\",CLASS=\"com.apple.hls.interstitial\",CUE=\"PRE\",START-DATE=\"2024-01-12T08:00:00.000Z\",DURATION=15.0,X-ASSET-URI=\"b.m3u8?_HLS_interstitial_id=pre\",X-RESTRICT=\"SKIP,JUMP\",X-SNAP=\"IN\"\n#EXT-X-MAP:URI=\"init_0.mp4\"\n#EXTINF:6,\nsegment.m4s\n#EXTINF:6,\nsegment.m4s\n#EXT-X-DATERANGE:ID=\"mid1\",CLASS=\"com.apple.hls.interstitial\",CUE=\"ONCE\",START-DATE=\"2024-01-12T10:00:10.000Z\",DURATION=15.0,X-ASSET-URI=\"b.m3u8?_HLS_interstitial_id=mid1\",X-RESTRICT=\"SKIP,JUMP\"\n#EXTINF:4,\nsegment.m4s\n#EXT-X-DISCONTINUITY\n#EXT-X-PROGRAM-DATE-TIME:2024-01-12T10:00:16.000Z\n#EXT-X-MAP:URI=\"init_1.mp4\"\n#EXTINF:6,\nsegment.m4s\n#EXTINF:4,\nsegment.m4s\n#EXT-X-DATERANGE:ID=\"mid2\",CLASS=\"com.apple.hls.interstitial\",START-DATE=\"2024-01-12T10:00:25.000Z\",DURATION=15.0,X-ASSET-URI=\"b.m3u8?_HLS_interstitial_id=mid2\",X-SNAP=\"OUT,IN\"\n#EXT-X-DISCONTINUITY\n#EXT-X-PROGRAM-DATE-TIME:2024-01-12T10:00:26.000Z\n#EXT-X-MAP:URI=\"init_2.mp4\"\n#EXTINF:6,\nsegment.m4s\n#EXTINF:6,\nsegment.m4s\n\n#EXT-X-DATERANGE:ID=\"post\",CLASS=\"com.apple.hls.interstitial\",CUE=\"POST,ONCE\",START-DATE=\"2024-01-12T10:00:00.000Z\",DURATION=15.0,X-ASSET-URI=\"e.m3u8?_HLS_interstitial_id=post\"",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:2192",
+    "text": "#EXTM3U\n#EXT-X-VERSION:4\n#EXT-X-TARGETDURATION:10\n#EXT-X-MEDIA-SEQUENCE:1\n#EXT-X-PROGRAM-DATE-TIME:1970-01-01T00:00:00.000Z\n#EXT-X-DATERANGE:ID=\"sooner\",START-DATE=\"1970-01-01T00:00:20.000Z\"\n#EXTINF:10\n1.mp4\n#EXT-X-DISCONTINUITY\n#EXT-X-PROGRAM-DATE-TIME:1970-01-01T00:00:20.000Z\n#EXTINF:10\n2.mp4\n#EXTINF:10\n3.mp4",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:2226",
+    "text": "#EXTM3U\n#EXT-X-VERSION:4\n#EXT-X-TARGETDURATION:10\n#EXT-X-MEDIA-SEQUENCE:1\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:00.000Z\n#EXT-X-DATERANGE:ID=\"earlier\",START-DATE=\"1999-12-31T23:59:50.000Z\"\n#EXTINF:10\n1.mp4\n#EXT-X-DISCONTINUITY\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:20.000Z\n#EXTINF:10\n2.mp4\n#EXTINF:10\n3.mp4",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:2260",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:10\n#EXT-X-VERSION:4\n#EXT-X-MEDIA-SEQUENCE:0\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-PROGRAM-DATE-TIME:2018-09-28T16:50:26Z\n#EXTINF:10,\nmain1.aac\n#EXT-X-PROGRAM-DATE-TIME:2018-09-28T16:50:36Z\n#EXT-X-DATERANGE:ID=\"splice-6FFFFFF0\",START-DATE=\"2018-09-28T16:50:48Z\",PLANNED-DURATION=20.0,X-CUSTOM=\"Hi!\",SCTE35-OUT=0xFC002F0000000000FF\n#EXTINF:10,\nmain2.aac\n#EXTINF:10,\nmain3.aac\n#EXT-X-PROGRAM-DATE-TIME:2018-09-28T16:50:56Z\n#EXT-X-DATERANGE:ID=\"splice-6FFFFFF0\",START-DATE=\"2018-09-28T16:51:18Z\",DURATION=30.0,SCTE35-IN=0xFC002F0000000000FF\n#EXTINF:9.9846,\nmain4.aac\n  ",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:2315",
+    "text": "#EXTM3U\n#EXT-X-VERSION:2\n#EXT-X-TARGETDURATION:10\n#EXT-X-MEDIA-SEQUENCE:69844067\n#EXTINF:9.40,\nhttp://dummy.url.com/hls/live/segment/segment_022916_164500865_719926.ts\n#EXTINF:9.56,\nhttp://dummy.url.com/hls/live/segment/segment_022916_164500865_719927.ts\n#EXT-X-CUSTOM-DATE:2016-05-27T16:34:44Z\n#EXT-X-CUSTOM-JSON:{\"key\":\"value\"}\n#EXT-X-CUSTOM-URI:http://dummy.url.com/hls/moreinfo.json\n#EXTINF:10, no desc\nhttp://dummy.url.com/hls/live/segment/segment_022916_164500865_719928.ts\n    ",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:2349",
+    "text": "#EXTM3U\n#EXT-X-VERSION:4\n#EXT-X-TARGETDURATION:7\n#EXT-X-MEDIA-SEQUENCE:1\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXTINF:6.006,\n180724_Allison VLOG-v3_00001.ts\n#EXTINF:6.006,\n180724_Allison VLOG-v3_00002.ts\n#EXT-X-ENDLIST\n    ",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:2382",
+    "text": "#EXTM3U\n#EXT-X-VERSION:4\n#EXT-X-TARGETDURATION:7\n#EXT-X-MEDIA-SEQUENCE:1\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXTINF:6.006,\n180724_Allison VLOG v3_00001.ts\n#EXTINF:6.006,\n180724_Allison VLOG v3_00002.ts\n#EXT-X-ENDLIST\n    ",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:2414",
+    "text": "#EXTM3U\n#EXT-X-VERSION:6\n#EXT-X-TARGETDURATION:6\n#EXT-X-MEDIA-SEQUENCE:1638262\n#EXT-X-DISCONTINUITY-SEQUENCE:28141\n\n#EXT-X-KEY:METHOD=NONE\n#EXTINF:5.005,\n#EXT-X-MAP:URI=\"init.mp4\"\n#EXT-X-PROGRAM-DATE-TIME:2021-11-10T03:25:49.015Z\n3.mp4\n#EXTINF:5.005,\n4.mp4\n#EXTINF:1.961,\n5.mp4\n#EXT-X-DISCONTINUITY\n#EXTINF:5.005,\n0.mp4\n#EXTINF:5.005,\n1.mp4\n#EXTINF:5.005,\n2.mp4\n#EXTINF:5.005,\n3.mp4\n#EXTINF:5.005,\n4.mp4\n#EXTINF:1.961,\n5.mp4\n#EXT-X-DISCONTINUITY\n#EXTINF:5.005,\n0.mp4\n#EXTINF:5.005,\n1.mp4\n#EXTINF:5.005,\n2.mp4\n#EXTINF:5.005,\n3.mp4\n#EXTINF:5.005,\n4.mp4\n#EXTINF:1.961,\n5.mp4\n#EXT-X-DISCONTINUITY\n#EXTINF:5.005,\n0.mp4\n#EXTINF:4.037,\n1.mp4\n#EXT-X-PROGRAM-DATE-TIME:2021-11-10T03:27:04Z\n#EXT-X-CUE-IN\n#EXT-X-MAP:URI=\"init_960719739.mp4\"\n#EXT-X-DISCONTINUITY\n#EXTINF:6.0,\nmedia_1638274.m4s\n#EXTINF:6.0,\nmedia_1638275.m4s\n#EXTINF:6.0,\nmedia_1638276.m4s\n#EXTINF:6.0,\nmedia_1638277.m4s\n#EXTINF:6.0,\nmedia_1638278.m4s",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:2493",
+    "text": "#EXTM3U\n#EXT-X-VERSION:6\n#EXT-X-TARGETDURATION:6\n\n#EXT-X-MAP:URI=\"init.mp4\"\n#EXTINF:5.5,\n1.mp4\n#EXTINF:5.0,\n2.mp4\n\n#EXT-X-DISCONTINUITY\n#EXT-X-KEY:METHOD=SAMPLE-AES,URI=\"skd://a\",KEYFORMAT=\"com.apple.streamingkeydelivery\",KEYFORMATVERSIONS=\"1\"\n#EXT-X-KEY:METHOD=SAMPLE-AES,URI=\"data:text/plain;base64,YQo=\",KEYFORMAT=\"urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed\",KEYFORMATVERSIONS=\"1\"\n#EXT-X-MAP:URI=\"init.mp4\"\n#EXTINF:5.5,\n3.mp4\n#EXTINF:5.0,\n4.mp4\n\n#EXT-X-DISCONTINUITY\n#EXT-X-KEY:METHOD=NONE\n#EXT-X-MAP:URI=\"init.mp4\"\n#EXTINF:5.5,\n5.mp4\n#EXTINF:5.0,\n6.mp4\n\n#EXT-X-DISCONTINUITY\n#EXT-X-KEY:METHOD=SAMPLE-AES,URI=\"skd://b\",KEYFORMAT=\"com.apple.streamingkeydelivery\",KEYFORMATVERSIONS=\"1\"\n#EXT-X-KEY:METHOD=SAMPLE-AES,URI=\"data:text/plain;base64,Yg==\",KEYFORMAT=\"urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed\",KEYFORMATVERSIONS=\"1\"\n#EXT-X-MAP:URI=\"init.mp4\"\n#EXTINF:5.0,\n7.mp4\n#EXTINF:4.0,\n8.mp4\n#EXT-X-ENDLIST",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:2583",
+    "text": "#EXTM3U\n#EXT-X-VERSION:6\n#EXT-X-TARGETDURATION:6\n#EXT-X-KEY:METHOD=SAMPLE-AES,URI=\"skd://any\",KEYFORMAT=\"com.apple.streamingkeydelivery\",KEYFORMATVERSIONS=\"1\"\n#EXT-X-KEY:METHOD=SAMPLE-AES,URI=\"data:text/plain;base64,AAAA\",KEYID=0x50906c6be9179460c3d1a59f16ee9804,KEYFORMAT=\"urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed\",KEYFORMATVERSIONS=\"1\"\n#EXT-X-KEY:METHOD=SAMPLE-AES,URI=\"data:text/plain;charset=UTF-16;base64,UAIA\",KEYFORMATVERSIONS=\"1\",KEYFORMAT=\"com.microsoft.playready\"\n#EXT-X-MAP:URI=\"init.mp4\"\n#EXTINF:5.0,\n1.mp4",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:2636",
+    "text": "#EXTM3U\n#EXT-X-SESSION-DATA:DATA-ID=\"key\",VALUE=\"value\"\n\n#EXT-X-SESSION-KEY:METHOD=SAMPLE-AES,URI=\"skd://a\",KEYFORMAT=\"com.apple.streamingkeydelivery\",KEYFORMATVERSIONS=\"1\"\n\n#EXT-X-SESSION-KEY:METHOD=SAMPLE-AES,URI=\"data:text/plain;base64,YQo=\",KEYFORMAT=\"urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed\",KEYFORMATVERSIONS=\"1\"\n\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=836280,CODECS=\"mp4a.40.2,avc1.64001f\",RESOLUTION=848x360,NAME=\"480\"\nhttp://proxy-62.x.com/sec(3ae40f708f79ca9471f52b86da76a3a8)/video/107/282/158282701_mp4_h264_aac_hq.m3u8#cell=core\n\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=836280,CODECS=\"mp4a.40.2,avc1.64001f\",RESOLUTION=848x360,NAME=\"480\"\nhttp://proxy-21.x.com/sec(3ae40f708f79ca9471f52b86da76a3a8)/video/107/282/158282701_mp4_h264_aac_hq.m3u8#cell=core",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:2688",
+    "text": "#EXTM3U\n#EXT-X-START:TIME-OFFSET=300.0,PRECISE=YES\n\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=836280,CODECS=\"mp4a.40.2,avc1.64001f\",RESOLUTION=848x360,NAME=\"480\"\nhttp://proxy-62.x.com/sec(3ae40f708f79ca9471f52b86da76a3a8)/video/107/282/158282701_mp4_h264_aac_hq.m3u8#cell=core",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:2702",
+    "text": "#EXTM3U\n#EXT-X-START:TIME-OFFSET=-30.0\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=836280,CODECS=\"mp4a.40.2,avc1.64001f\",RESOLUTION=848x360,NAME=\"480\"\nhttp://proxy-62.x.com/sec(3ae40f708f79ca9471f52b86da76a3a8)/video/107/282/158282701_mp4_h264_aac_hq.m3u8#cell=core",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:2715",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=836280,CODECS=\"mp4a.40.2,avc1.64001f\",RESOLUTION=848x360,NAME=\"480\"\nhttp://proxy-62.x.com/sec(3ae40f708f79ca9471f52b86da76a3a8)/video/107/282/158282701_mp4_h264_aac_hq.m3u8#cell=core",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:2729",
+    "text": "#EXTM3U\n#EXT-X-DEFINE:NAME=\"x\",VALUE=\"1\"\n#EXT-X-DEFINE:NAME=\"y\",VALUE=\"2\"\n#EXT-X-DEFINE:NAME=\"hello-var\",VALUE=\"Hello there!\"\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=836280,CODECS=\"mp4a.40.2,avc1.64001f\",RESOLUTION=848x360,NAME=\"480\"\nhttp://proxy-62.x.com/sec(3ae40f708f79ca9471f52b86da76a3a8)/video/107/282/158282701_mp4_h264_aac_hq.m3u8#cell=core",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:2750",
+    "text": "#EXTM3U\n#EXT-X-DEFINE:NAME=\"foo\",VALUE=\"ok\"\n#EXT-X-DEFINE:NAME=\"bar\",VALUE=\"ok\"\n#EXT-X-DEFINE:NAME=\"foo\",VALUE=\"duped\"\n\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=836280,CODECS=\"mp4a.40.2,avc1.64001f\",RESOLUTION=848x360,NAME=\"480\"\nhttp://proxy-62.x.com/sec(3ae40f708f79ca9471f52b86da76a3a8)/video/107/282/158282701_mp4_h264_aac_hq.m3u8#cell=core",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:2786",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:4\n#EXTINF:4,\nhttps://{$host}/1.mp4",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:2817",
+    "text": "#EXTM3U\n#EXT-X-DEFINE:NAME=\"host\",VALUE=\"example.com\"\n#EXT-X-DEFINE:NAME=\"foo\",VALUE=\"ok\"\n#EXT-X-DEFINE:NAME=\"bar\",VALUE=\"{$foo}\"\n#EXT-X-DEFINE:NAME=\"vcodec\",VALUE=\"avc1.64001f\"\n\n#EXT-X-CONTENT-STEERING:SERVER-URI=\"https://{$host}/steering-manifest.json\",PATHWAY-ID=\"{$foo}-CDN\"\n\n#EXT-X-DEFINE:NAME=\"session-var\",VALUE=\"hmm\"\n#EXT-X-SESSION-DATA:DATA-ID=\"var-applied\",VALUE=\"{$session-var}\"\n\n#EXT-X-DEFINE:NAME=\"p\",VALUE=\".\"\n#EXT-X-DEFINE:NAME=\"v1\",VALUE=\"1\"\n#EXT-X-DEFINE:NAME=\"two\",VALUE=\"2\"\n#EXT-X-SESSION-KEY:METHOD=SAMPLE-AES,URI=\"skd://{$session-var}\",KEYFORMAT=\"com.apple{$p}streamingkeydelivery\",KEYFORMATVERSIONS=\"{$v1}/2\",IV=0x0000000{$two}\n\n#EXT-X-DEFINE:NAME=\"language\",VALUE=\"eng\"\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"{$two}00k\",LANGUAGE=\"{$language}\",NAME=\"Audio\",AUTOSELECT=YES,DEFAULT=YES,URI=\"https://{$host}/{$two}00k.m3u8\",BANDWIDTH=614400\n\n#EXT-X-STREAM-INF:BANDWIDTH=836280,CODECS=\"mp4a.40.2,{$vcodec}\",RESOLUTION=848x360,AUDIO=\"{$two}00k\",NAME=\"{$bar}1\"\nhttps://{$host}/sec/video/1.m3u8\n\n#EXT-X-STREAM-INF:BANDWIDTH=1836280,CODECS=\"mp4a.40.2,{$vcodec}\",RESOLUTION=848x360,NAME=\"{$bar}{$two}\"\nhttps://{$host}/sec/{$vcodec}/{$two}.m3u8",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:2911",
+    "text": "#EXTM3U\n#EXT-X-VERSION:1\n#EXT-X-MEDIA-SEQUENCE:1\n#EXT-X-ALLOW-CACHE:NO\n#EXT-X-TARGETDURATION:5\n#EXT-X-DEFINE:IMPORT=\"mvpVariable\"\n#EXT-X-DEFINE:NAME=\"p\",VALUE=\"part-\"\n#EXT-X-DEFINE:NAME=\"skd\",VALUE=\"key-data\"\n#EXT-X-DEFINE:NAME=\"fps\",VALUE=\"com.apple.streamingkeydelivery\"\n#EXT-X-DEFINE:NAME=\"init-bytes\",VALUE=\"718@0\"\n#EXT-X-DEFINE:NAME=\"v1\",VALUE=\"1\"\n#EXT-X-DEFINE:NAME=\"two\",VALUE=\"2\"\n#EXT-X-DEFINE:NAME=\"metadata-id\",VALUE=\"drMeta\"\n#EXT-X-DEFINE:NAME=\"date\",VALUE=\"2018-09-28T16:50:48Z\"\n#EXT-X-SERVER-CONTROL:CAN-BLOCK-RELOAD=YES,CAN-SKIP-UNTIL=24,PART-HOLD-BACK=3.012\n#EXT-X-SKIP:SKIPPED-SEGMENTS=3,RECENTLY-REMOVED-DATERANGES=\"DrTag\ttdl\t{$metadata-id}\tfoo\"\n#EXT-X-KEY:METHOD=SAMPLE-AES,URI=\"skd://{$skd}\",KEYFORMAT=\"{$fps}\",KEYFORMATVERSIONS=\"{$v1}/2\",IV=0x0000000{$two}\n#EXT-X-MAP:URI=\"{$mvpVariable}.mp4\",BYTERANGE=\"{$init-bytes}\"\n#EXTINF:4,no desc {$mvpVariable}\na{$mvpVariable}.mp4\n#EXTINF:4,no desc\n2.mp4\n#EXTINF:4,no desc\n3.mp4\n#EXT-X-PROGRAM-DATE-TIME:2018-09-28T16:50:36Z\n#EXT-X-DATERANGE:ID=\"{$metadata-id}\",START-DATE=\"{$date}\",END-DATE=\"{$date}\",X-CUSTOM=\"{$mvpVariable}!\",SCTE35-OUT=0x{$two}0000000\n#EXT-X-PART:DURATION=1.00000,INDEPENDENT=YES,URI=\"{$p}4-1.mp4\",BYTERANGE=\"{$init-bytes}\"\n#EXT-X-PART:DURATION=0.99999,INDEPENDENT=YES,URI=\"{$p}4-2.mp4\"\n#EXT-X-PART:DURATION=1.00000,URI=\"{$p}4-3.mp4\"\n#EXT-X-PART:DURATION=1.00000,GAP=YES,INDEPENDENT=YES,URI=\"{$p}4-4.mp4\"\n#EXTINF:4.00000,\n4.mp4\n#EXT-X-PRELOAD-HINT:TYPE=PART,URI=\"{$p}5.1.mp4\"\n#EXT-X-RENDITION-REPORT:URI=\"/media0/{$mvpVariable}.m3u8\",LAST-MSN=4,LAST-PART=3\n#EXT-X-RENDITION-REPORT:URI=\"/media2/{$mvpVariable}.m3u8\"",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:3037",
+    "text": "#EXTM3U\n#EXT-X-DEFINE:QUERYPARAM=\"token\"\n#EXT-X-DEFINE:QUERYPARAM=\"foo\"\n#EXT-X-SESSION-DATA:DATA-ID=\"var-applied\",VALUE=\"{$foo}\"\n#EXT-X-STREAM-INF:BANDWIDTH=836280,RESOLUTION=848x360\nhttps://www.x.com/sec/video/1.m3u8?parent-token={$token}\n#EXT-X-STREAM-INF:BANDWIDTH=1836280,RESOLUTION=848x360\nhttps://www.x.com/sec/video/2.m3u8?parent-token={$token}",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:3076",
+    "text": "#EXTM3U\n#EXT-X-VERSION:1\n#EXT-X-MEDIA-SEQUENCE:1\n#EXT-X-TARGETDURATION:5\n#EXT-X-DEFINE:IMPORT=\"token\"\n#EXT-X-DEFINE:QUERYPARAM=\"parent-token\"\n#EXT-X-DEFINE:NAME=\"extra\",VALUE=\"yes\"\n#EXTINF:4\nsegment-1.mp4?pt={$parent-token}&t={$token}&x={$extra}\n#EXTINF:4\nsegment-2.mp4?t={$token}\n#EXTINF:4\nsegment-3.mp4?t={$token}",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:3121",
+    "text": "#EXTM3U\n#EXT-X-VERSION:1\n#EXT-X-MEDIA-SEQUENCE:1\n#EXT-X-TARGETDURATION:5\n#EXT-X-DEFINE:IMPORT=\"mvpVar\"\n#EXTINF:4\na{$mvpVar}.mp4\n#EXTINF:4\n2.mp4\n#EXTINF:4\n3.mp4",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:3149",
+    "text": "#EXTM3U\n#EXT-X-VERSION:1\n#EXT-X-MEDIA-SEQUENCE:1\n#EXT-X-TARGETDURATION:5\n#EXTINF:4\na{$bar}.mp4\n#EXTINF:4\n2.mp4\n#EXTINF:4\n3.mp4",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:3176",
+    "text": "#EXTM3U\n#EXT-X-VERSION:1\n#EXT-X-MEDIA-SEQUENCE:1\n#EXT-X-TARGETDURATION:5\n#EXTINF:4\na{$bar}.mp4\n#EXT-X-DEFINE:NAME=\"bar\",VALUE=\"1\"\n#EXTINF:4\n2.mp4\n#EXTINF:4\n3.mp4",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:3206",
+    "text": "#EXTM3U\n#EXT-X-VERSION:6\n#EXT-X-TARGETDURATION:5\n#EXT-X-TARGETDURATION:4\n#EXTINF:4\n1.mp4",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:3227",
+    "text": "#EXTM3U\n#EXT-X-VERSION:6\n#EXT-X-TARGETDURATION:5\n#EXTINF:4\n1.mp4\n#EXT-X-ENDLIST\n#EXT-X-ENDLIST",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:3249",
+    "text": "#EXTM3U\n#EXT-X-VERSION:6\n#EXT-X-TARGETDURATION:5\n#EXT-X-MEDIA-SEQUENCE:1\n#EXT-X-DISCONTINUITY-SEQUENCE:2\n#EXTINF:4\n1.mp4\n#EXT-X-DISCONTINUITY-SEQUENCE:3\n#EXTINF:4\n2.mp4\n#EXTINF:4\n3.mp4",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:3276",
+    "text": "#EXTM3U\n#EXT-X-VERSION:6\n#EXT-X-TARGETDURATION:5\n#EXT-X-MEDIA-SEQUENCE:1\n#EXTINF:4\n1.mp4\n#EXT-X-MEDIA-SEQUENCE:2\n#EXTINF:4\n2.mp4\n#EXTINF:4\n3.mp4",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:3302",
+    "text": "#EXTM3U\n#EXT-X-VERSION:6\n#EXT-X-TARGETDURATION:5\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-PLAYLIST-TYPE:EVENT\n#EXTINF:4\n1.mp4",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:3324",
+    "text": "#EXTM3U\n#EXT-X-VERSION:6\n#EXT-X-TARGETDURATION:5\n#EXT-X-PART-INF:PART-TARGET=1.000\n#EXT-X-PART-INF:PART-TARGET=0.500\n#EXTINF:4\n1.mp4",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:3346",
+    "text": "#EXTM3U\n#EXT-X-VERSION:6\n#EXT-X-TARGETDURATION:5\n#EXT-X-SERVER-CONTROL:CAN-BLOCK-RELOAD=YES,PART-HOLD-BACK=3.0\n#EXT-X-SERVER-CONTROL:CAN-SKIP-UNTIL=24\n#EXTINF:4\n1.mp4",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:3369",
+    "text": "#EXTM3U\n#EXT-X-VERSION:6\n#EXT-X-TARGETDURATION:5\n#EXT-X-MEDIA-SEQUENCE:1\n#EXT-X-SKIP:SKIPPED-SEGMENTS=1\n#EXTINF:4\n2.mp4\n#EXT-X-SKIP:SKIPPED-SEGMENTS=3\n#EXTINF:4\n6.mp4",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:3395",
+    "text": "#EXTM3U\n#EXT-X-VERSION:5\n#EXT-X-VERSION:6\n#EXT-X-TARGETDURATION:5\n#EXTINF:4\n2.mp4",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:3418",
+    "text": "#EXTM3U\n#EXT-X-VERSION:6\n#EXT-X-TARGETDURATION:5\n#EXTINF:4\n1.mp4\n#EXT-X-MEDIA-SEQUENCE:2\n#EXTINF:4\n2.mp4\n#EXTINF:4\n3.mp4",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:3443",
+    "text": "#EXTM3U\n#EXT-X-VERSION:10\n#EXT-X-TARGETDURATION:3\n#EXT-X-SERVER-CONTROL:CAN-BLOCK-RELOAD=YES,PART-HOLD-BACK=3.008,CAN-SKIP-UNTIL=35.4\n#EXT-X-PART-INF:PART-TARGET=1.001\n#EXT-X-SKIP:SKIPPED-SEGMENTS=191\n#EXT-X-MEDIA-SEQUENCE:7126\n#EXT-X-MAP:URI=\"https://sample-host/init.m4s\"\n#EXTINF:2.953,\nhttps://sample-host/1080p_7317.m4v",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:3472",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:6\n#EXT-X-VERSION:9\n#EXT-X-SERVER-CONTROL:CAN-SKIP-UNTIL=36\n#EXTINF:6,\nfileSequence102.ts\n#EXT-X-SKIP:SKIPPED-SEGMENTS=3\n#EXT-X-MEDIA-SEQUENCE:102\n#EXTINF:6,\nfileSequence106.ts",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "hls.js/tests/unit/loader/m3u8-parser.ts:3497",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:6\n#EXT-X-VERSION:9\n#EXT-X-SERVER-CONTROL:CAN-SKIP-UNTIL=36\n#EXT-X-MEDIA-SEQUENCE:102\n#EXTINF:6,\nfileSequence102.ts\n#EXT-X-SKIP:SKIPPED-SEGMENTS=3\n#EXTINF:6,\nfileSequence106.ts",
+    "source": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "extraction": "static-template"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:209",
+    "text": "#EXTM3U\n#EXT-X-START:TIME-OFFSET=2\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",CHANNELS=\"16/JOC\",SAMPLE-RATE=\"48000\",URI=\"audio\"\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"sub1\",LANGUAGE=\"eng\",URI=\"text\"\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"sub2\",LANGUAGE=\"es\",URI=\"text2\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\"\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:7718",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXTINF:5,\n#EXT-X-BYTERANGE:121090@616\nmain.mp4",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:3436",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXTINF:5,\n#EXT-X-BYTERANGE:121090@616\nmain.vtt",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:292",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO, GROUP-ID=\"aud1\", LANGUAGE=\"eng\", CHANNELS=\"16/JOC\", URI=\"audio\"\n#EXT-X-MEDIA:TYPE=SUBTITLES, GROUP-ID=\"sub1\", LANGUAGE=\"eng\", URI=\"text\"\n#EXT-X-MEDIA:TYPE=SUBTITLES, GROUP-ID=\"sub2\", LANGUAGE=\"es\", URI=\"text2\"\n#EXT-X-STREAM-INF:BANDWIDTH=200, CODECS=\"avc1,mp4a\", RESOLUTION=960x540, FRAME-RATE=60, AUDIO=\"aud1\"\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:372",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",CHANNELS=\"10/ATMOS\",SAMPLE-RATE=\"48000\",URI=\"audio\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,ac-4\",RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\"\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:427",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",CHANNELS=\"2/IMSA\",SAMPLE-RATE=\"48000\",URI=\"audio\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,ac-4\",RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\"\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:481",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=0,CODECS=\"avc1\",RESOLUTION=960x540,FRAME-RATE=60,AVERAGE-BANDWIDTH=100\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:525",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d001e,avc1.42000d\",RESOLUTION=960x540,FRAME-RATE=60\nvideo",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:1827",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1\",RESOLUTION=960x540,FRAME-RATE=60\nvideo",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:4353",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1\"\nvideo",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:650",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"mp4a\"\naudio",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:2863",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",CHANNELS=\"2\",URI=\"audio\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\"\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:718",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",CHANNELS=\"2\",URI=\"audio\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a.40.34\",RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\"\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:754",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=41457,CODECS=\"mp4a.40.2\"\naudio\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:760",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXTINF:5,\n#EXT-X-BYTERANGE:121090@616\nmain.aac",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:783",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=63701,CODECS=\"mp4a.40.34\"\naudio\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:821",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXTINF:5,\nmain.mp3",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:815",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=63701\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:843",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=1000000,CODECS=\"fLaC\"\naudio\n#EXT-X-STREAM-INF:BANDWIDTH=1000000,CODECS=\"flac\"\naudio2\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:880",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=128000,CODECS=\"Opus\"\naudio\n#EXT-X-STREAM-INF:BANDWIDTH=128000,CODECS=\"opus\"\naudio2\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:919",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",CHANNELS=\"2\",URI=\"audio\"\n#EXT-X-MEDIA:TYPE=CLOSED-CAPTIONS,GROUP-ID=\"cap1\",LANGUAGE=\"eng\",INSTREAM-ID=\"CC1\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",RESOLUTION=960x540,FRAME-RATE=60,CLOSED-CAPTIONS=\"cap1\",AUDIO=\"aud1\"\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:1093",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",CHANNELS=\"2\",URI=\"audio\"\n#EXT-X-MEDIA:TYPE=CLOSED-CAPTIONS,GROUP-ID=\"cap1\",LANGUAGE=\"eng\",INSTREAM-ID=\"CC1\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\"\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:1133",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",CHANNELS=\"2\",URI=\"audio\"\n#EXT-X-MEDIA:TYPE=CLOSED-CAPTIONS,GROUP-ID=\"cap1\",LANGUAGE=\"eng\",INSTREAM-ID=\"CC1\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",RESOLUTION=960x540,FRAME-RATE=60,CLOSED-CAPTIONS=\"NONE\",AUDIO=\"aud1\"\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:1171",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"stereo\",LANGUAGE=\"en\",URI=\"128kbit.m3u8\"\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"stereo\",LANGUAGE=\"dubbing\",URI=\"none.m3u8\"\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"surround\",LANGUAGE=\"en\",URI=\"320kbit.m3u8\"\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"surround\",LANGUAGE=\"dubbing\",URI=\"none.m3u8\"\n#EXT-X-STREAM-INF:BANDWIDTH=258157,CODECS=\"avc1.4d400d,mp4a.40.2\",AUDIO=\"stereo\",RESOLUTION=422x180\n250kbit.m3u8\n#EXT-X-STREAM-INF:BANDWIDTH=1144430,CODECS=\"avc1.4d401f,mp4a.40.2\",AUDIO=\"surround\",RESOLUTION=958x408\n1100kbit.m3u8\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:1212",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"mp4a\",AUDIO=\"aud1\"\naudio\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",URI=\"audio\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:1244",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",RESOLUTION=960x540,FRAME-RATE=60\nvideo",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:1275",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,RESOLUTION=960x540,FRAME-RATE=60\nvideo",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:1306",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\"\nvideo\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",URI=\"audio\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:1342",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\"\nvideo\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",NAME=\"audio\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:1382",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"mp4a\",VIDEO=\"vid1\"\naudio\n#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID=\"vid1\",NAME=\"video\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:1417",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f,mp4a.40.2\",RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\"\nvideo\n#EXT-X-STREAM-INF:BANDWIDTH=300,CODECS=\"avc1.4d401f,mp4a.40.2\",RESOLUTION=960x540,FRAME-RATE=120,AUDIO=\"aud2\"\nvideo2\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",DEFAULT=YES,URI=\"audio\"\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud2\",LANGUAGE=\"fr\",URI=\"audio2\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:1472",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f,mp4a.40.2\",RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\"\nvideo\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"en\",URI=\"audio\"\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"fr\",URI=\"audio2\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:1518",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=2000000,CODECS=\"avc1\",CLOSED-CAPTIONS=NONE\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:1525",
+    "text": "#EXTM3U\n#EXT-X-VERSION:3\n#EXT-X-TARGETDURATION:5\n#EXT-X-MEDIA-SEQUENCE:0\n#EXT-X-DISCONTINUITY-SEQUENCE:0\n#EXTINF:3,\nclip0-video-0.ts\n#EXTINF:1,\nclip0-video-1.ts\n#EXT-X-DISCONTINUITY\n#EXTINF:2,\nclip1-video-1.ts\n#EXTINF:3,\nclip1-video-2.ts\n#EXT-X-DISCONTINUITY\n#EXTINF:1,\nmedia-clip2-video-0.ts\n#EXTINF:1,\nmedia-clip2-video-1.ts\n#EXT-X-DISCONTINUITY\n#EXTINF:4,\nmedia-clip3-video-1.ts\n#EXT-X-ENDLIST\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:1575",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f,mp4a.40.2\",RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\"\nvideo\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"en\",NAME=\"English\",URI=\"audio\"\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"en\",CHARACTERISTICS=\"public.accessibility.describes-video,public.accessibility.describes-music-and-sound\",NAME=\"English (describes-video)\",URI=\"audio2\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:1629",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f\",RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\",SUBTITLES=\"sub1\"\nvideo\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"en\",NAME=\"English\",URI=\"audio\"\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"en\",CHARACTERISTICS=\"public.accessibility.describes-video,public.accessibility.describes-music-and-sound\",NAME=\"English (describes-video)\",URI=\"audio2\"\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"sub1\",LANGUAGE=\"en\",NAME=\"English (subtitle)\",DEFAULT=YES,AUTOSELECT=YES,URI=\"text\"\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"sub1\",LANGUAGE=\"en\",NAME=\"English (caption)\",DEFAULT=YES,AUTOSELECT=YES,CHARACTERISTICS=\"public.accessibility.describes-music-and-sound\",URI=\"text2\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:1698",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f\",RESOLUTION=960x540,FRAME-RATE=60,SUBTITLES=\"sub1\"\nvideo\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"sub1\",LANGUAGE=\"en\",NAME=\"English (caption)\",DEFAULT=YES,AUTOSELECT=YES,URI=\"text\"\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"sub1\",LANGUAGE=\"en\",NAME=\"English (caption)\",DEFAULT=YES,AUTOSELECT=YES,CHARACTERISTICS=\"public.accessibility.describes-spoken-dialog,public.accessibility.describes-music-and-sound\",URI=\"text2\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:1756",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f\",RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\",SUBTITLES=\"sub1\"\nvideo\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"en\",NAME=\"English\",URI=\"audio\"\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"en\",CHARACTERISTICS=\"public.accessibility.describes-video,public.accessibility.describes-music-and-sound\",NAME=\"English (describes-video)\",URI=\"audio2\"\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"sub1\",LANGUAGE=\"en\",NAME=\"English (caption)\",DEFAULT=YES,AUTOSELECT=YES,URI=\"text\"\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"sub1\",LANGUAGE=\"en\",NAME=\"English (caption)\",DEFAULT=YES,AUTOSELECT=YES,CHARACTERISTICS=\"public.accessibility.describes-spoken-dialog,public.accessibility.describes-music-and-sound\",URI=\"text2\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:1834",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXTINF:5,\n#EXT-X-BYTERANGE:121090@616\nmain.test",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:1865",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",URI=\"audio\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\"\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:1874",
+    "text": "#EXTM3U\n\n#EXT-X-PLAYLIST-TYPE:VOD\n\n#EXT-X-MAP:URI=\"init.mp4\"\n\n#EXTINF:5,\n\nmain.mp4",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:1883",
+    "text": "#EXTM3U\n\n#EXT-X-PLAYLIST-TYPE:VOD\n\n#EXTINF:5,\n\nmain.test",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:1911",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",URI=\"audio\"\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"sub1\",LANGUAGE=\"eng\",FORCED=YES,URI=\"text\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",VIDEO-RANGE=PQ,RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\",SUBTITLES=\"sub1\"\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:1976",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",URI=\"audio\"\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"sub1\",LANGUAGE=\"eng\",FORCED=YES,URI=\"text\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",REQ-VIDEO-LAYOUT=CH-STEREO,RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\",SUBTITLES=\"sub1\"\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:2042",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",URI=\"audio\"\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"sub1\",LANGUAGE=\"eng\",URI=\"text\"\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"sub2\",LANGUAGE=\"es\",URI=\"text2\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\",SUBTITLES=\"sub1\"\nvideo\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",RESOLUTION=960x540,FRAME-RATE=90,AUDIO=\"aud1\",SUBTITLES=\"sub2\"\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:2117",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",URI=\"audio\"\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"sub1\",LANGUAGE=\"eng\",URI=\"text\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\",SUBTITLES=\"sub1\"\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:2137",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXTINF:5,\n#EXT-X-BYTERANGE:121090@616\nmain.subs",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:2182",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",URI=\"audio\"\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"sub1\",LANGUAGE=\"eng\",FORCED=YES,URI=\"text\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\",SUBTITLES=\"sub1\"\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:2247",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",URI=\"audio\"\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"sub1\",LANGUAGE=\"eng\",URI=\"text\"\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"sub2\",LANGUAGE=\"es\",URI=\"text2\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f,mp4a.40.2\",RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\"\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:2311",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"sub1\",LANGUAGE=\"eng\",URI=\"text\"\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",CHANNELS=\"2\",URI=\"audio\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\",SUBTITLES=\"sub1\"\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:3414",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXTINF:5,\nmain.mp4\n#EXTINF:5,\nmain.mp4\n#EXTINF:5,\nmain.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:3426",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXTINF:5,\nmain.mp4\n#EXTINF:5,\nmain.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:3166",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"sub1\",LANGUAGE=\"eng\",URI=\"text\"\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",CHANNELS=\"2\",URI=\"audio\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\",SUBTITLES=\"sub1\"\nvideo\n#EXT-X-IMAGE-STREAM-INF:RESOLUTION=240×135,CODECS=\"jpeg\",URI=\"image\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:3288",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXTINF:5,\nimage.jpg\n#EXTINF:5,\n#EXT-X-TILES:RESOLUTION=640x360,LAYOUT=5x2,DURATION=6.006\nimage.jpg\n#EXTINF:5,\nimage.jpg\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:2475",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"sub1\",LANGUAGE=\"eng\",URI=\"text\"\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",CHANNELS=\"2\",URI=\"audio\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\",SUBTITLES=\"sub1\"\nvideo\n#EXT-X-I-FRAME-STREAM-INF:RESOLUTION=240×135,CODECS=\"mjpg\",URI=\"iframe\"\n#EXT-X-I-FRAME-STREAM-INF:RESOLUTION=240×135,CODECS=\"avc\",URI=\"iframeAvc\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:2678",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"sub1\",LANGUAGE=\"eng\",URI=\"text\"\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",CHANNELS=\"2\",URI=\"audio\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\",SUBTITLES=\"sub1\"\nvideo\n#EXT-X-I-FRAME-STREAM-INF:RESOLUTION=960x540,CODECS=\"avc1\",URI=\"iframe\"\n#EXT-X-I-FRAME-STREAM-INF:RESOLUTION=240×135,CODECS=\"avc1\",URI=\"iframeAvc\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:2653",
+    "text": "#EXTM3U\n#EXT-X-VERSION:7\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-I-FRAMES-ONLY\n#EXT-X-TARGETDURATION:2\n#EXT-X-MAP:URI=\"init.mp4\"\n#EXTINF:2,\n#EXT-X-BYTERANGE:200@0\nmain.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:2784",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXTINF:5,\nmain.mp4\n#EXTINF:5,\n#EXT-X-GAP\nmain.mp4\n#EXTINF:5,\nmain.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:2884",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXTINF:5,\nmain.mp4\n#EXTINF:0,\nmain.mp4\n#EXTINF:5,\nmain.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:3444",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXTINF:5,\nimage.jpg\n#EXTINF:5,\nimage.jpg\n#EXTINF:5,\nimage.jpg\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:3399",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"sub1\",LANGUAGE=\"eng\",URI=\"text\"\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",CHANNELS=\"2\",URI=\"audio\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\",SUBTITLES=\"sub1\"\nvideo\n#EXT-X-IMAGE-STREAM-INF:RESOLUTION=240×135,CODECS=\"jpeg\",URI=\"image\"\n#EXT-X-SESSION-DATA:DATA-ID=\"com.apple.hls.chapters\",URI=\"chapters.json\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:3476",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"sub1\",LANGUAGE=\"eng\",URI=\"text\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f,stpp.ttml.im1t\",RESOLUTION=960x540,FRAME-RATE=60,SUBTITLES=\"sub1\"\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:3522",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"sub1\",LANGUAGE=\"eng\",CODECS=\"wvtt\",URI=\"text\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f\",RESOLUTION=960x540,FRAME-RATE=60,SUBTITLES=\"sub1\"\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:3567",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"sub1\",LANGUAGE=\"eng\",URI=\"text\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f,vtt\",RESOLUTION=960x540,FRAME-RATE=60,SUBTITLES=\"sub1\"\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:3585",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXTINF:5,\n#EXT-X-BYTERANGE:121090@616\nmain.foo",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:3620",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"sub1\",LANGUAGE=\"eng\",URI=\"text\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f,wvtt\",RESOLUTION=960x540,FRAME-RATE=60,SUBTITLES=\"sub1\"\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:3732",
+    "text": "#EXTM3U\n#EXT-X-VERSION:3\n#EXT-X-STREAM-INF:BANDWIDTH=2000000\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:3739",
+    "text": "#EXTM3U\n#EXT-X-VERSION:3\n#EXT-X-TARGETDURATION:5\n#EXT-X-MEDIA-SEQUENCE:0\n#EXTINF:5,\nvideo-0.ts\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:3702",
+    "text": "#EXTM3U\n#EXT-X-VERSION:3\n#EXT-X-STREAM-INF:BANDWIDTH=2000000,CODECS=\"foo\"\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:3809",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f,vtt\",RESOLUTION=960x540,FRAME-RATE=60,CLOSED-CAPTIONS=NONE\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:3900",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:05.00Z\n#EXTINF:5,\nmain.mp4\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:10.00Z\n#EXTINF:5,\nmain.mp4\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:15.00Z\n#EXTINF:5,\nmain.mp4\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:20.00Z\n#EXTINF:5,\nmain.mp4\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:25.00Z\n#EXTINF:5,\nmain.mp4",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:3875",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXTINF:2,\nmain.mp4\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:10.00Z\n#EXTINF:5,\nmain.mp4\n#EXTINF:5,\nmain.mp4\n#EXTINF:5,\nmain.mp4\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:25.00Z\n#EXTINF:2,\nmain.mp4\n#EXTINF:4,\nmain.mp4",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:3926",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:05.00Z\n#EXTINF:5,\nmain.mp4\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:10.00Z\n#EXTINF:5,\nmain.mp4\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:15.00Z\n#EXT-X-PART:DURATION=2.5,URI=\"main.mp4\",INDEPENDENT=YES\n#EXT-X-PART:DURATION=2.5,URI=\"main.mp4\",INDEPENDENT=YES\n#EXTINF:5,\nmain.mp4\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:20.00Z\n#EXTINF:5,\nmain.mp4\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:25.00Z\n#EXTINF:5,\nmain.mp4",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:3963",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"sub1\",LANGUAGE=\"eng\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f,vtt\",RESOLUTION=960x540,FRAME-RATE=60,SUBTITLES=\"sub1\"\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:4003",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f\",RESOLUTION=960x540,FRAME-RATE=60\nvideo\n#EXT-X-IMAGE-STREAM-INF:RESOLUTION=240×135,CODECS=\"jpeg\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:4043",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a.40.2\",RESOLUTION=960x540,FRAME-RATE=60,VIDEO=\"vid\"\naudio\n#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID=\"vid\",URI=\"video\"",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6528",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-MAP:URI=\"init.mp4\"\n#EXTINF:5,\nmain.mp4",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:4087",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f,mp4a.40.2\",RESOLUTION=960x540\nvideo\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f,mp4a.40.2\",RESOLUTION=960x540\nvideo2\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:4107",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f,mp4a.40.2\",RESOLUTION=960x540,AUDIO=\"aud1\"\nvideo\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f,mp4a.40.2\",RESOLUTION=960x540,AUDIO=\"aud2\"\nvideo2\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"en\",CHANNELS=\"2\",URI=\"audio\"\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud2\",LANGUAGE=\"en\",CHANNELS=\"6\",URI=\"audio2\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:4134",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f,mp4a.40.2\",RESOLUTION=960x540\nredundant://a/video.m3u8\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f,mp4a.40.2\",RESOLUTION=960x540\nredundant://b/video.m3u8\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:4214",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",RESOLUTION=960x540,FRAME-RATE=60,VIDEO=\"vid\"\naudio/audio.m3u8\n#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID=\"vid\",URI=\"video/video.m3u8\"",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6127",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-MAP:URI=\"init.mp4\"\n#EXTINF:5,\nsegment.mp4",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:5711",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",RESOLUTION=960x540,FRAME-RATE=60,VIDEO=\"vid\"\naudio\n#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID=\"vid\",URI=\"video\"",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:4274",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:6\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXTINF:5,\n#EXT-X-BYTERANGE:121090@616\nselfInit.mp4",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:4309",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-BYTERANGE:616@0\n#EXT-X-MAP:URI=\"init.mp4\"\n#EXTINF:5,\nmain.mp4\n#EXT-X-MAP:URI=\"init2.mp4\",BYTERANGE=\"616@0\"\n#EXTINF:5,\n#EXT-X-BYTERANGE:121090@616\nmain2.mp4",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:4398",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f,mp4a.40.2\",RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\"\nvideo\n#EXT-X-STREAM-INF:BANDWIDTH=300,CODECS=\"avc1.4d401f,mp4a.40.2\",RESOLUTION=960x540,FRAME-RATE=90,AUDIO=\"aud2\"\nvideo2\n#EXT-X-STREAM-INF:BANDWIDTH=300,CODECS=\"avc1.4d401f,mp4a.40.2\",RESOLUTION=960x540,FRAME-RATE=120,AUDIO=\"aud3\"\nvideo3\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",URI=\"audio\"\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud2\",LANGUAGE=\"fr\",URI=\"audio2\"\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud3\",LANGUAGE=\"de\",URI=\"audio3\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:4417",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXTINF:5,\n#EXT-X-BYTERANGE:121090@616\nmain.mp4\n#EXTINF:5,\n#EXT-X-BYTERANGE:121090@616\nmain.mp4",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:4429",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-KEY:METHOD=AES-128,URI=\"800k.key\"\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXTINF:5,\n#EXT-X-BYTERANGE:121090@616\nmain.mp4\n#EXTINF:5,\n#EXT-X-BYTERANGE:121090@616\n#EXT-X-KEY:METHOD=NONE\nmain.mp4",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:4444",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-KEY:METHOD=AES-128,URI=\"800k.key\"\n#EXTINF:5,\nmain.ts\n#EXTINF:5,\n#EXT-X-KEY:METHOD=NONE\nmain.ts",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:4534",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\"\nvideo\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",URI=\"audio\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:4543",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-KEY:METHOD=AES-128,URI=\"800k.key\"\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXTINF:5,\n#EXT-X-BYTERANGE:121090@616\nmain.mp4",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:4670",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\",CLOSED-CAPTIONS=NONE\nvideo\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",URI=\"audio\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:4679",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-KEY:METHOD=AES-256-GCM,URI=\"256gcm.key\"\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXTINF:5,\n#EXT-X-BYTERANGE:121090@616\nmain.mp4",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:4639",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-KEY:METHOD=AES-256-GCM,URI=\"256gcm.key\",IV=0x1234567890abcdef1234567890abcdef\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXTINF:5,\n#EXT-X-BYTERANGE:121090@616\nmain.mp4",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:5053",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f\",RESOLUTION=960x540,FRAME-RATE=60\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:4874",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:6\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-KEY:METHOD=SAMPLE-AES-CTR,KEYFORMAT=\"com.microsoft.playready\",URI=\"data:text/plain;base64,UGxheXJlYWR5\",\n#EXT-X-MAP:URI=\"init.mp4\"\n#EXTINF:5,\n#EXT-X-BYTERANGE:121090@616\nmain.mp4",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:5667",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f\",RESOLUTION=960x540,FRAME-RATE=60,CLOSED-CAPTIONS=NONE\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:4915",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:6\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-KEY:METHOD=SAMPLE-AES-CTR,KEYFORMAT=\"com.apple.streamingkeydelivery\",URI=\"skd://f93d4e700d7ddde90529a27735d9e7cb\",\n#EXT-X-MAP:URI=\"init.mp4\"\n#EXTINF:5,\n#EXT-X-BYTERANGE:121090@616\nmain.mp4",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:4959",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:6\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-KEY:METHOD=SAMPLE-AES-CTR,KEYFORMAT=\"identity\",URI=\"key.bin\",\n#EXT-X-MAP:URI=\"init.mp4\"\n#EXTINF:5,\nmain.mp4",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:5010",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:6\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-KEY:METHOD=SAMPLE-AES-CTR,URI=\"key.bin\",\n#EXT-X-MAP:URI=\"init.mp4\"\n#EXTINF:5,\nmain.mp4",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:5060",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:6\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-KEY:METHOD=SAMPLE-AES-CTR,KEYFORMAT=\"identity\",URI=\"data:text/plain;base64,Pj6hFgt5iFZtfBLN6oq8Eg==\",\n#EXT-X-MAP:URI=\"init.mp4\"\n#EXTINF:5,\nmain.mp4",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:5212",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f\",RESOLUTION=960x540,FRAME-RATE=30\nvideo\n#EXT-X-STREAM-INF:BANDWIDTH=300,CODECS=\"avc1.4d401f\",RESOLUTION=960x540,FRAME-RATE=60\nvideo2\n#EXT-X-SESSION-KEY:METHOD=SAMPLE-AES-CTR,KEYFORMAT=\"com.microsoft.playready\",URI=\"data:text/plain;base64,UGxheXJlYWR5\",\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:5256",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f\",RESOLUTION=960x540,FRAME-RATE=30,CLOSED-CAPTIONS=NONE\nvideo\n#EXT-X-STREAM-INF:BANDWIDTH=300,CODECS=\"avc1.4d401f\",RESOLUTION=960x540,FRAME-RATE=60,CLOSED-CAPTIONS=NONE\nvideo2\n#EXT-X-SESSION-KEY:METHOD=SAMPLE-AES-CTR,KEYFORMAT=\"com.apple.streamingkeydelivery\",URI=\"skd://f93d4e700d7ddde90529a27735d9e7cb\",\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:5306",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f\",RESOLUTION=960x540,FRAME-RATE=30\nvideo\n#EXT-X-STREAM-INF:BANDWIDTH=300,CODECS=\"avc1.4d401f\",RESOLUTION=960x540,FRAME-RATE=60\nvideo2\n#EXT-X-SESSION-KEY:METHOD=SAMPLE-AES-CTR,KEYFORMAT=\"identity\",URI=\"key.bin\",\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:5367",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f\",RESOLUTION=960x540,FRAME-RATE=30\nvideo\n#EXT-X-STREAM-INF:BANDWIDTH=300,CODECS=\"avc1.4d401f\",RESOLUTION=960x540,FRAME-RATE=60\nvideo2\n#EXT-X-SESSION-KEY:METHOD=SAMPLE-AES-CTR,URI=\"key.bin\",\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:5428",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f\",RESOLUTION=960x540,FRAME-RATE=30\nvideo\n#EXT-X-STREAM-INF:BANDWIDTH=300,CODECS=\"avc1.4d401f\",RESOLUTION=960x540,FRAME-RATE=60\nvideo2\n#EXT-X-SESSION-KEY:METHOD=AES-128,URI=\"800k.key\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:5468",
+    "text": "#EXTM3U\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXTINF:5,\n#EXT-X-BYTERANGE:121090@616\nmain.test",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:5530",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"aaa,bbb\",RESOLUTION=960x540,FRAME-RATE=60,VIDEO=\"vid\"\naudio\n#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID=\"vid\",URI=\"video\"",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:5539",
+    "text": "#EXTM3U\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXTINF:5,\n#EXT-X-BYTERANGE:121090@616\nmain.mp4",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:5574",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:CODECS=\"avc1,mp4a\",RESOLUTION=960x540,FRAME-RATE=60,VIDEO=\"vid\"\naudio\n#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID=\"vid\",URI=\"video\"",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:5595",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:CODECS=\"avc1,mp4a\",BANDWIDTH=200,RESOLUTION=960x540,FRAME-RATE=60,SUBTITLES=\"sub1\"\naudio\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"sub1\"",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:5603",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-MAP:URI=\"init.mp4\"\n#EXTINF:5,\n#EXT-X-BYTERANGE:121090@616\nmain.mp4",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:5616",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"sub1\",LANGUAGE=\"eng\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,vtt\",RESOLUTION=960x540,FRAME-RATE=60,SUBTITLES=\"sub1\"\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:5646",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:6\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-KEY:METHOD=SAMPLE-AES-CTR,KEYFORMAT=\"com.apple.streamingkeydelivery\",URI=\"skd://f93d4e700d7ddde90529a27735d9e7cb\",\n#EXTINF:5,\n#EXT-X-BYTERANGE:121090@616\nmain.ts",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:5674",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:6\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-KEY:METHOD=SAMPLE-AES,URI=\"fake\",\n#EXTINF:5,\n#EXT-X-BYTERANGE:121090@616\nmain.ts",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:5719",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-BYTERANGE:121090@616\nmain.mp4",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:7917",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f\",RESOLUTION=960x540,FRAME-RATE=60\nvideo",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:5740",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\"\n#EXTINF:5,\nmain.mp4",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:5794",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\"\n#EXTINF:5,\nmain.mp4\n#EXT-X-ENDLIST",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:5822",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\"\n#EXTINF:5,\nmain.mp4?foo=bar\n#EXT-X-ENDLIST",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:5844",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"audio\",URI=\"audio\"\n#EXT-X-STREAM-INF:BANDWIDTH=400,CODECS=\"avc1,mp4a\",RESOLUTION=1280x720,AUDIO=\"audio\"\nvideo0\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",RESOLUTION=768x432,AUDIO=\"audio\"\nvideo1\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:5884",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"audio\",URI=\"audio\"\n#EXT-X-STREAM-INF:BANDWIDTH=400,CODECS=\"avc1,mp4a\",RESOLUTION=1280x720,AUDIO=\"audio\"\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:5927",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"en\",URI=\"audio\"\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"fr\",URI=\"audio2\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f,mp4a.40.2\",RESOLUTION=1280x720,FRAME-RATE=30,AUDIO=\"aud1\"\nvideo\n#EXT-X-STREAM-INF:BANDWIDTH=400,CODECS=\"avc1.4d401f,mp4a.40.2\",RESOLUTION=1920x1080,FRAME-RATE=30,AUDIO=\"aud1\"\nvideo2\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6001",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.4d401f\",RESOLUTION=1280x720,FRAME-RATE=30\nvideo\n#EXT-X-STREAM-INF:BANDWIDTH=400,CODECS=\"avc1.4d401f\",RESOLUTION=1920x1080,FRAME-RATE=30\nvideo2\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6011",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXTINF:5\nmain.mp4\n#EXTINF:5\nmain.mp4",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6020",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXTINF:4\nmain.mp4\n#EXTINF:5\nmain.mp4\n#EXTINF:1\nmain.mp4",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6062",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud\",LANGUAGE=\"en\",URI=\"audio1\"\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud\",LANGUAGE=\"eo\",URI=\"audio2\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"mp4a\",AUDIO=\"aud\"\naudio3\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6115",
+    "text": "#EXTM3U\n#EXT-X-DEFINE:NAME=\"auth\",VALUE=\"token=1\"\n#EXT-X-DEFINE:QUERYPARAM=\"a\"\n#EXT-X-DEFINE:QUERYPARAM=\"b\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",RESOLUTION=960x540,FRAME-RATE=60,VIDEO=\"vid\"\naudio.m3u8?{$auth}&a={$a}&b={$b}\n#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID=\"vid\",URI=\"video.m3u8?{$auth}&a={$a}&b={$b}\"",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6165",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",RESOLUTION=960x540,FRAME-RATE=60,VIDEO=\"vid\"\naudio.m3u8?fooParam=1\n#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID=\"vid\",URI=\"video.m3u8?fooParam=1\"",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6173",
+    "text": "#EXTM3U\n#EXT-X-DEFINE:NAME=\"auth\",VALUE=\"token=1\"\n#EXT-X-DEFINE:NAME=\"path\",VALUE=\"test/\"\n#EXT-X-DEFINE:QUERYPARAM=\"fooParam\"\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-MAP:URI=\"{$path}init.mp4\"\n#EXTINF:5,\n{$path}segment.mp4?{$auth}&fooParam={$fooParam}",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6215",
+    "text": "#EXTM3U\n#EXT-X-DEFINE:NAME=\"auth\",VALUE=\"?token=1\"\n#EXT-X-DEFINE:NAME=\"segmentPrefix\",VALUE=\"/hls_test/segments/\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",RESOLUTION=960x540,FRAME-RATE=60,VIDEO=\"vid\"\naudio.m3u8{$auth}\n#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID=\"vid\",URI=\"video.m3u8{$auth}\"",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6225",
+    "text": "#EXTM3U\n#EXT-X-DEFINE:IMPORT=\"auth\"\n#EXT-X-DEFINE:IMPORT=\"segmentPrefix\"\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-MAP:URI=\"init.mp4{$auth}\"\n#EXTINF:5,\n{$segmentPrefix}segment.mp4{$auth}",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6268",
+    "text": "#EXTM3U\n#EXT-X-SESSION-DATA:DATA-ID=\"fooId\",VALUE=\"fooValue\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"mp4a\"\naudio",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6307",
+    "text": "#EXTM3U\n#EXT-X-SESSION-DATA:DATA-ID=\"fooId\",LANGUAGE=\"en\",VALUE=\"fooValue\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"mp4a\"\naudio",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6347",
+    "text": "#EXTM3U\n#EXT-X-SESSION-DATA:DATA-ID=\"fooId\",URI=\"foo.json\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"mp4a\"\naudio",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6386",
+    "text": "#EXTM3U\n#EXT-X-SESSION-DATA:DATA-ID=\"fooId\",LANGUAGE=\"en\",VALUE=\"fooValue\"\n#EXT-X-SESSION-DATA:DATA-ID=\"fooId\",LANGUAGE=\"es\",VALUE=\"fooValue\"\n#EXT-X-SESSION-DATA:DATA-ID=\"fooId\",URI=\"foo.json\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"mp4a\"\naudio",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6445",
+    "text": "#EXTM3U\n#EXT-X-START:TIME-OFFSET=-2\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXTINF:5,\n#EXT-X-BYTERANGE:121090@616\nmain.mp4",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6473",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",CHANNELS=\"6\",SAMPLE-RATE=\"48000\",URI=\"audio\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,iamf.000.000.Opus\",RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\"\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6561",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXTINF:5,\nmain.ts",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6596",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6613",
+    "text": "#EXTM3U\n#EXT-X-START:TIME-OFFSET=-2\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-GAP\n#EXTINF:5,\n#EXT-X-BYTERANGE:121090@616\nmain.mp4",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6636",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-MAP:URI=\"init.mp4\"\n#EXTINF:5,\n#EXT-X-BITRATE:385\nmain.mp4\n#EXTINF:5,\nmain.mp4\n#EXTINF:5,\nmain.mp4\n#EXTINF:5,\n#EXT-X-BITRATE:340\nmain.mp4\n#EXTINF:5,\n#EXT-X-BITRATE:300\nmain.mp4",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6672",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXTINF:5,\n#EXT-X-BYTERANGE:121090@616\nmain.test",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6699",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXTINF:5,\n#EXT-X-BYTERANGE:121090@616\nmain.aac",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6726",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXTINF:5,\n#EXT-X-BYTERANGE:121090@616\nmain.mp3",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6757",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",URI=\"audio\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\",CLOSED-CAPTIONS=NONE\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6765",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:1\n#EXTINF:5,\nvideo1.mp4\n#EXTINF:5,\nvideo2.mp4\n#EXTINF:5,\nvideo3.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6778",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:3\n#EXTINF:5,\naudio3.mp4\n#EXTINF:5,\naudio4.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6842",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",URI=\"audio\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\",CLOSED-CAPTIONS=NONE\nvideo\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",RESOLUTION=960x540,FRAME-RATE=120,AUDIO=\"aud1\",CLOSED-CAPTIONS=NONE\nvideo2\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6908",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:1\n#EXTINF:5,\nvideo1.ts\n#EXTINF:5,\nvideo2.ts\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6864",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:3\n#EXTINF:5,\naudio1.ts\n#EXTINF:5,\naudio2.ts\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6899",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",URI=\"audio\"\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"spa\",URI=\"audio2\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",RESOLUTION=960x540,FRAME-RATE=60,AUDIO=\"aud1\"\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6919",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MEDIA-SEQUENCE:3\n#EXTINF:5,\naudio1.aac\n#EXTINF:5,\naudio2.aac\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:6978",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXTINF:5,\nvideo1.ts\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:7008",
+    "text": "#EXTM3U\n#EXT-X-CONTENT-STEERING:SERVER-URI=\"http://contentsteering\",PATHWAY-ID=\"a\"\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"subsA\",LANGUAGE=\"eng\",NAME=\"English\",PATHWAY-ID=\"a\",URI=\"subs/a/media.m3u8\"\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"subsB\",LANGUAGE=\"eng\",NAME=\"English\",PATHWAY-ID=\"b\",URI=\"subs/b/media.m3u8\"\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"a\",LANGUAGE=\"eng\",URI=\"audio/a/media.m3u8\"\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"b\",LANGUAGE=\"eng\",URI=\"audio/b/media.m3u8\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc,mp4a,stpp\",AUDIO=\"a\",PATHWAY-ID=\"a\",CLOSED-CAPTIONS=NONE,SUBTITLES=\"subsA\"\na/media.m3u8\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc,mp4a,stpp\",AUDIO=\"b\",PATHWAY-ID=\"b\",CLOSED-CAPTIONS=NONE,SUBTITLES=\"subsB\"\nb/media.m3u8",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:7176",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:00.00Z\n#EXTINF:5,\nvideo1.ts\n#EXT-X-DATERANGE:ID=\"0\",START-DATE=\"2000-01-01T00:00:00.00Z\",DURATION=1,X-SHAKA=\"FOREVER\"\n#EXT-X-DATERANGE:ID=\"1\",START-DATE=\"2000-01-01T00:00:05.00Z\",END-DATE=\"2000-01-01T00:00:06.00Z\",X-SHAKA=\"FOREVER\"\n#EXT-X-DATERANGE:ID=\"2\",START-DATE=\"2000-01-01T00:00:10.00Z\",PLANNED-DURATION=1,X-SHAKA=\"FOREVER\"\n#EXT-X-DATERANGE:ID=\"3\",START-DATE=\"2000-01-01T00:00:15.00Z\",X-SHAKA=\"FOREVER\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:7292",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:00.00Z\n#EXTINF:5,\nvideo1.ts\n#EXT-X-DATERANGE:ID=\"0\",START-DATE=\"2000-01-01T00:00:00.00Z\",END-ON-NEXT=YES,X-SHAKA=\"FOREVER\"\n#EXT-X-DATERANGE:ID=\"1\",START-DATE=\"2000-01-01T00:00:05.00Z\",END-ON-NEXT=YES,X-SHAKA=\"FOREVER\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:7326",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXTINF:5,\nvideo1.ts\n#EXT-X-DATERANGE:ID=\"0\",START-DATE=\"2000-01-01T00:00:00.00Z\",DURATION=1,X-SHAKA=\"FOREVER\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:7346",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:00.00Z\n#EXTINF:5,\nvideo1.ts\n#EXT-X-DATERANGE:ID=\"0\",START-DATE=\"2000-01-01T00:00:00.00Z\",DURATION=1\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:7376",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:00.00Z\n#EXTINF:5,\nvideo1.ts\n#EXT-X-DATERANGE:ID=\"0\",START-DATE=\"1999-01-01T00:00:00.00Z\",DURATION=1,X-SHAKA=\"FOREVER\"\n#EXT-X-DATERANGE:ID=\"1\",START-DATE=\"2000-01-01T00:00:05.00Z\",END-DATE=\"1999-01-01T00:00:06.00Z\",X-SHAKA=\"FOREVER\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:7399",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:00.00Z\n#EXTINF:5,\nvideo1.ts\n#EXT-X-DATERANGE:ID=\"1\",CLASS=\"com.apple.hls.interstitial\",START-DATE=\"2000-01-01T00:00:05.00Z\",DURATION=30.0,X-ASSET-URI=\"fake\",CUE=\"PRE,ONCE\",X-RESTRICT=\"SKIP,JUMP\",X-SNAP=\"IN\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:7445",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:00.00Z\n#EXTINF:5,\nvideo1.ts\n#EXT-X-DATERANGE:ID=\"1\",CLASS=\"com.apple.hls.interstitial\",START-DATE=\"2000-01-01T00:00:05.00Z\",DURATION=30.0,X-ASSET-LIST=\"fake\",CUE=\"PRE,ONCE\",X-RESTRICT=\"SKIP,JUMP\",X-SNAP=\"IN\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:7491",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:00.00Z\n#EXTINF:5,\nvideo1.ts\n#EXT-X-DATERANGE:ID=\"1\",CLASS=\"com.apple.hls.interstitial\",START-DATE=\"2000-01-01T00:00:05.00Z\",X-ASSET-URI=\"fake\",X-CUE=\"PRE,ONCE\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:7520",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-PROGRAM-DATE-TIME:1970-01-01T00:00:00.000Z\n#EXTINF:5,\nvideo1.ts\n#EXT-X-DATERANGE:ID=\"0\",START-DATE=\"1970-01-01T00:00:00.000\",DURATION=1,X-SHAKA=\"FOREVER\"\n#EXT-X-DATERANGE:ID=\"1\",START-DATE=\"1970-01-01T00:00:05.000Z\",END-DATE=\"1970-01-01T00:00:06.00Z\",X-SHAKA=\"FOREVER\"\n#EXT-X-DATERANGE:ID=\"2\",START-DATE=\"1970-01-01T00:00:10.000Z\",PLANNED-DURATION=1,X-SHAKA=\"FOREVER\"\n#EXT-X-DATERANGE:ID=\"3\",START-DATE=\"1970-01-01T00:00:15.000Z\",X-SHAKA=\"FOREVER\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:7708",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=550702,AVERAGE-BANDWIDTH=577484,CODECS=\"av01.0.04M.10.0.111.09.16.09.0\",SUPPLEMENTAL-CODECS=\"dav1.10.01/db1p\",RESOLUTION=640x360,FRAME-RATE=59.940,VIDEO-RANGE=PQ,CLOSED-CAPTIONS=NONE\nvideo",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:7637",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud\",LANGUAGE=\"es\",NAME=\"Muxed\",DEFAULT=YES\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud\",LANGUAGE=\"qaa\",NAME=\"Original\",URI=\"audio\"\n#EXT-X-STREAM-INF:BANDWIDTH=300,CODECS=\"avc1,mp4a\",AUDIO=\"aud\",RESOLUTION=1280x720\nvideo\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",AUDIO=\"aud\",RESOLUTION=1024x576\nvideo2\n#EXT-X-STREAM-INF:BANDWIDTH=100,CODECS=\"avc1,mp4a\",AUDIO=\"aud\",RESOLUTION=640x360\nvideo3\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:7671",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=550702,AVERAGE-BANDWIDTH=577484,CODECS=\"av01.0.04M.10.0.111.09.16.09.0,mp4a.40.2\",SUPPLEMENTAL-CODECS=\"dav1.10.01/db1p\",RESOLUTION=640x360,FRAME-RATE=59.940,VIDEO-RANGE=PQ,CLOSED-CAPTIONS=NONE\nvideo",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:7746",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"audio-aach-64\",NAME=\"audio64\"\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"audio-aacl-128\",NAME=\"audio128\"\n#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=75000,AVERAGE-BANDWIDTH=68000,CODECS=\"mp4a.40.5\",AUDIO=\"audio-aach-64\"\nhttps://example.com/1.m3u8\n#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=150000AVERAGE-BANDWIDTH=136000,CODECS=\"mp4a.40.2\",AUDIO=\"audio-aacl-128\"\nhttps://example.com/0.m3u8\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:7789",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud\",NAME=\"English\",DEFAULT=YES,LANGUAGE=\"en\",URI=\"en.m3u8\"\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud\",NAME=\"Spanish\",DEFAULT=NO,LANGUAGE=\"es\",URI=\"es.m3u8\"\n#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID=\"vid\",NAME=\"RED\",DEFAULT=YES,AUTOSELECT=YES,CHARACTERISTICS=\"public.main\"\n#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID=\"vid\",NAME=\"GREEN\",DEFAULT=NO,AUTOSELECT=YES,URI=\"green.m3u8\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.42c00d\",RESOLUTION=960x540,AUDIO=\"aud\",VIDEO=\"vid\"\nred.m3u8\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:7837",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID=\"vid\",NAME=\"Main Camera\",DEFAULT=YES\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.42c00d,mp4a.40.2\",RESOLUTION=960x540,VIDEO=\"vid\"\nvideo.m3u8\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:7868",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=100000,CODECS=\"avc1.42c00d,mp4a.40.2\",RESOLUTION=256x144,AUDIO=\"aud\"\nlow.m3u8\n#EXT-X-STREAM-INF:BANDWIDTH=2500000,CODECS=\"avc1.42c00d,mp4a.40.2\",RESOLUTION=1280x720,AUDIO=\"aud\"\nhigh.m3u8\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud\",NAME=\"stream_0\",DEFAULT=YES,LANGUAGE=\"en\",URI=\"audio.m3u8\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:7893",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=64377,AVERAGE-BANDWIDTH=64124,CODECS=\"mp4a.40.2\"\nhttps://example.com/0.m3u8\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:7924",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\"\n#EXTINF:5,\nmain.mp4",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:8140",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.42c00d\",CLOSED-CAPTIONS=NONE\ntest:/video\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:8019",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:10\n#EXT-X-DISCONTINUITY-SEQUENCE:0\n#EXT-X-PROGRAM-DATE-TIME:2023-01-01T00:00:00Z\n#EXTINF:10,\nsegment1.ts\n#EXT-X-DISCONTINUITY\n#EXT-X-PROGRAM-DATE-TIME:2023-01-01T01:00:00Z\n#EXTINF:10,\nsegment2.ts\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:8063",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:10\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-PROGRAM-DATE-TIME:2023-01-01T00:00:00Z\n#EXTINF:10,\nsegment1.ts\n#EXTINF:10,\nsegment2.ts\n#EXTINF:10,\nsegment3.ts\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:8103",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:10\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-PROGRAM-DATE-TIME:2023-01-01T00:00:00Z\n#EXTINF:10,\nsegment1.ts\n#EXTINF:10,\nsegment2.ts\n#EXT-X-PROGRAM-DATE-TIME:2023-01-01T00:00:20Z\n#EXTINF:10,\nsegment3.ts\n#EXTINF:10,\nsegment4.ts\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:8150",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:10\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-PROGRAM-DATE-TIME:2023-01-01T00:00:00Z\n#EXTINF:10,\nsegment1.ts\n#EXTINF:10,\nsegment2.ts\n#EXT-X-DISCONTINUITY\n#EXT-X-PROGRAM-DATE-TIME:2023-01-01T00:00:50Z\n#EXTINF:10,\nsegment3.ts\n#EXTINF:10,\nsegment4.ts\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:8192",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",URI=\"test:/audio\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1.42c00d,mp4a.40.2\",AUDIO=\"aud1\",CLOSED-CAPTIONS=NONE\ntest:/video\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:8202",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:10\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-PROGRAM-DATE-TIME:2023-01-01T00:00:00Z\n#EXTINF:10,\naudio1.ts\n#EXTINF:10,\naudio2.ts\n#EXTINF:10,\naudio3.ts\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_parser_unit.js:8214",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:10\n#EXT-X-PLAYLIST-TYPE:VOD\n#EXT-X-PROGRAM-DATE-TIME:2023-01-01T00:00:06Z\n#EXTINF:10,\nsegment1.ts\n#EXT-X-DISCONTINUITY\n#EXT-X-PROGRAM-DATE-TIME:2023-01-01T01:00:00Z\n#EXTINF:10,\nsegment2.ts\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/manifest_text_parser_unit.js:253",
+    "text": "#EXTM3U",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/manifest_text_parser_unit.js",
+    "extraction": "static-concatenation"
+  },
+  {
+    "name": "shaka/test/hls/manifest_text_parser_unit.js:366",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:6\n#EXTINF:5\nuri\n#EXTINF:4\nuri2\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/manifest_text_parser_unit.js",
+    "extraction": "static-concatenation"
+  },
+  {
+    "name": "shaka/test/hls/manifest_text_parser_unit.js:413",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:6\n#EXT-X-MAP:URI=\"init.mp4\"\n#EXTINF:5\nuri\n#EXT-X-PART:DURATION=1,URI=\"uri2.1\"\n#EXT-X-PART:DURATION=1,URI=\"uri2.2\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/manifest_text_parser_unit.js",
+    "extraction": "static-concatenation"
+  },
+  {
+    "name": "shaka/test/hls/manifest_text_parser_unit.js:478",
+    "text": "#EXTM3U\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/manifest_text_parser_unit.js",
+    "extraction": "static-concatenation"
+  },
+  {
+    "name": "shaka/test/hls/manifest_text_parser_unit.js:487",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:6\n#EXT-X-MAP:URI=\"init.mp4\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/manifest_text_parser_unit.js",
+    "extraction": "static-concatenation"
+  },
+  {
+    "name": "shaka/test/hls/manifest_text_parser_unit.js:535",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:6\n#EXTINF:5\nuri\n#EXT-X-PRELOAD-HINT:TYPE=KEY,METHOD=AES-128,URI=\"next.key\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/manifest_text_parser_unit.js",
+    "extraction": "static-concatenation"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:10",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1\",RESOLUTION=960x540,FRAME-RATE=60\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:232",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:EVENT\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXTINF:2,\nmain.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:241",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:EVENT\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXTINF:2,\nmain.mp4\n#EXTINF:2,\nmain2.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:289",
+    "text": "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1\",AUDIO=\"aud1\",RESOLUTION=960x540,FRAME-RATE=60\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:420",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",URI=\"audio\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1\",AUDIO=\"aud1\",RESOLUTION=960x540,FRAME-RATE=60\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:509",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:0\n#EXTINF:2,\nmain.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:518",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXTINF:2,\nmain.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:526",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:0\n#EXTINF:2,\nmain.mp4\n#EXTINF:2,\nmain2.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:537",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:1\n#EXTINF:2,\nmain2.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:546",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:0\n#EXTINF:2,\nmain3.mp4\n#EXTINF:2,\nmain4.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:557",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:1\n#EXTINF:2,\nmain4.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:566",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:0\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:578",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:0\n#EXT-X-DISCONTINUITY-SEQUENCE:30\n#EXTINF:2,\nmain.mp4\n#EXT-X-DISCONTINUITY\n#EXTINF:2,\nmain2.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:591",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:1\n#EXT-X-DISCONTINUITY-SEQUENCE:31\n#EXTINF:2,\nmain2.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:622",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:2\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:0\n#EXTINF:2,\nmain.mp4\n#EXTINF:2,\nmain.mp4\n#EXTINF:2,\nmain.mp4\n#EXTINF:2,\nmain.mp4\n#EXTINF:2,\nmain.mp4\n#EXTINF:2,\nmain.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:645",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:2\n#EXT-X-START:TIME-OFFSET=-4\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:0\n#EXTINF:2,\nmain.mp4\n#EXTINF:2,\nmain.mp4\n#EXTINF:2,\nmain.mp4\n#EXTINF:2,\nmain.mp4\n#EXTINF:2,\nmain.mp4\n#EXTINF:2,\nmain.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:670",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:2\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:0\n#EXTINF:2,\nmain.mp4\n#EXTINF:2,\nmain.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:685",
+    "text": "#EXTM3U\n#EXT-X-SERVER-CONTROL:HOLD-BACK=2\n#EXT-X-TARGETDURATION:5\n#EXT-X-PART-INF:PART-TARGET=0.5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:0\n#EXTINF:2,\nmain.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:703",
+    "text": "#EXTM3U\n#EXT-X-SERVER-CONTROL:CAN-BLOCK-RELOAD=YES,PART-HOLD-BACK=1.8\n#EXT-X-TARGETDURATION:5\n#EXT-X-PART-INF:PART-TARGET=0.5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:0\n#EXTINF:2,\nmain.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:950",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-PART-INF:PART-TARGET=1.5\n#EXTINF:4,\nmain.mp4\n#EXT-X-PART:DURATION=2,URI=\"partial.mp4\",BYTERANGE=210@0\n#EXT-X-PRELOAD-HINT:TYPE=PART,URI=\"partial.mp4\",BYTERANGE-START=210\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:1047",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud\",LANGUAGE=\"es\",NAME=\"Muxed\",DEFAULT=YES\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud\",LANGUAGE=\"qaa\",NAME=\"Original\",URI=\"audio2\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",AUDIO=\"aud\",RESOLUTION=960x540,FRAME-RATE=60\nvideo\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:1281",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:0\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:00.00Z\n#EXTINF:2,\nmain.mp4\n#EXTINF:2,\nmain2.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:1293",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:0\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:00.00Z\n#EXTINF:2,\nmain.mp4\n#EXTINF:2,\nmain2.mp4\n#EXTINF:2,\nmain3.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:1594",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:0\n#EXT-X-DISCONTINUITY-SEQUENCE:0\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:00.00Z\n#EXTINF:2,\nmain.mp4\n#EXT-X-DISCONTINUITY\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T01:00:00.00Z\n#EXTINF:2,\nmain2.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:1352",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:1\n#EXT-X-DISCONTINUITY-SEQUENCE:1\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T01:00:00.00Z\n#EXTINF:2,\nmain2.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:1388",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:0\n#EXT-X-DISCONTINUITY-SEQUENCE:0\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:00.00Z\n#EXTINF:2,\nmain0.mp4\n#EXT-X-DISCONTINUITY\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T01:00:00.00Z\n#EXTINF:2,\nmain2.mp4\n#EXT-X-DISCONTINUITY\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T02:00:00.00Z\n#EXTINF:2,\nmain3.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:1408",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:1\n#EXT-X-DISCONTINUITY-SEQUENCE:1\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T01:00:00.00Z\n#EXTINF:2,\nmain2.mp4\n#EXT-X-DISCONTINUITY\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T02:00:00.00Z\n#EXTINF:2,\nmain3.mp4\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T02:00:02.00Z\n#EXTINF:2,\nmain4.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:1483",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:5\n#EXT-X-DISCONTINUITY-SEQUENCE:1\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T01:00:10.00Z\n#EXTINF:2,\nmain3.mp4\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T01:00:12.00Z\n#EXTINF:2,\nmain4.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:1537",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:0\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:00.00Z\n#EXTINF:2,\nmain.mp4\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:02.00Z\n#EXTINF:2,\nmain2.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:1551",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:0\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:00.00Z\n#EXTINF:2,\nmain.mp4\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:02.00Z\n#EXTINF:2,\nmain2.mp4\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:04.10Z\n#EXTINF:2,\nmain3.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:1611",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:1\n#EXT-X-DISCONTINUITY-SEQUENCE:1\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T01:00:00.00Z\n#EXTINF:2,\nmain2.mp4\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T01:00:02.00Z\n#EXTINF:2,\nmain3.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:1715",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:LIVE\n#EXT-X-TARGETDURATION:5\n#EXT-X-MEDIA-SEQUENCE:0\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-SERVER-CONTROL:CAN-BLOCK-RELOAD=YES,CAN-SKIP-UNTIL=60.0,\n#EXTINF:2,\nmain0.mp4\n#EXTINF:2,\nmain1.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:1728",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:1\n#EXT-X-SERVER-CONTROL:CAN-BLOCK-RELOAD=YES,CAN-SKIP-UNTIL=60.0,\n#EXT-X-SKIP:SKIPPED-SEGMENTS=1\n#EXTINF:2,\nmain1.mp4\n#EXTINF:2,\nmain2.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:1741",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:2\n#EXT-X-SERVER-CONTROL:CAN-BLOCK-RELOAD=YES,CAN-SKIP-UNTIL=60.0,\n#EXT-X-SKIP:SKIPPED-SEGMENTS=1\n#EXTINF:2,\nmain2.mp4\n#EXTINF:2,\nmain3.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:1783",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:LIVE\n#EXT-X-TARGETDURATION:5\n#EXT-X-MEDIA-SEQUENCE:0\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-SERVER-CONTROL:CAN-BLOCK-RELOAD=YES,CAN-SKIP-UNTIL=60.0,CAN-SKIP-DATERANGES=YES\n#EXTINF:2,\nmain0.mp4\n#EXTINF:2,\nmain1.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:1797",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:1\n#EXT-X-SERVER-CONTROL:CAN-BLOCK-RELOAD=YES,CAN-SKIP-UNTIL=60.0,CAN-SKIP-DATERANGES=YES\n#EXT-X-SKIP:SKIPPED-SEGMENTS=1\n#EXTINF:2,\nmain1.mp4\n#EXTINF:2,\nmain2.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:1811",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:2\n#EXT-X-SERVER-CONTROL:CAN-BLOCK-RELOAD=YES,CAN-SKIP-UNTIL=60.0,CAN-SKIP-DATERANGES=YES\n#EXT-X-SKIP:SKIPPED-SEGMENTS=1\n#EXTINF:2,\nmain2.mp4\n#EXTINF:2,\nmain3.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:1853",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:0\n#EXT-X-SKIP:SKIPPED-SEGMENTS=1\n#EXTINF:2,\nmain2.mp4\n#EXTINF:2,\nmain3.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:1884",
+    "text": "#EXTM3U\n#EXT-X-PLAYLIST-TYPE:LIVE\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-DISCONTINUITY-SEQUENCE:30\n#EXTINF:2,\nmain.mp4\n#EXT-X-DISCONTINUITY\n#EXTINF:2,\nmain2.mp4\n#EXTINF:2,\nmain3.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:1899",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXT-X-MEDIA-SEQUENCE:0\n#EXT-X-DISCONTINUITY-SEQUENCE:30\n#EXT-X-SKIP:SKIPPED-SEGMENTS=2\n#EXTINF:2,\nmain3.mp4\n#EXTINF:2,\nmain4.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:2219",
+    "text": "#EXTM3U\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"sub1\",LANGUAGE=\"eng\",URI=\"text\"\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aud1\",LANGUAGE=\"eng\",CHANNELS=\"2\",URI=\"audio\"\n#EXT-X-STREAM-INF:BANDWIDTH=200,CODECS=\"avc1,mp4a\",AUDIO=\"aud1\",SUBTITLES=\"sub1\"\nvideo\n#EXT-X-SESSION-DATA:DATA-ID=\"com.apple.hls.chapters\",URI=\"chapters.json\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:2231",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MEDIA-SEQUENCE:0\n#EXTINF:5,\nmain1.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:2239",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MEDIA-SEQUENCE:0\n#EXTINF:5,\nmain1.mp4\n#EXTINF:5,\nmain2.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:2249",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MEDIA-SEQUENCE:0\n#EXTINF:5,\naudio1.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:2257",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MEDIA-SEQUENCE:0\n#EXTINF:5,\nmain.vtt\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:2319",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\"\n#EXT-X-MEDIA-SEQUENCE:0\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:00Z\n#EXTINF:5,\nmain0.mp4\n#EXTINF:5,\nmain.mp4\n#EXT-X-PRELOAD-HINT:TYPE=KEY,METHOD=AES-128,URI=\"next.key\",DATE-OF-FIRST-USE=\"2000-01-01T00:00:18Z\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:2333",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\"\n#EXT-X-MEDIA-SEQUENCE:0\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:00Z\n#EXTINF:5,\nmain0.mp4\n#EXTINF:5,\nmain.mp4\n#EXT-X-PRELOAD-HINT:TYPE=KEY,METHOD=AES-128,URI=\"next.key\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:2346",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\"\n#EXT-X-MEDIA-SEQUENCE:0\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:00Z\n#EXTINF:5,\nmain0.mp4\n#EXTINF:5,\nmain.mp4\n#EXT-X-PRELOAD-HINT:TYPE=KEY,METHOD=AES-128,URI=\"next.key\",DATE-OF-FIRST-USE=\"2000-01-01T00:00:18Z\"\n#EXT-X-PRELOAD-HINT:TYPE=KEY,METHOD=AES-128,URI=\"other.key\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:2361",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\"\n#EXT-X-MEDIA-SEQUENCE:0\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:00Z\n#EXTINF:5,\nmain0.mp4\n#EXTINF:5,\nmain.mp4\n#EXT-X-PRELOAD-HINT:TYPE=KEY,METHOD=SAMPLE-AES-CTR,KEYFORMAT=\"urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed\",URI=\"data:text/plain;base64,AAAA\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:2376",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\"\n#EXT-X-MEDIA-SEQUENCE:0\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:00Z\n#EXTINF:5,\nmain0.mp4\n#EXTINF:5,\nmain.mp4\n#EXTINF:5,\nmain2.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:2390",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\"\n#EXT-X-MEDIA-SEQUENCE:0\n#EXT-X-PROGRAM-DATE-TIME:2000-01-01T00:00:00Z\n#EXTINF:5,\nmain0.mp4\n#EXT-X-KEY:METHOD=AES-128,URI=\"next.key\"\n#EXTINF:5,\nmain.mp4\n#EXT-X-PRELOAD-HINT:TYPE=KEY,METHOD=AES-128,URI=\"next.key\",DATE-OF-FIRST-USE=\"2000-01-01T00:00:18Z\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:2535",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MEDIA-SEQUENCE:100\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXTINF:2,\nmain.mp4\n#EXTINF:2,\nmain2.mp4\n#EXT-X-PART:DURATION=1.0,URI=\"partial.mp4\"\n#EXT-X-PART:DURATION=1.0,URI=\"partial2.mp4\"\n#EXTINF:2,\nmain3.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:2550",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MEDIA-SEQUENCE:100\n#EXT-X-MAP:URI=\"init.mp4\",BYTERANGE=\"616@0\"\n#EXTINF:2,\nmain.mp4\n#EXTINF:2,\nmain2.mp4\n#EXT-X-PART:DURATION=1.0,URI=\"partial.mp4\"\n#EXT-X-PART:DURATION=1.0,URI=\"partial2.mp4\"\n#EXT-X-PART:DURATION=1.0,URI=\"partial3.mp4\"\n#EXT-X-PART:DURATION=1.0,URI=\"partial4.mp4\"\n#EXTINF:2,\nmain3.mp4\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-array-join"
+  },
+  {
+    "name": "shaka/test/hls/hls_live_unit.js:203",
+    "text": "#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXT-X-MAP:URI=\"init.mp4\"\n",
+    "source": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "extraction": "static-concatenation"
+  }
+]

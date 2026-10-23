@@ -4,6 +4,7 @@ import Foundation
 public enum URIRole: Sendable, Hashable {
     case variant
     case iFrameVariant
+    case imageVariant
     case rendition
     case segment
     case partialSegment
@@ -27,6 +28,9 @@ extension MultivariantPlaylist {
         }
         for index in copy.iFrameVariants.indices {
             copy.iFrameVariants[index].uri = try transform(copy.iFrameVariants[index].uri, .iFrameVariant)
+        }
+        for index in copy.imageVariants.indices {
+            copy.imageVariants[index].uri = try transform(copy.imageVariants[index].uri, .imageVariant)
         }
         for index in copy.renditions.indices {
             if let uri = copy.renditions[index].uri { copy.renditions[index].uri = try transform(uri, .rendition) }
@@ -68,6 +72,7 @@ extension MediaPlaylist {
             if let cached = mapCache[section] { return cached }
             var mapped = section
             mapped.uri = try transform(section.uri, .initializationSection)
+            mapped.keys = try section.keys.map(mapKey)
             mapCache[section] = mapped
             return mapped
         }
@@ -82,11 +87,10 @@ extension MediaPlaylist {
             try ranges.map { range in
                 var range = range
                 if range.classIdentifier == "com.apple.hls.interstitial" {
-                    if let uri = range.otherAttributes["X-ASSET-URI"]?.rawValue {
-                        range.otherAttributes["X-ASSET-URI"] = .quoted(try transform(uri, .interstitialAsset))
-                    }
-                    if let uri = range.otherAttributes["X-ASSET-LIST"]?.rawValue {
-                        range.otherAttributes["X-ASSET-LIST"] = .quoted(try transform(uri, .interstitialAssetList))
+                    for (attribute, role) in [("X-ASSET-URI", URIRole.interstitialAsset), ("X-ASSET-LIST", .interstitialAssetList)] {
+                        if let uri = range.otherAttributes[attribute]?.rawValue {
+                            range.otherAttributes[attribute] = .quoted(try transform(uri, role))
+                        }
                     }
                 }
                 return range
@@ -103,6 +107,8 @@ extension MediaPlaylist {
             copy.segments[index] = segment
         }
         copy.trailingParts = try mapParts(copy.trailingParts)
+        copy.trailingKeys = try copy.trailingKeys.map(mapKey)
+        copy.trailingMap = try copy.trailingMap.map(mapMap)
         copy.trailingDateRanges = try mapDateRanges(copy.trailingDateRanges)
         for index in copy.preloadHints.indices {
             copy.preloadHints[index].uri = try transform(copy.preloadHints[index].uri, .preloadHint)
@@ -115,7 +121,7 @@ extension MediaPlaylist {
 
     /// Returns a copy with relative URIs made absolute against `baseURL`.
     public func resolvingURIs(against baseURL: URL) -> MediaPlaylist {
-        mapURIs { uri, _ in resolve(uri, against: baseURL) }
+        mapURIs { uri, role in role == .renditionReport ? uri : resolve(uri, against: baseURL) }
     }
 
     /// Absolute URLs of every segment, resolved against `baseURL`.
@@ -135,10 +141,14 @@ extension Playlist {
 
     /// Returns a copy with relative URIs made absolute against `baseURL`.
     public func resolvingURIs(against baseURL: URL) -> Playlist {
-        mapURIs { uri, _ in resolve(uri, against: baseURL) }
+        mapURIs { uri, role in role == .renditionReport ? uri : resolve(uri, against: baseURL) }
     }
 }
 
 private func resolve(_ uri: String, against baseURL: URL) -> String {
-    URL(string: uri, relativeTo: baseURL)?.absoluteURL.absoluteString ?? uri
+    // Encode only characters outside RFC 3986, retaining existing escapes and
+    // delimiters. Foundation's implicit encoding differs across OS versions.
+    let allowed = CharacterSet(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~:/?#[]@!$&'()*+,;=%")
+    guard let encoded = uri.addingPercentEncoding(withAllowedCharacters: allowed) else { return uri }
+    return URL(string: encoded, relativeTo: baseURL)?.absoluteURL.absoluteString ?? uri
 }
