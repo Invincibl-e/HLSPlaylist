@@ -17,7 +17,7 @@ independently of Probe's decisions in [standards.py](standards.py).
 
 | Area / bis-22 section | Executable checks | External obligations |
 |---|---|---|
-| Text, attributes, numbers, URI (§4.1–4.3) | Swift StandardsTests, AttributeList tests; fixed grammar/BOM/NFC/UTF-8/numeric oracles; 23 RFC 3986 resolution vectors | HTTP Content-Type, redirect URL passed by caller |
+| Text, attributes, numbers, URI (§4.1–4.3) | Swift StandardsTests, AttributeList tests; fixed grammar/BOM/NFC/UTF-8/numeric oracles; 28 RFC 3986 vectors for playlist and segment URL resolution, including old-Foundation dot segments and preserved escapes/query/fragment | HTTP Content-Type, redirect URL passed by caller |
 | Basic/shared tags (§4.4.1–4.4.2) | Header, singleton flags, START, DEFINE scope, imports/query decoding, substitution | Matching START across parent/child responses |
 | Media playlist tags (§4.4.3) | Required target, integer bounds, sequences/order/overflow, versions, LL target/control bounds | Across-refresh target stability, EVENT/VOD immutability |
 | Segment tags (§4.4.4) | EXTINF precision/version/target; range predecessor; KEY/MAP declaration context; PDT/calendar; PART bounds/order/exceptions | Actual media duration, discontinuities, byte layout, BITRATE accuracy |

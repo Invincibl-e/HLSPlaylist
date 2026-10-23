@@ -343,14 +343,20 @@ struct StandardsTests {
         ("../../../g", "http://a/g"), ("/./g", "http://a/g"),
         ("/../g", "http://a/g"), ("g/./h", "http://a/b/c/g/h"),
         ("g/../h", "http://a/b/c/h"), ("g?y/../x", "http://a/b/c/g?y/../x"),
-        ("g#s/../x", "http://a/b/c/g#s/../x")
+        ("g#s/../x", "http://a/b/c/g#s/../x"),
+        ("/a//b/../g", "http://a/a//g"), ("/a/.", "http://a/a/"),
+        ("/%2E/g", "http://a/%2E/g"), ("/a/%2e%2E/g", "http://a/a/%2e%2E/g"),
+        ("/a/./g?sig=a%2Fb+z#f/../g", "http://a/a/g?sig=a%2Fb+z#f/../g")
     ])
     func rfc3986ResolutionOracle(_ reference: String, _ expected: String) throws {
         // Fragment-only URI references belong in attributes: a playlist line
         // starting with '#' is a comment/tag under HLS §4.1.
         let playlist = try Playlist(media("#EXT-X-MAP:URI=\"\(reference)\"\n#EXTINF:1,\ns"))
-        let resolved = playlist.resolvingURIs(against: URL(string: "http://a/b/c/d;p?q")!)
+        let base = URL(string: "http://a/b/c/d;p?q")!
+        let resolved = playlist.resolvingURIs(against: base)
         #expect(resolved.media?.segments[0].map?.uri == expected)
+        let segments = MediaPlaylist(targetDuration: 1, segments: [Segment(uri: reference, duration: 1)])
+        #expect(segments.segmentURLs(relativeTo: base).first?.absoluteString == expected)
     }
 
     @Test(arguments: [
