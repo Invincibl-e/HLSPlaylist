@@ -366,7 +366,10 @@ struct StandardsTests {
         ("g#s/../x", "http://a/b/c/g#s/../x"),
         ("/a//b/../g", "http://a/a//g"), ("/a/.", "http://a/a/"),
         ("/%2E/g", "http://a/%2E/g"), ("/a/%2e%2E/g", "http://a/a/%2e%2E/g"),
-        ("/a/./g?sig=a%2Fb+z#f/../g", "http://a/a/g?sig=a%2Fb+z#f/../g")
+        ("/a/./g?sig=a%2Fb+z#f/../g", "http://a/a/g?sig=a%2Fb+z#f/../g"),
+        ("/b;p/./g", "http://a/b;p/g"),
+        ("/%2e/%2E%2e/./g", "http://a/%2e/%2E%2e/g"),
+        ("/a/%2F/../b;p", "http://a/a/b;p")
     ])
     func rfc3986ResolutionOracle(_ reference: String, _ expected: String) throws {
         // Fragment-only URI references belong in attributes: a playlist line
@@ -384,7 +387,8 @@ struct StandardsTests {
         ("mid/content=5/../6", "mid/6"), ("../g", "g"), ("./g", "g"),
         ("/a//b/../g", "/a//g"), ("/a/.", "/a/"), ("/a/..", "/"),
         ("/.%2e/g", "/.%2e/g"), ("/a/%2e%2E/g", "/a/%2e%2E/g"),
-        ("/a/%2F/../g", "/a/g")
+        ("/a/%2F/../g", "/a/g"), ("", ""), (".", ""), ("..", ""),
+        ("a/../../g", "/g"), ("a//./b/../c", "a//c")
     ])
     func rfc3986EncodedPathOracle(_ path: String, _ expected: String) {
         // Exercise legacy normalization directly even when the host Foundation

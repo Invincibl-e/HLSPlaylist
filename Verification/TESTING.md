@@ -25,7 +25,8 @@ URI 回归使用 `corpus/uri-oracles.json` 的 54 个固定预期（包含 RFC 3
 路径构造用例（相对、根路径、network-path、绝对引用及重复斜杠）和
 4 个深度边界；三项公开 API 均须与独立预期一致。
 预期不使用 Foundation、被测库或 Python urljoin 生成。Swift 单元测试也
-读取相同固定预期；保留原有 HLS URI 属性测试和直接 encoded-path 测试。
+读取相同固定预期；HLS URI 属性测试扩展到 31 个，直接 encoded-path
+测试扩展到 17 个，包含编码后的点与实际 dot-segment 混用、路径分号。
 空引用只通过程序构造模型测试 RFC 工具行为，HLS `URI=""` 仍须拒绝。
 模拟器直接编译同一份 library/Probe 源码并在实际 iOS runtime 执行；
 `HLS_SIMULATOR_UDID` 可选定设备，否则复用已启动的 iOS 或启动可用设备，
@@ -34,6 +35,10 @@ full 的 `ios-extended` 追加同一批 URI 用例，真机先独立检查 gold�
 与 Mac 完全相等。结果相等不能代替正确性断言。检查
 `mac-uri-summary.json`、`ios-simulator-uri-summary.json`、
 `simulator-summary.json` 和 full 的 `ios-device-uri-summary.json`。
+旧 iOS 的 `URLComponents(url:)` 可把 encoded path 中的 `%2e` 解码成 `.`
+并把路径分号改写为 `%3B`；后续归一化会改变资源身份。解析链路按 RFC
+3986 §5.2/Appendix B 从原始编码字符串分解、合并和移除 dot-segments，
+不让 Foundation 重组 path/query/fragment。最终 URL 构造仍使用系统 API。
 
 ## 2. 一次配置 localhost 证书，后续测试复用
 
