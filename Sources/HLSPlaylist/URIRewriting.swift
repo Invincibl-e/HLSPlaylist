@@ -162,7 +162,7 @@ private func resolve(_ uri: String, against baseURL: URL) -> String {
 /// RFC 3986 §5.2.4. Older Foundation leaves absolute /./ and /../ paths intact.
 /// Operate on encoded path bytes: escaped dots, slashes, queries and fragments
 /// must not acquire path-navigation semantics.
-private func removingDotSegments(_ path: String) -> String {
+func removingDotSegments(_ path: String) -> String {
     var input = path[...]
     var output = ""
     func removeLastSegment() {

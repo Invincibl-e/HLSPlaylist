@@ -360,6 +360,19 @@ struct StandardsTests {
     }
 
     @Test(arguments: [
+        ("/./g", "/g"), ("/../g", "/g"), ("/a/b/../../../../g", "/g"),
+        ("mid/content=5/../6", "mid/6"), ("../g", "g"), ("./g", "g"),
+        ("/a//b/../g", "/a//g"), ("/a/.", "/a/"), ("/a/..", "/"),
+        ("/.%2e/g", "/.%2e/g"), ("/a/%2e%2E/g", "/a/%2e%2E/g"),
+        ("/a/%2F/../g", "/a/g")
+    ])
+    func rfc3986EncodedPathOracle(_ path: String, _ expected: String) {
+        // Exercise legacy normalization directly even when the host Foundation
+        // has already removed dot segments before the public resolver sees them.
+        #expect(removingDotSegments(path) == expected)
+    }
+
+    @Test(arguments: [
         "\n#EXTM3U\n", "#EXTM3U \n", "#EXTM3U\n#EXTM3U\n", "#EXTM3U\r#EXT-X-TARGETDURATION:1",
         "#EXTM3U\n#EXT-X-TARGETDURATION:1\n#EXTINF:1,\nbad uri\n",
         "#EXTM3U\n#EXT-X-TARGETDURATION:1\n#EXTINF:1,\ns%Q0\n",
