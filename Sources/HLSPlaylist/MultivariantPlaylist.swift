@@ -4,8 +4,8 @@ import Foundation
 public struct Variant: Sendable, Hashable {
     public var uri: String
     /// Peak bits per second.
-    public var bandwidth: Int
-    public var averageBandwidth: Int?
+    public var bandwidth: UInt64
+    public var averageBandwidth: UInt64?
     public var score: Double?
     /// RFC 6381 codec strings, e.g. `["avc1.64001f", "mp4a.40.2"]`.
     public var codecs: [String]
@@ -25,12 +25,12 @@ public struct Variant: Sendable, Hashable {
     public var closedCaptionsGroupID: String?
     public var closedCaptionsNone: Bool
     public var pathwayID: String?
-    public var programID: Int?
+    public var programID: UInt64?
     public var otherAttributes: AttributeList
     /// Unrecognized tags that appeared between the previous URI and this variant.
     public var unknownTags: [String]
 
-    public init(uri: String, bandwidth: Int, averageBandwidth: Int? = nil, codecs: [String] = [], resolution: Resolution? = nil, frameRate: Double? = nil, audioGroupID: String? = nil, subtitlesGroupID: String? = nil) {
+    public init(uri: String, bandwidth: UInt64, averageBandwidth: UInt64? = nil, codecs: [String] = [], resolution: Resolution? = nil, frameRate: Double? = nil, audioGroupID: String? = nil, subtitlesGroupID: String? = nil) {
         self.uri = uri
         self.bandwidth = bandwidth
         self.averageBandwidth = averageBandwidth
@@ -88,7 +88,10 @@ public struct Variant: Sendable, Hashable {
         if !codecs.isEmpty { a.set("CODECS", quoted: codecs.joined(separator: ",")) }
         a.set("SUPPLEMENTAL-CODECS", quoted: supplementalCodecs)
         a.set("RESOLUTION", unquoted: resolution?.description)
-        a.set("FRAME-RATE", unquoted: frameRate.map { String(format: "%.3f", $0) })
+        // RFC 8216 §4.3.4.2 specifies FRAME-RATE rounded to three decimal places.
+        a.set("FRAME-RATE", unquoted: frameRate.map {
+            String(format: "%.3f", locale: Locale(identifier: "en_US_POSIX"), $0)
+        })
         a.set("HDCP-LEVEL", unquoted: hdcpLevel)
         a.set("ALLOWED-CPC", quoted: allowedCPC)
         a.set("VIDEO-RANGE", unquoted: videoRange)
@@ -120,7 +123,7 @@ public struct Variant: Sendable, Hashable {
     }
 
     /// The bandwidth used for adaptive decisions: average if known, else peak.
-    public var effectiveBandwidth: Int { averageBandwidth ?? bandwidth }
+    public var effectiveBandwidth: UInt64 { averageBandwidth ?? bandwidth }
 }
 
 /// `EXT-X-MEDIA`: an alternative rendition (audio track, subtitles, …).
@@ -162,8 +165,8 @@ public struct Rendition: Sendable, Hashable {
     public var forced: Bool
     /// e.g. `CC1` or `SERVICE3`.
     public var instreamID: String?
-    public var bitDepth: Int?
-    public var sampleRate: Int?
+    public var bitDepth: UInt64?
+    public var sampleRate: UInt64?
     /// Comma-separated UTIs, e.g. `public.accessibility.describes-video`.
     public var characteristics: String?
     /// e.g. `2`, `6`, `16/JOC`.
@@ -236,13 +239,15 @@ public struct Rendition: Sendable, Hashable {
 
 /// A multivariant (a.k.a. master) playlist listing variant streams and renditions.
 public struct MultivariantPlaylist: Sendable, Hashable {
-    public var version: Int?
+    public var version: UInt64?
     public var independentSegments: Bool
     public var start: StartPoint?
     public var definitions: [VariableDefinition]
     public var variants: [Variant]
     /// `EXT-X-I-FRAME-STREAM-INF` variants (URI is the attribute).
     public var iFrameVariants: [Variant]
+    /// `EXT-X-IMAGE-STREAM-INF` image playlists.
+    public var imageVariants: [Variant]
     public var renditions: [Rendition]
     public var sessionData: [SessionData]
     public var sessionKeys: [EncryptionKey]
@@ -251,12 +256,13 @@ public struct MultivariantPlaylist: Sendable, Hashable {
     /// Tags this library does not model, preserved verbatim (in order, at the end of the header).
     public var unknownTags: [String]
 
-    public init(version: Int? = nil, independentSegments: Bool = false, variants: [Variant] = [], renditions: [Rendition] = []) {
+    public init(version: UInt64? = nil, independentSegments: Bool = false, variants: [Variant] = [], renditions: [Rendition] = []) {
         self.version = version
         self.independentSegments = independentSegments
         self.definitions = []
         self.variants = variants
         self.iFrameVariants = []
+        self.imageVariants = []
         self.renditions = renditions
         self.sessionData = []
         self.sessionKeys = []
@@ -294,7 +300,7 @@ public struct MultivariantPlaylist: Sendable, Hashable {
     ///   - maxResolution: Upper bound on width and height.
     ///   - isCodecSupported: Filters out variants with any unsupported codec.
     public func preferredVariant(
-        maxBandwidth: Int? = nil,
+        maxBandwidth: UInt64? = nil,
         maxResolution: Resolution? = nil,
         isCodecSupported: (String) -> Bool = { _ in true }
     ) -> Variant? {

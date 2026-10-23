@@ -59,7 +59,7 @@ public struct Segment: Sendable, Hashable {
     public var dateRanges: [DateRange]
     public var gap: Bool
     /// `EXT-X-BITRATE` in effect, in kbps.
-    public var bitrate: Int?
+    public var bitrate: UInt64?
     /// Partial segments that make up this segment (LL-HLS).
     public var parts: [PartialSegment]
     /// Unrecognized tags that preceded this segment, preserved verbatim.
@@ -127,10 +127,11 @@ public struct ServerControl: Sendable, Hashable {
 public struct PreloadHint: Sendable, Hashable {
     public var type: String
     public var uri: String
-    public var byteRangeStart: Int?
-    public var byteRangeLength: Int?
+    public var byteRangeStart: UInt64?
+    public var byteRangeLength: UInt64?
+    public var otherAttributes = AttributeList()
 
-    public init(type: String, uri: String, byteRangeStart: Int? = nil, byteRangeLength: Int? = nil) {
+    public init(type: String, uri: String, byteRangeStart: UInt64? = nil, byteRangeLength: UInt64? = nil) {
         self.type = type
         self.uri = uri
         self.byteRangeStart = byteRangeStart
@@ -142,6 +143,7 @@ public struct PreloadHint: Sendable, Hashable {
         uri = a["URI"]?.rawValue ?? ""
         byteRangeStart = a["BYTERANGE-START"]?.integer
         byteRangeLength = a["BYTERANGE-LENGTH"]?.integer
+        otherAttributes = a.excluding(["TYPE", "URI", "BYTERANGE-START", "BYTERANGE-LENGTH"])
     }
 
     var attributes: AttributeList {
@@ -150,6 +152,7 @@ public struct PreloadHint: Sendable, Hashable {
         a.set("URI", quoted: uri)
         a.set("BYTERANGE-START", int: byteRangeStart)
         a.set("BYTERANGE-LENGTH", int: byteRangeLength)
+        a.merge(otherAttributes)
         return a
     }
 }
@@ -157,10 +160,11 @@ public struct PreloadHint: Sendable, Hashable {
 /// `EXT-X-RENDITION-REPORT`.
 public struct RenditionReport: Sendable, Hashable {
     public var uri: String
-    public var lastMediaSequence: Int?
-    public var lastPart: Int?
+    public var lastMediaSequence: UInt64?
+    public var lastPart: UInt64?
+    public var otherAttributes = AttributeList()
 
-    public init(uri: String, lastMediaSequence: Int? = nil, lastPart: Int? = nil) {
+    public init(uri: String, lastMediaSequence: UInt64? = nil, lastPart: UInt64? = nil) {
         self.uri = uri
         self.lastMediaSequence = lastMediaSequence
         self.lastPart = lastPart
@@ -170,6 +174,7 @@ public struct RenditionReport: Sendable, Hashable {
         uri = a["URI"]?.rawValue ?? ""
         lastMediaSequence = a["LAST-MSN"]?.integer
         lastPart = a["LAST-PART"]?.integer
+        otherAttributes = a.excluding(["URI", "LAST-MSN", "LAST-PART"])
     }
 
     var attributes: AttributeList {
@@ -177,6 +182,7 @@ public struct RenditionReport: Sendable, Hashable {
         a.set("URI", quoted: uri)
         a.set("LAST-MSN", int: lastMediaSequence)
         a.set("LAST-PART", int: lastPart)
+        a.merge(otherAttributes)
         return a
     }
 }
@@ -188,10 +194,10 @@ public struct MediaPlaylist: Sendable, Hashable {
         case vod = "VOD"
     }
 
-    public var version: Int?
-    public var targetDuration: Int
-    public var mediaSequence: Int
-    public var discontinuitySequence: Int
+    public var version: UInt64?
+    public var targetDuration: UInt64
+    public var mediaSequence: UInt64
+    public var discontinuitySequence: UInt64
     public var playlistType: PlaylistType?
     public var iFramesOnly: Bool
     public var independentSegments: Bool
@@ -204,10 +210,15 @@ public struct MediaPlaylist: Sendable, Hashable {
     /// `EXT-X-PART-INF:PART-TARGET`.
     public var partTarget: Double?
     /// `EXT-X-SKIP:SKIPPED-SEGMENTS` in a delta update.
-    public var skippedSegments: Int?
+    public var skippedSegments: UInt64?
     public var recentlyRemovedDateRanges: String?
     /// Partial segments after the last complete segment (LL-HLS live edge).
     public var trailingParts: [PartialSegment]
+    /// Context of the incomplete parent segment at the live edge.
+    public var trailingKeys: [EncryptionKey] = []
+    public var trailingMap: MediaInitializationSection?
+    public var trailingDiscontinuity = false
+    public var trailingProgramDateTime: Date?
     public var preloadHints: [PreloadHint]
     public var renditionReports: [RenditionReport]
     /// Date ranges after the last segment.
@@ -217,7 +228,7 @@ public struct MediaPlaylist: Sendable, Hashable {
     /// Unrecognized tags after the last segment, preserved verbatim.
     public var trailingUnknownTags: [String]
 
-    public init(targetDuration: Int, mediaSequence: Int = 0, playlistType: PlaylistType? = nil, segments: [Segment] = [], hasEndList: Bool = false, version: Int? = nil) {
+    public init(targetDuration: UInt64, mediaSequence: UInt64 = 0, playlistType: PlaylistType? = nil, segments: [Segment] = [], hasEndList: Bool = false, version: UInt64? = nil) {
         self.version = version
         self.targetDuration = targetDuration
         self.mediaSequence = mediaSequence
@@ -248,7 +259,12 @@ public struct MediaPlaylist: Sendable, Hashable {
     public var isLowLatency: Bool { partTarget != nil || segments.contains { !$0.parts.isEmpty } || !trailingParts.isEmpty }
 
     /// The media sequence number of the segment at `index`.
-    public func mediaSequence(ofSegmentAt index: Int) -> Int { mediaSequence &+ index }
+    public func mediaSequence(ofSegmentAt index: Int) -> UInt64? {
+        guard index >= 0 else { return nil }
+        let (base, skippedOverflow) = mediaSequence.addingReportingOverflow(skippedSegments ?? 0)
+        let (value, overflow) = base.addingReportingOverflow(UInt64(index))
+        return skippedOverflow || overflow ? nil : value
+    }
 
     /// Start time (seconds from the beginning of the playlist) of each segment.
     public var segmentStartTimes: [Double] {
@@ -296,7 +312,7 @@ public struct MediaPlaylist: Sendable, Hashable {
     /// `HOLD-BACK` if present, otherwise three target durations.
     public var recommendedLiveOffset: Double {
         if isLowLatency, let partHoldBack = serverControl?.partHoldBack { return partHoldBack }
-        return serverControl?.holdBack ?? Double(targetDuration * 3)
+        return serverControl?.holdBack ?? Double(targetDuration) * 3
     }
 }
 
