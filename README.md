@@ -1,17 +1,28 @@
 # HLSPlaylist
 
-[![CI](https://github.com/CreatureSurvive/HLSPlaylist/actions/workflows/ci.yml/badge.svg)](https://github.com/CreatureSurvive/HLSPlaylist/actions/workflows/ci.yml)
+[![CI](https://github.com/Invincibl-e/HLSPlaylist/actions/workflows/ci.yml/badge.svg)](https://github.com/Invincibl-e/HLSPlaylist/actions/workflows/ci.yml)
 [![Swift 6.1+](https://img.shields.io/badge/Swift-6.1+-F05138?logo=swift&logoColor=white)](https://swift.org)
 [![Platforms](https://img.shields.io/badge/platforms-iOS%20%7C%20macOS%20%7C%20tvOS%20%7C%20watchOS%20%7C%20visionOS-blue)](#requirements)
 [![Swift Package Manager](https://img.shields.io/badge/SwiftPM-compatible-brightgreen)](#installation)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 
-A fast, lossless, pure-Swift parser and writer for HTTP Live Streaming (`.m3u8`) playlists.
+A pure-Swift parser and writer for HTTP Live Streaming (`.m3u8`) playlists.
 
-HLSPlaylist covers the full tag set of RFC 8216 and its successor
+This is an independently maintained fork; upstream is not a synchronization
+target. See [maintenance policy](MAINTENANCE.md) and
+[standards coverage](Verification/Coverage.md).
+
+HLSPlaylist models tags from RFC 8216 and its successor
 [draft-pantos-hls-rfc8216bis](https://datatracker.ietf.org/doc/draft-pantos-hls-rfc8216bis/),
 including Low-Latency HLS, variable substitution, content steering, date ranges and multiple DRM
 keys. It has no dependencies, is `Sendable` throughout, and runs on every Apple platform.
+
+Parsing rejects invalid syntax and supported constraints observable in a playlist, following
+RFC 8216 and HLS bis-22. Unknown tags and enumerated values follow the standard's forward
+compatibility rules. Rendering validates the model and can throw. Decimal integers use
+`UInt64`; floating-point values retain their stored `Double` precision, and frame rates render
+to three decimal places. See [the standards audit](Verification/INDEPENDENT_REPORT.md) for
+verification evidence and scope.
 
 ```swift
 import HLSPlaylist
@@ -110,13 +121,11 @@ Swift 6.1 (Xcode 16.4) or later, in Swift 6 language mode. No third-party depend
 let playlist = try Playlist(text)                        // String
 let playlist = try Playlist(data: data)                  // Data
 
-// Warnings, variables and options
+// Variables and source context
 let result = try PlaylistParser(options: ParseOptions(
-    strict: false,
     importedVariables: masterResult.variables,           // for EXT-X-DEFINE:IMPORT
     playlistURL: url                                     // for EXT-X-DEFINE:QUERYPARAM
 )).parse(data)
-result.warnings.forEach { print($0) }
 ```
 
 ### Selecting streams
@@ -153,12 +162,14 @@ for segment in media.segments where segment.isEncrypted {
 
 ```swift
 let proxied = media.mapURIs { uri, role in
+    let route = "/proxy?u=\(uri.addingPercentEncoding(withAllowedCharacters: .alphanumerics)!)"
     switch role {
     case .key: return uri                         // leave keys alone
-    default: return "http://127.0.0.1:8080/proxy?u=\(uri.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)"
+    case .renditionReport: return route            // reports must remain relative
+    default: return "http://127.0.0.1:8080" + route
     }
 }
-let text = proxied.render()
+let text = try proxied.render()
 
 let absolute = master.resolvingURIs(against: masterURL)
 ```
@@ -167,6 +178,8 @@ URI transforms also receive content steering `SERVER-URI` values (`.contentSteer
 Apple interstitial `X-ASSET-URI` / `X-ASSET-LIST` values (`.interstitialAsset` /
 `.interstitialAssetList`). Other client-defined date-range attributes are preserved.
 URIs inside steering or asset-list JSON responses must be handled separately.
+Image playlists receive `.imageVariant`. `resolvingURIs` keeps rendition reports relative;
+custom transforms must also preserve this constraint or rendering throws.
 
 ### Writing
 

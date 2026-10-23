@@ -23,14 +23,22 @@ public enum AttributeValue: Sendable, Hashable, CustomStringConvertible {
         }
     }
 
-    public var integer: Int? { Int(rawValue) }
-    public var double: Double? { Double(rawValue) }
+    public var integer: UInt64? {
+        guard case .unquoted = self else { return nil }
+        return HLSNumber.integer(rawValue)
+    }
+    public var double: Double? {
+        guard case .unquoted = self else { return nil }
+        return HLSNumber.decimal(rawValue, signed: true)
+    }
 
     /// A `0x`-prefixed hexadecimal sequence as bytes.
     public var hexBytes: [UInt8]? {
+        guard case .unquoted = self else { return nil }
         var text = rawValue
         guard text.hasPrefix("0x") || text.hasPrefix("0X") else { return nil }
         text.removeFirst(2)
+        guard !text.isEmpty, text.utf8.allSatisfy({ (48...57).contains($0) || (65...70).contains($0) }) else { return nil }
         if text.count % 2 == 1 { text = "0" + text }
         var bytes: [UInt8] = []
         bytes.reserveCapacity(text.count / 2)
@@ -45,7 +53,10 @@ public enum AttributeValue: Sendable, Hashable, CustomStringConvertible {
     }
 
     /// A `WIDTHxHEIGHT` resolution.
-    public var resolution: Resolution? { Resolution(rawValue) }
+    public var resolution: Resolution? {
+        guard case .unquoted = self else { return nil }
+        return Resolution(rawValue)
+    }
 }
 
 /// An ordered list of `KEY=VALUE` attributes.
@@ -109,43 +120,44 @@ public struct AttributeList: Sendable, Hashable, Sequence, ExpressibleByDictiona
 
     /// Parses an attribute list such as `BANDWIDTH=1280000,CODECS="avc1.4d401f,mp4a.40.2"`.
     ///
-    /// Parsing is lenient: whitespace around separators is tolerated, and an
-    /// unterminated quoted string runs to the end of the line.
-    public static func parse(_ text: Substring) -> AttributeList {
+    public static func parse(_ text: Substring) throws -> AttributeList {
         var list = AttributeList()
         var index = text.startIndex
-
-        func skipWhitespace() {
-            while index < text.endIndex, text[index] == " " || text[index] == "\t" { index = text.index(after: index) }
+        func fail(_ message: String) throws -> Never {
+            throw PlaylistError.invalidTag(message, line: 0)
         }
-
+        guard !text.isEmpty else { try fail("Empty attribute list") }
         while index < text.endIndex {
-            skipWhitespace()
             let keyStart = index
             while index < text.endIndex, text[index] != "=", text[index] != "," { index = text.index(after: index) }
-            let key = text[keyStart..<index].trimmingCharacters(in: .whitespaces)
-            guard index < text.endIndex, text[index] == "=" else {
-                // Malformed entry without a value; skip it.
-                if index < text.endIndex { index = text.index(after: index) }
-                continue
-            }
+            let key = String(text[keyStart..<index])
+            guard !key.isEmpty, key.utf8.allSatisfy({ (65...90).contains($0) || (48...57).contains($0) || $0 == 45 }),
+                  index < text.endIndex, text[index] == "=" else { try fail("Invalid attribute name or separator: \(key)") }
+            guard list[key] == nil else { try fail("Duplicate attribute: \(key)") }
             index = text.index(after: index)
-            skipWhitespace()
             let value: AttributeValue
             if index < text.endIndex, text[index] == "\"" {
                 index = text.index(after: index)
                 let valueStart = index
                 while index < text.endIndex, text[index] != "\"" { index = text.index(after: index) }
                 value = .quoted(String(text[valueStart..<index]))
-                if index < text.endIndex { index = text.index(after: index) }
-                while index < text.endIndex, text[index] != "," { index = text.index(after: index) }
+                guard index < text.endIndex else { try fail("Unterminated quoted attribute: \(key)") }
+                index = text.index(after: index)
+                guard !value.rawValue.isEmpty || key == "VALUE" || key == "RECENTLY-REMOVED-DATERANGES" else { try fail("Empty quoted attribute: \(key)") }
+                guard !value.rawValue.contains("\r"), !value.rawValue.contains("\n") else { try fail("Invalid quoted attribute: \(key)") }
+                guard index == text.endIndex || text[index] == "," else { try fail("Junk after quoted attribute: \(key)") }
             } else {
                 let valueStart = index
                 while index < text.endIndex, text[index] != "," { index = text.index(after: index) }
-                value = .unquoted(text[valueStart..<index].trimmingCharacters(in: .whitespaces))
+                let raw = String(text[valueStart..<index])
+                guard !raw.isEmpty, raw.utf8.allSatisfy({ $0 > 32 && $0 < 127 && $0 != 34 }) else { try fail("Invalid unquoted attribute: \(key)") }
+                value = .unquoted(raw)
             }
-            if index < text.endIndex { index = text.index(after: index) }
-            if !key.isEmpty { list.entries.append((key: key, value: value)) }
+            if index < text.endIndex {
+                index = text.index(after: index)
+                guard index < text.endIndex else { try fail("Trailing attribute separator") }
+            }
+            list.entries.append((key: key, value: value))
         }
         return list
     }
@@ -166,7 +178,7 @@ extension AttributeList {
         if let value { self[key] = .unquoted(value) }
     }
 
-    mutating func set(_ key: String, int value: Int?) {
+    mutating func set(_ key: String, int value: UInt64?) {
         if let value { self[key] = .unquoted(String(value)) }
     }
 
@@ -180,44 +192,80 @@ extension AttributeList {
 
     func bool(_ key: String) -> Bool? {
         guard let raw = self[key]?.rawValue else { return nil }
-        return raw.uppercased() == "YES"
+        return raw == "YES"
     }
 }
 
 /// Formats a decimal without exponent notation or a trailing `.0` noise
-/// beyond what is needed (up to millisecond precision is preserved).
+/// beyond what is needed, preserving the shortest round-trip representation.
 func formatDecimal(_ value: Double) -> String {
-    if value.rounded() == value, abs(value) < 1e15 {
-        return String(Int64(value))
+    guard value.isFinite else { return String(value) }
+    if value == 0 { return "0" }
+    let text = String(value)
+    let parts = text.lowercased().split(separator: "e")
+    guard parts.count == 2, let exponent = Int(parts[1]) else {
+        return text.hasSuffix(".0") ? String(text.dropLast(2)) : text
     }
-    var text = String(format: "%.6f", value)
-    while text.hasSuffix("0") { text.removeLast() }
-    if text.hasSuffix(".") { text.removeLast() }
-    return text
+    let negative = parts[0].hasPrefix("-")
+    let mantissa = negative ? parts[0].dropFirst() : parts[0]
+    let components = mantissa.split(separator: ".")
+    let digits = components.joined()
+    let point = components[0].count + exponent
+    let decimal: String
+    if point <= 0 {
+        decimal = "0." + String(repeating: "0", count: -point) + digits
+    } else if point >= digits.count {
+        decimal = digits + String(repeating: "0", count: point - digits.count)
+    } else {
+        let index = digits.index(digits.startIndex, offsetBy: point)
+        decimal = digits[..<index] + "." + digits[index...]
+    }
+    return (negative ? "-" : "") + decimal
 }
 
 /// A video resolution, `WIDTHxHEIGHT`.
 public struct Resolution: Sendable, Hashable, Comparable, CustomStringConvertible {
-    public var width: Int
-    public var height: Int
+    public var width: UInt64
+    public var height: UInt64
 
-    public init(width: Int, height: Int) {
+    public init(width: UInt64, height: UInt64) {
         self.width = width
         self.height = height
     }
 
     public init?(_ text: String) {
-        let parts = text.lowercased().split(separator: "x")
-        guard parts.count == 2, let width = Int(parts[0]), let height = Int(parts[1]) else { return nil }
+        let parts = text.split(separator: "x", omittingEmptySubsequences: false)
+        guard parts.count == 2, let width = HLSNumber.integer(String(parts[0])), let height = HLSNumber.integer(String(parts[1])) else { return nil }
         self.init(width: width, height: height)
     }
 
     /// `width × height`, saturating instead of overflowing on absurd values.
-    public var pixelCount: Int {
+    public var pixelCount: UInt64 {
         let (product, overflow) = width.multipliedReportingOverflow(by: height)
-        return overflow ? Int.max : product
+        return overflow ? UInt64.max : product
     }
     public var description: String { "\(width)x\(height)" }
 
-    public static func < (lhs: Resolution, rhs: Resolution) -> Bool { lhs.pixelCount < rhs.pixelCount }
+    public static func < (lhs: Resolution, rhs: Resolution) -> Bool {
+        let a = lhs.width.multipliedFullWidth(by: lhs.height)
+        let b = rhs.width.multipliedFullWidth(by: rhs.height)
+        return (a.high, a.low) < (b.high, b.low)
+    }
+}
+
+enum HLSNumber {
+    static func integer(_ text: String) -> UInt64? {
+        guard (1...20).contains(text.utf8.count), text.utf8.allSatisfy({ (48...57).contains($0) }) else { return nil }
+        return UInt64(text)
+    }
+
+    static func decimal(_ text: String, signed: Bool = false) -> Double? {
+        let digits = signed && text.hasPrefix("-") ? String(text.dropFirst()) : text
+        let parts = digits.split(separator: ".", omittingEmptySubsequences: false)
+        guard (1...2).contains(parts.count),
+              parts.contains(where: { !$0.isEmpty }),
+              parts.allSatisfy({ $0.utf8.allSatisfy({ (48...57).contains($0) }) }),
+              let value = Double(text), value.isFinite else { return nil }
+        return value
+    }
 }

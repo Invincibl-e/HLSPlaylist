@@ -1,0 +1,44 @@
+[
+  {
+    "project": "hls.js",
+    "revision": "363359c5110aa4171cbc6b56138a200a5116384b",
+    "path": "tests/unit/loader/m3u8-parser.ts",
+    "url": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/tests/unit/loader/m3u8-parser.ts",
+    "sha256": "f3c83c950bdf61bf7a3a9a7bec1caacaab36b6961587feaff1a3c8f88e1f78ff"
+  },
+  {
+    "project": "hls.js",
+    "revision": "363359c5110aa4171cbc6b56138a200a5116384b",
+    "path": "LICENSE",
+    "url": "https://raw.githubusercontent.com/video-dev/hls.js/363359c5110aa4171cbc6b56138a200a5116384b/LICENSE",
+    "sha256": "ca8773cf798c7ed997d4dd7c8e23c348699f8d5b7462636694cc14de6cda12db"
+  },
+  {
+    "project": "shaka",
+    "revision": "8f8cf0720c760d15a6f2eaf3693e3705069e27ce",
+    "path": "test/hls/hls_parser_unit.js",
+    "url": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_parser_unit.js",
+    "sha256": "554c8afad1b206dc478b41159d46153da27cd5a2372abd7a10eeffe22dbe01b1"
+  },
+  {
+    "project": "shaka",
+    "revision": "8f8cf0720c760d15a6f2eaf3693e3705069e27ce",
+    "path": "test/hls/manifest_text_parser_unit.js",
+    "url": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/manifest_text_parser_unit.js",
+    "sha256": "83ea8e5502432d5c5c20b8174056061ce99dcebb6635379531d22cc8a0e36dfe"
+  },
+  {
+    "project": "shaka",
+    "revision": "8f8cf0720c760d15a6f2eaf3693e3705069e27ce",
+    "path": "test/hls/hls_live_unit.js",
+    "url": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/test/hls/hls_live_unit.js",
+    "sha256": "3fc6433193c9911e6b4d5cc9694fd080dbdd5f8d03c85f367a4f8bd1d8c7ef7a"
+  },
+  {
+    "project": "shaka",
+    "revision": "8f8cf0720c760d15a6f2eaf3693e3705069e27ce",
+    "path": "LICENSE",
+    "url": "https://raw.githubusercontent.com/shaka-project/shaka-player/8f8cf0720c760d15a6f2eaf3693e3705069e27ce/LICENSE",
+    "sha256": "20ce2eba547fd0a8c4023511c003eabe510982a335cccd4e270f1f55ffbd2250"
+  }
+]

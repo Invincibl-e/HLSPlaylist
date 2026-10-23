@@ -2,20 +2,21 @@ import Foundation
 
 extension Playlist {
     /// Renders the playlist as M3U8 text.
-    public func render() -> String {
+    public func render() throws -> String {
         switch self {
-        case .multivariant(let playlist): playlist.render()
-        case .media(let playlist): playlist.render()
+        case .multivariant(let playlist): try playlist.render()
+        case .media(let playlist): try playlist.render()
         }
     }
 }
 
 extension MultivariantPlaylist {
     /// Renders the playlist as M3U8 text.
-    public func render() -> String {
+    public func render() throws -> String {
+        let minimum = try HLSStandard.validate(self)
         var out = M3U8Writer()
         out.line("#EXTM3U")
-        if let version { out.tag("EXT-X-VERSION", String(version)) }
+        if version != nil || minimum > 1 { out.tag("EXT-X-VERSION", String(max(version ?? 1, minimum))) }
         if independentSegments { out.line("#EXT-X-INDEPENDENT-SEGMENTS") }
         if let start { out.tag("EXT-X-START", start.attributes) }
         for definition in definitions { out.tag("EXT-X-DEFINE", definition.attributes) }
@@ -33,18 +34,26 @@ extension MultivariantPlaylist {
         }
         if !iFrameVariants.isEmpty { out.blank() }
         for variant in iFrameVariants {
+            for tag in variant.unknownTags { out.line(tag) }
             out.tag("EXT-X-I-FRAME-STREAM-INF", variant.attributes(includeURI: true))
         }
+        if !imageVariants.isEmpty { out.blank() }
+        for variant in imageVariants {
+            for tag in variant.unknownTags { out.line(tag) }
+            out.tag("EXT-X-IMAGE-STREAM-INF", variant.attributes(includeURI: true))
+        }
+        try HLSStandard.text(out.text)
         return out.text
     }
 }
 
 extension MediaPlaylist {
     /// Renders the playlist as M3U8 text.
-    public func render() -> String {
+    public func render() throws -> String {
+        let minimum = try HLSStandard.validate(self)
         var out = M3U8Writer()
         out.line("#EXTM3U")
-        if let version { out.tag("EXT-X-VERSION", String(version)) }
+        if version != nil || minimum > 1 { out.tag("EXT-X-VERSION", String(max(version ?? 1, minimum))) }
         out.tag("EXT-X-TARGETDURATION", String(targetDuration))
         out.tag("EXT-X-MEDIA-SEQUENCE", String(mediaSequence))
         if discontinuitySequence != 0 { out.tag("EXT-X-DISCONTINUITY-SEQUENCE", String(discontinuitySequence)) }
@@ -69,22 +78,16 @@ extension MediaPlaylist {
 
         var keys: [EncryptionKey] = []
         var map: MediaInitializationSection?
-        var bitrate: Int?
+        var bitrate: UInt64?
         for segment in segments {
             for tag in segment.unknownTags { out.line(tag) }
             for range in segment.dateRanges { out.tag("EXT-X-DATERANGE", range.attributes) }
-            if segment.discontinuity { out.line("#EXT-X-DISCONTINUITY") }
-            if segment.keys != keys {
-                if segment.keys.isEmpty {
-                    out.tag("EXT-X-KEY", ["METHOD": .unquoted("NONE")])
-                } else {
-                    for key in segment.keys { out.tag("EXT-X-KEY", key.attributes) }
-                }
-                keys = segment.keys
-            }
+            try out.discontinuities(segment.discontinuityCount)
             if segment.map != map, let newMap = segment.map {
+                out.keys(newMap.keys, current: &keys)
                 out.tag("EXT-X-MAP", newMap.attributes)
             }
+            out.keys(segment.keys, current: &keys)
             map = segment.map
             if let date = segment.programDateTime { out.tag("EXT-X-PROGRAM-DATE-TIME", HLSDate.format(date)) }
             if segment.bitrate != bitrate, let value = segment.bitrate { out.tag("EXT-X-BITRATE", String(value)) }
@@ -97,17 +100,32 @@ extension MediaPlaylist {
         }
 
         for range in trailingDateRanges { out.tag("EXT-X-DATERANGE", range.attributes) }
+        try out.discontinuities(trailingDiscontinuityCount)
+        if trailingMap != map, let section = trailingMap {
+            out.keys(section.keys, current: &keys)
+            out.tag("EXT-X-MAP", section.attributes)
+        }
+        out.keys(trailingKeys, current: &keys)
+        if let date = trailingProgramDateTime { out.tag("EXT-X-PROGRAM-DATE-TIME", HLSDate.format(date)) }
         for part in trailingParts { out.tag("EXT-X-PART", part.attributes) }
         for tag in trailingUnknownTags { out.line(tag) }
         for hint in preloadHints { out.tag("EXT-X-PRELOAD-HINT", hint.attributes) }
         for report in renditionReports { out.tag("EXT-X-RENDITION-REPORT", report.attributes) }
         if hasEndList { out.line("#EXT-X-ENDLIST") }
+        try HLSStandard.text(out.text)
         return out.text
     }
 }
 
 private struct M3U8Writer {
     var text = ""
+
+    mutating func discontinuities(_ count: UInt64) throws {
+        guard let count = Int(exactly: count), count <= Int.max / 21 else {
+            throw PlaylistError.invalidTag("Discontinuity output exceeds addressable string size", line: 0)
+        }
+        text += String(repeating: "#EXT-X-DISCONTINUITY\n", count: count)
+    }
 
     mutating func line(_ line: String) {
         text += line
@@ -124,5 +142,15 @@ private struct M3U8Writer {
 
     mutating func tag(_ name: String, _ attributes: AttributeList) {
         line("#\(name):\(attributes.serialized)")
+    }
+
+    mutating func keys(_ next: [EncryptionKey], current: inout [EncryptionKey]) {
+        guard next != current else { return }
+        let formats = Set(next.map { $0.keyFormat ?? "identity" })
+        if next.isEmpty || current.contains(where: { !formats.contains($0.keyFormat ?? "identity") }) {
+            tag("EXT-X-KEY", ["METHOD": .unquoted("NONE")])
+        }
+        for key in next { tag("EXT-X-KEY", key.attributes) }
+        current = next
     }
 }

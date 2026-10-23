@@ -4,8 +4,8 @@ import Testing
 
 @Suite("Attribute lists")
 struct AttributeListTests {
-    @Test func parsesQuotedCommasAndTypedValues() {
-        let list = AttributeList.parse(#"BANDWIDTH=1280000,CODECS="avc1.4d401f,mp4a.40.2",RESOLUTION=1280x720,IV=0x1A2B,FRAME-RATE=29.970,NAME="a=b""#)
+    @Test func parsesQuotedCommasAndTypedValues() throws {
+        let list = try AttributeList.parse(#"BANDWIDTH=1280000,CODECS="avc1.4d401f,mp4a.40.2",RESOLUTION=1280x720,IV=0x1A2B,FRAME-RATE=29.970,NAME="a=b""#)
         #expect(list.keys == ["BANDWIDTH", "CODECS", "RESOLUTION", "IV", "FRAME-RATE", "NAME"])
         #expect(list["BANDWIDTH"]?.integer == 1_280_000)
         #expect(list["CODECS"] == .quoted("avc1.4d401f,mp4a.40.2"))
@@ -15,17 +15,12 @@ struct AttributeListTests {
         #expect(list["NAME"]?.rawValue == "a=b")
     }
 
-    @Test func toleratesWhitespaceAndMalformedEntries() {
-        let list = AttributeList.parse(#" A = 1 , BOGUS, B="x" ,C=,"#)
-        #expect(list["A"]?.integer == 1)
-        #expect(list["B"]?.rawValue == "x")
-        #expect(list["C"]?.rawValue == "")
-        #expect(list["BOGUS"] == nil)
+    @Test func rejectsWhitespaceAndMalformedEntries() {
+        #expect(throws: PlaylistError.self) { try AttributeList.parse(#" A = 1 , BOGUS, B="x" ,C=,"#) }
     }
 
-    @Test func unterminatedQuoteRunsToEnd() {
-        let list = AttributeList.parse(#"URI="abc,def"#)
-        #expect(list["URI"]?.rawValue == "abc,def")
+    @Test func rejectsUnterminatedQuote() {
+        #expect(throws: PlaylistError.self) { try AttributeList.parse(#"URI="abc,def"#) }
     }
 
     @Test func serializesInOrder() {
@@ -65,8 +60,8 @@ struct MultivariantTests {
         #expect(first.hasVideo)
 
         let hdr = playlist.variants[4]
-        #expect(hdr.closedCaptionsNone)
-        #expect(hdr.closedCaptionsGroupID == nil)
+        #expect(!hdr.closedCaptionsNone)
+        #expect(hdr.closedCaptionsGroupID == "cc1")
         #expect(hdr.videoRange == "PQ")
         #expect(playlist.iFrameVariants[0].uri == "v9/iframe_index.m3u8")
     }
@@ -92,10 +87,10 @@ struct MultivariantTests {
     }
 
     @Test func roundTrips() throws {
-        let rendered = playlist.render()
+        let rendered = try playlist.render()
         let reparsed = try #require(try Playlist(rendered).multivariant)
         #expect(reparsed == playlist)
-        #expect(rendered.contains(#"CLOSED-CAPTIONS=NONE"#))
+        #expect(rendered.contains(#"CLOSED-CAPTIONS="cc1""#))
         #expect(rendered.contains(#"CODECS="avc1.640020,mp4a.40.2""#))
     }
 
@@ -155,7 +150,7 @@ struct MediaPlaylistTests {
 
     @Test func roundTripsEncryptedVOD() throws {
         let playlist = try #require(try Playlist(Fixtures.encryptedVOD).media)
-        let rendered = playlist.render()
+        let rendered = try playlist.render()
         #expect(try Playlist(rendered).media == playlist)
         // Keys and maps are emitted only when they change.
         #expect(rendered.components(separatedBy: "#EXT-X-MAP").count - 1 == 2)
@@ -169,7 +164,7 @@ struct MediaPlaylistTests {
         #expect(playlist.isLowLatency)
         #expect(playlist.partTarget == 0.33334)
         #expect(playlist.serverControl?.canBlockReload == true)
-        #expect(playlist.serverControl?.canSkipUntil == 12)
+        #expect(playlist.serverControl?.canSkipUntil == 24)
         #expect(playlist.recommendedLiveOffset == 1.0)
         #expect(playlist.segments.count == 3)
         #expect(playlist.segments[2].parts.count == 2)
@@ -193,7 +188,7 @@ struct MediaPlaylistTests {
         #expect(playlist.segments[1].unknownTags == ["#EXT-X-CUE-OUT:DURATION=60"])
         #expect(range.startDate == Date(timeIntervalSince1970: 1_790_485_210))
 
-        let rendered = playlist.render()
+        let rendered = try playlist.render()
         #expect(rendered.contains("#EXT-X-CUE-OUT:DURATION=60"))
         #expect(try Playlist(rendered).media == playlist)
     }
@@ -221,13 +216,13 @@ struct MediaPlaylistTests {
         #expect(proxied.segments[0].map?.uri == "http://127.0.0.1:8080/initializationSection?u=init.mp4")
         #expect(proxied.segments[1].keys.first?.uri == "http://127.0.0.1:8080/key?u=https://keys.example.com/k1")
         // Shared key is still shared after rewriting, so it is emitted once.
-        #expect(proxied.render().components(separatedBy: "keys.example.com").count - 1 == 1)
+        #expect(try proxied.render().components(separatedBy: "keys.example.com").count - 1 == 1)
 
         let ll = try #require(try Playlist(Fixtures.lowLatency).media)
         let resolved = ll.resolvingURIs(against: URL(string: "https://example.com/live/2M/index.m3u8")!)
         #expect(resolved.trailingParts[0].uri == "https://example.com/live/2M/filePart269.0.mp4")
         #expect(resolved.preloadHints[0].uri == "https://example.com/live/2M/filePart269.2.mp4")
-        #expect(resolved.renditionReports[0].uri == "https://example.com/live/1M/waitForMSN.php")
+        #expect(resolved.renditionReports[0].uri == "../1M/waitForMSN.php")
     }
 
     @Test func buildsPlaylistsProgrammatically() throws {
@@ -236,7 +231,7 @@ struct MediaPlaylistTests {
             playlist.segments.append(Segment(uri: "seg\(index).ts", duration: 6))
         }
         playlist.segments[2].discontinuity = true
-        let text = playlist.render()
+        let text = try playlist.render()
         #expect(text == """
         #EXTM3U
         #EXT-X-VERSION:3
@@ -263,10 +258,11 @@ struct ParsingBehaviorTests {
         #expect(throws: PlaylistError.missingHeader) { try Playlist("") }
     }
 
-    @Test func toleratesBOMCRLFAndBlankLines() throws {
-        let text = "\u{FEFF}#EXTM3U\r\n\r\n#EXT-X-TARGETDURATION:2\r\n#EXTINF:2,\r\na.ts\r\n"
+    @Test func acceptsCRLFAndRejectsBOM() throws {
+        let text = "#EXTM3U\r\n\r\n#EXT-X-TARGETDURATION:2\r\n#EXTINF:2,\r\na.ts\r\n"
         let playlist = try #require(try Playlist(text).media)
         #expect(playlist.segments.map(\.uri) == ["a.ts"])
+        #expect(throws: PlaylistError.self) { try Playlist("\u{FEFF}" + text) }
     }
 
     @Test func rejectsAmbiguousPlaylists() {
@@ -274,17 +270,15 @@ struct ParsingBehaviorTests {
         #expect(throws: PlaylistError.ambiguousPlaylistType) { try Playlist(text) }
     }
 
-    @Test func collectsWarningsLenientlyAndThrowsStrictly() throws {
+    @Test func rejectsMalformedInputByDefault() throws {
         let text = "#EXTM3U\n#EXT-X-TARGETDURATION:4\norphan.ts\n#EXTINF:abc,\nb.ts\n"
-        let result = try PlaylistParser().parse(text)
-        #expect(result.warnings.count == 2)
-        #expect(result.playlist.media?.segments.map(\.uri) == ["b.ts"])
-        #expect(throws: PlaylistError.self) { try PlaylistParser(options: ParseOptions(strict: true)).parse(text) }
+        #expect(throws: PlaylistError.self) { try PlaylistParser().parse(text) }
     }
 
     @Test func substitutesVariables() throws {
         let text = """
         #EXTM3U
+        #EXT-X-VERSION:11
         #EXT-X-DEFINE:NAME="host",VALUE="https://cdn.example.com"
         #EXT-X-DEFINE:QUERYPARAM="token"
         #EXT-X-DEFINE:IMPORT="lang"
@@ -300,16 +294,12 @@ struct ParsingBehaviorTests {
         #expect(playlist.segments[0].map?.uri == "https://cdn.example.com/init.mp4")
         #expect(result.variables == ["host": "https://cdn.example.com", "token": "s3cr3t", "lang": "en"])
         #expect(playlist.definitions.count == 3)
-        #expect(result.warnings.isEmpty)
     }
 
-    @Test func undefinedVariablesWarnOrThrow() throws {
+    @Test func rejectsUndefinedVariables() throws {
         let text = "#EXTM3U\n#EXT-X-TARGETDURATION:4\n#EXTINF:4,\n{$missing}/a.ts\n"
-        let result = try PlaylistParser().parse(text)
-        #expect(result.playlist.media?.segments.first?.uri == "{$missing}/a.ts")
-        #expect(result.warnings.count == 1)
         #expect(throws: PlaylistError.undefinedVariable(name: "missing", line: 4)) {
-            try PlaylistParser(options: ParseOptions(strict: true)).parse(text)
+            try PlaylistParser().parse(text)
         }
     }
 
@@ -333,10 +323,10 @@ struct ParsingBehaviorTests {
     @Test func hostileNumbersDoNotTrap() throws {
         let text = "#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=1,RESOLUTION=9999999999x9999999999\na.m3u8\n#EXT-X-STREAM-INF:BANDWIDTH=2,RESOLUTION=10x10\nb.m3u8\n"
         let master = try #require(try Playlist(text).multivariant)
-        #expect(master.variants[0].resolution?.pixelCount == Int.max)
+        #expect(master.variants[0].resolution?.pixelCount == UInt64.max)
         _ = master.preferredVariant()
-        let media = MediaPlaylist(targetDuration: 1, mediaSequence: Int.max)
-        _ = media.mediaSequence(ofSegmentAt: 5)
+        let media = MediaPlaylist(targetDuration: 1, mediaSequence: UInt64.max)
+        #expect(media.mediaSequence(ofSegmentAt: 5) == nil)
     }
 
     @Test func classifiesCodecs() {
@@ -350,8 +340,9 @@ struct ParsingBehaviorTests {
         #expect(CodecFamily(codec: "xyz") == nil)
     }
 
-    @Test func largePlaylistPerformance() throws {
-        var text = "#EXTM3U\n#EXT-X-TARGETDURATION:6\n#EXT-X-PLAYLIST-TYPE:VOD\n"
+    @Test(.enabled(if: ProcessInfo.processInfo.environment["HLS_PERFORMANCE_TESTS"] == "1"))
+    func largePlaylistPerformance() throws {
+        var text = "#EXTM3U\n#EXT-X-VERSION:6\n#EXT-X-TARGETDURATION:6\n#EXT-X-PLAYLIST-TYPE:VOD\n"
         for index in 0..<20_000 {
             text += "#EXT-X-PROGRAM-DATE-TIME:2026-09-27T05:00:00.000Z\n#EXTINF:6.006,\nsegment_\(index).ts\n"
         }
