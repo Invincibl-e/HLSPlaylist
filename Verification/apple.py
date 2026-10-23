@@ -97,7 +97,9 @@ def codes(data):
 
 def run(candidate):
     directory = RESULTS / "apple" / candidate
-    directory.mkdir(parents=True, exist_ok=True)
+    directory.mkdir(parents=True, exist_ok=False)
+    if not (TOOLS / "mediastreamvalidator").is_file():
+        raise RuntimeError(f"Required Apple tool missing: {TOOLS / 'mediastreamvalidator'}")
     server = http.server.ThreadingHTTPServer(("127.0.0.1", 0), Handler)
     server.audit_lock = threading.Lock()
     thread = threading.Thread(target=server.serve_forever, daemon=True)
@@ -126,7 +128,8 @@ def run(candidate):
                 if report.exists():
                     data = json.loads(report.read_text())
                     result["codes"] = codes(data)
-                    result["status"] = "issues" if result.get("exit", 1) != 0 else "pass"
+                    if result.get("status") != "tool-timeout":
+                        result["status"] = "issues" if result.get("exit", 1) != 0 else "pass"
                 else:
                     result.setdefault("status", "no-report")
                 results.append(result)
@@ -136,6 +139,11 @@ def run(candidate):
         server.shutdown()
         server.server_close()
         thread.join()
+    # Archived public sources are diagnostic comparisons, not positive oracles.
+    # Infrastructure failure is still fatal; Apple findings are retained.
+    if not results or any(row["status"] in ["tool-timeout", "no-report"] for row in results):
+        raise RuntimeError("Apple archive comparison did not complete")
+    return results
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

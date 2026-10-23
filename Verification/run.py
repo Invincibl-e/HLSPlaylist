@@ -32,8 +32,17 @@ def probe(rows, timeout=60):
     p = subprocess.run([str(PROBE)], input="".join(probe_input(x) for x in rows),
                        text=True, capture_output=True, timeout=timeout, env=environment)
     if p.returncode:
-        return {"exit": p.returncode, "stderr": p.stderr[-6000:]}
-    return [json.loads(x) for x in p.stdout.splitlines()]
+        raise RuntimeError(f"Probe exited {p.returncode}: {p.stderr[-6000:]}")
+    output = [json.loads(x) for x in p.stdout.splitlines()]
+    if len(output) != len(rows) or [x.get("name") for x in output] != [x.get("name") for x in rows]:
+        raise RuntimeError("Probe output count or input identity mismatch")
+    if any(x.get("status") not in ("accepted", "rejected") for x in output):
+        raise RuntimeError("Probe returned an invalid status")
+    return output
+
+def require_results(results, label):
+    if any(not row["met"] for row in results):
+        raise RuntimeError(f"{label}: failed expectations; see {RESULTS}")
 
 def extract():
     provenance = json.loads((CORPUS / "provenance.json").read_text())
@@ -118,6 +127,8 @@ def corpus():
         if isinstance(outputs, list):
             print(label, len(outputs), {s: sum(x["status"] == s for x in outputs) for s in ["accepted", "rejected"]},
                   "non-idempotent", sum(x.get("idempotent") is False for x in outputs), flush=True)
+            if any(x["status"] == "accepted" and x.get("idempotent") is not True for x in outputs):
+                raise RuntimeError(f"{label}: accepted input did not round-trip")
 
 def player():
     rows = [{"name": str(p.relative_to(CORPUS / "archive")), "text": p.read_text()}
@@ -135,16 +146,17 @@ def player():
 def tail():
     header = "#EXTM3U\n#EXT-X-VERSION:7\n#EXT-X-TARGETDURATION:6\n#EXT-X-PROGRAM-DATE-TIME:2026-10-23T00:00:00Z\n"
     segment = "#EXTINF:6,\nsegment.ts\n"
-    tag = '#EXT-X-DATERANGE:ID="ad",CLASS="com.apple.hls.interstitial",START-DATE="2026-10-23T00:00:00Z",X-ASSET-URI="clip.m3u8",X-ASSET-LIST="assets.json"\n'
+    tag = '#EXT-X-DATERANGE:ID="ad",CLASS="com.apple.hls.interstitial",START-DATE="2026-10-23T00:00:00Z",X-ASSET-LIST="assets.json"\n'
     inputs = [{"name": name, "text": header + body + "#EXT-X-ENDLIST\n", "rewrite": True}
               for name, body in [("before-segment", tag + segment), ("after-last-segment", segment + tag)]]
     output = probe(inputs)
     results = []
     for source, row in zip(inputs, output):
-        met = all(row.get("roles", []).count(role) == 1 for role in ["interstitialAsset", "interstitialAssetList"])
-        results.append({"input": source, "output": row, "bothAssetURIsRewritten": met})
+        met = row["status"] == "accepted" and row.get("roles", []).count("interstitialAssetList") == 1
+        results.append({"input": source, "output": row, "met": met})
     write(RESULTS / "trailing-interstitial.json", results)
-    print("interstitial URI placement", [(row["input"]["name"], row["bothAssetURIsRewritten"]) for row in results], flush=True)
+    print("interstitial URI placement", [(row["input"]["name"], row["met"]) for row in results], flush=True)
+    require_results(results, "tail")
 
 def boundaries():
     base = "#EXTM3U\n#EXT-X-TARGETDURATION:6\n"
@@ -169,16 +181,17 @@ def boundaries():
         if isinstance(output, list):
             output = output[0]
         met = (output.get("status") == "rejected" if expected == "reject" else
-               "tiles.m3u8" not in output.get("text", "") if expected == "rewrite-all" else
+               output.get("status") == "accepted" and output.get("roles", []).count("imageVariant") == 1 and "https://routed.test/" in output.get("text", "") if expected == "rewrite-all" else
                "preserve-me" in output.get("text", "") if expected == "preserve" else
                "0.123456789" in output.get("rendered", "") if expected == "precision" else
-               "exit" not in output)
+               output.get("status") == "accepted" and "liveOffset" in output)
         result = {"input": row, "expectation": expected, "met": met, "output": output}
         if expected == "no-trap":
             result["controlWithoutLiveOffset"] = probe([{**row, "liveOffset": False}], timeout=10)
         results.append(result)
     write(RESULTS / "boundaries.json", results)
     print("boundary expectations met", sum(x["met"] for x in results), "/", len(results), flush=True)
+    require_results(results, "boundaries")
 
 def properties():
     rng = random.Random(8216)
@@ -211,6 +224,8 @@ def properties():
             failures.append({"name": row["name"], "checks": checks, "output": row})
     write(RESULTS / "properties.json", {"seed": 8216, "cases": len(rows), "checksPerCase": 6, "failures": failures})
     print("properties", len(rows), "failures", len(failures), flush=True)
+    if failures:
+        raise RuntimeError("Property expectations failed")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

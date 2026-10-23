@@ -226,6 +226,114 @@ struct StandardsTests {
         }
     }
 
+    @Test func groupAndSteeringConstraintsAlsoApplyToConstructedModels() throws {
+        var playlist = try #require(try Playlist("""
+        #EXTM3U
+        #EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="a",NAME="English",LANGUAGE="en",CHANNELS="2",URI="a"
+        #EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="b",NAME="English",LANGUAGE="en",CHANNELS="6",URI="b"
+        """).multivariant)
+        playlist.renditions[1].language = "fr"
+        #expect(throws: PlaylistError.self) { try playlist.render() }
+        playlist.renditions[1].language = "en"
+        playlist.renditions[0].channels = "2//BINAURAL"
+        #expect(throws: PlaylistError.self) { try playlist.render() }
+        playlist.renditions[0].channels = "2/-/BINAURAL"
+        _ = try playlist.render()
+        playlist.contentSteering = ["SERVER-URI": .quoted("s"), "PATHWAY-ID": .quoted("missing")]
+        #expect(throws: PlaylistError.self) { try playlist.render() }
+    }
+
+    @Test func sessionDataFormatForwardCompatibility() throws {
+        let unknown = try Playlist("#EXTM3U\n#EXT-X-SESSION-DATA:DATA-ID=\"x\",URI=\"data\",FORMAT=NEW\n")
+        #expect(unknown.multivariant?.sessionData.isEmpty == true)
+        let ignored = try Playlist("#EXTM3U\n#EXT-X-SESSION-DATA:DATA-ID=\"x\",VALUE=\"v\",FORMAT=\"NEW\"\n")
+        #expect(ignored.multivariant?.sessionData.count == 1)
+    }
+
+    @Test func interstitialRejectsInvalidConstructedAsset() throws {
+        var playlist = try #require(try Playlist(media("""
+        #EXT-X-PROGRAM-DATE-TIME:2026-01-01T00:00:00Z
+        #EXT-X-DATERANGE:ID="a",CLASS="com.apple.hls.interstitial",START-DATE="2026-01-01T00:00:00Z",X-ASSET-LIST="ads.json"
+        """)).media)
+        playlist.trailingDateRanges[0].otherAttributes["X-ASSET-URI"] = .quoted("https://example.test/ad")
+        #expect(throws: PlaylistError.self) { try playlist.render() }
+    }
+
+    @Test func effectiveKeyContextsCannotSerializeLossyOverrides() throws {
+        let key = EncryptionKey(method: .aes128, uri: "k")
+        let duplicate = MediaPlaylist(targetDuration: 1, segments: [Segment(uri: "s", duration: 1, keys: [key, key])])
+        #expect(throws: PlaylistError.self) { try duplicate.render() }
+        let none = MediaPlaylist(targetDuration: 1, segments: [Segment(uri: "s", duration: 1, keys: [EncryptionKey(method: .none)])])
+        #expect(throws: PlaylistError.self) { try none.render() }
+        // Repeated KEY tags in text legally replace a format's previous key.
+        let parsed = try #require(try Playlist(media("""
+        #EXT-X-KEY:METHOD=AES-128,URI="old"
+        #EXT-X-KEY:METHOD=AES-128,URI="new"
+        #EXTINF:1,
+        s
+        """)).media)
+        #expect(parsed.segments[0].keys.map(\.uri) == ["new"])
+        #expect(try Playlist(parsed.render()).media == parsed)
+    }
+
+    @Test func allVariantKindsPreserveExtensionTagsWhenRendered() throws {
+        var variant = Variant(uri: "v", bandwidth: 1)
+        variant.unknownTags = ["#EXT-X-FUTURE:payload"]
+        var playlist = MultivariantPlaylist(variants: [variant])
+        playlist.iFrameVariants = [variant]
+        playlist.imageVariants = [variant]
+        let text = try playlist.render()
+        #expect(text.components(separatedBy: "#EXT-X-FUTURE:payload").count == 4)
+    }
+
+    @Test func consecutiveDiscontinuitiesPreserveSequenceMultiplicity() throws {
+        let text = media("""
+        #EXT-X-DISCONTINUITY-SEQUENCE:5
+        #EXT-X-DISCONTINUITY
+        #EXT-X-DISCONTINUITY
+        #EXTINF:1,
+        s
+        #EXT-X-DISCONTINUITY
+        #EXT-X-DISCONTINUITY
+        """)
+        var parsed = try #require(try Playlist(text).media)
+        #expect(parsed.segments[0].discontinuityCount == 2)
+        #expect(parsed.trailingDiscontinuityCount == 2)
+        #expect(try Playlist(parsed.render()).media == parsed)
+        parsed.segments[0].discontinuity = true
+        #expect(parsed.segments[0].discontinuityCount == 2)
+        parsed.segments[0].discontinuity = false
+        #expect(parsed.segments[0].discontinuityCount == 0)
+        #expect(throws: PlaylistError.self) {
+            try Playlist(text.replacingOccurrences(of: "SEQUENCE:5", with: "SEQUENCE:18446744073709551612"))
+        }
+        var huge = MediaPlaylist(targetDuration: 1)
+        huge.trailingDiscontinuityCount = .max
+        #expect(throws: PlaylistError.self) { try huge.render() }
+    }
+
+    @Test(arguments: [
+        ("g", "http://a/b/c/g"), ("./g", "http://a/b/c/g"),
+        ("g/", "http://a/b/c/g/"), ("/g", "http://a/g"),
+        ("//g", "http://g"), ("?y", "http://a/b/c/d;p?y"),
+        ("g?y", "http://a/b/c/g?y"), ("#s", "http://a/b/c/d;p?q#s"),
+        ("g#s", "http://a/b/c/g#s"), ("g?y#s", "http://a/b/c/g?y#s"),
+        (";x", "http://a/b/c/;x"), ("g;x", "http://a/b/c/g;x"),
+        (".", "http://a/b/c/"), ("..", "http://a/b/"),
+        ("../g", "http://a/b/g"), ("../../g", "http://a/g"),
+        ("../../../g", "http://a/g"), ("/./g", "http://a/g"),
+        ("/../g", "http://a/g"), ("g/./h", "http://a/b/c/g/h"),
+        ("g/../h", "http://a/b/c/h"), ("g?y/../x", "http://a/b/c/g?y/../x"),
+        ("g#s/../x", "http://a/b/c/g#s/../x")
+    ])
+    func rfc3986ResolutionOracle(_ reference: String, _ expected: String) throws {
+        // Fragment-only URI references belong in attributes: a playlist line
+        // starting with '#' is a comment/tag under HLS §4.1.
+        let playlist = try Playlist(media("#EXT-X-MAP:URI=\"\(reference)\"\n#EXTINF:1,\ns"))
+        let resolved = playlist.resolvingURIs(against: URL(string: "http://a/b/c/d;p?q")!)
+        #expect(resolved.media?.segments[0].map?.uri == expected)
+    }
+
     @Test(arguments: [
         "\n#EXTM3U\n", "#EXTM3U \n", "#EXTM3U\n#EXTM3U\n", "#EXTM3U\r#EXT-X-TARGETDURATION:1",
         "#EXTM3U\n#EXT-X-TARGETDURATION:1\n#EXTINF:1,\nbad uri\n",

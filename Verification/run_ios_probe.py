@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Run the same library/Probe sources directly on the authorized iOS lab phone."""
 import argparse
+import atexit
 import json
 import subprocess
 from run import CORPUS, RESULTS, SCRATCH, probe, probe_input, write
@@ -9,11 +10,15 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--ssh-port", type=int, default=2239)
 parser.add_argument("--device-os", default="unknown")
 parser.add_argument("--extended", action="store_true", help="Also compare external fixtures and strict boundary inputs")
+parser.add_argument("--ssh-control", help="Existing task-owned SSH control socket")
 args = parser.parse_args()
-options = ["-o", "ControlPath=" + str(SCRATCH / "ssh-control"), "-o", "BatchMode=yes"]
+options = ["-o", "ControlPath=" + (args.ssh_control or str(SCRATCH / "ssh-control")), "-o", "BatchMode=yes"]
 ssh = ["ssh", *options, "-p", str(args.ssh_port), "root@127.0.0.1"]
 remote = "/var/jb/tmp/hlsplaylist-verification"
 subprocess.run(ssh + ["mkdir -p " + remote], check=True, timeout=15)
+def cleanup():
+    subprocess.run(ssh + ["rm -rf " + remote], timeout=15, check=False)
+atexit.register(cleanup)
 # Replace the inode, avoiding a cached code-signature identity after rebuilding.
 subprocess.run(ssh + ["rm -f " + remote + "/Probe"], check=True, timeout=15)
 subprocess.run(["scp", "-O", *options, "-P", str(args.ssh_port),
@@ -34,6 +39,8 @@ if process.returncode:
     raise SystemExit(process.returncode)
 output = [json.loads(line) for line in process.stdout.splitlines() if line.startswith("{")]
 write(RESULTS / f"ios-{label}.json", output)
+if len(output) != len(rows) or [x.get("name") for x in output] != [x.get("name") for x in rows]:
+    raise RuntimeError("iOS Probe output count or input identity mismatch")
 mac = probe(rows) if args.extended else json.loads((RESULTS / "archive.json").read_text())
 write(RESULTS / f"mac-{label}.json", mac)
 different = [a["name"] for a, b in zip(mac, output) if a != b]

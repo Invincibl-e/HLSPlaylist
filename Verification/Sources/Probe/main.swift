@@ -23,10 +23,14 @@ while let line = readLine() {
         row["name"] = input.name
         let url = URL(string: input.url ?? "https://fixture.test/path/master.m3u8")!
         let options = ParseOptions(importedVariables: input.imports ?? [:], playlistURL: url)
+        row["stage"] = "parse"
         let parsed = try PlaylistParser(options: options).parse(input.textUTF8 ?? Data(input.text.utf8))
+        row["parseAccepted"] = true
         var playlist = parsed.playlist
+        row["stage"] = "render"
         let rendered = try playlist.render()
         row["rendered"] = rendered
+        row["stage"] = "round-trip"
         row["idempotent"] = try Playlist(rendered, options: options).render() == rendered
         if input.resolve == true || input.rewrite == true {
             playlist = playlist.resolvingURIs(against: url)
@@ -47,16 +51,20 @@ while let line = readLine() {
                     resolved.absoluteString.addingPercentEncoding(withAllowedCharacters: .alphanumerics)!
             }
         }
+        row["stage"] = "rewrite-render"
         row["text"] = try playlist.render()
         row["roles"] = roles
         if let media = parsed.playlist.media {
             row["segments"] = media.segments.count
             row["durations"] = media.segments.map { $0.duration.isFinite ? String($0.duration) : "nonfinite" }
+            row["discontinuityCounts"] = media.segments.map { String($0.discontinuityCount) }
+            row["trailingDiscontinuityCount"] = String(media.trailingDiscontinuityCount)
             if input.liveOffset == true {
                 row["liveOffset"] = String(media.recommendedLiveOffset)
             }
         }
         row["status"] = "accepted"
+        row["stage"] = "complete"
     } catch {
         row["status"] = "rejected"
         row["error"] = String(describing: error)

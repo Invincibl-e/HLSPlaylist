@@ -22,8 +22,15 @@ jobs:
       - uses: actions/checkout@v4
       - name: Toolchain
         run: xcodebuild -version && swift --version
-      - name: Test
-        run: swift test
+      - name: Standards, ASan, corpus, properties and harness failure gates
+        run: python3 Verification/suite.py
+      - name: Preserve verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hls-verification-${{ matrix.os }}
+          path: Verification/results/suite-*
+          if-no-files-found: error
 
   cocoapods:
     name: CocoaPods (iOS, macOS)

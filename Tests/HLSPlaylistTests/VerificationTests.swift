@@ -158,15 +158,15 @@ struct VerificationTests {
         #EXT-X-PROGRAM-DATE-TIME:2026-10-23T00:00:00Z
         #EXTINF:6,
         s
-        #EXT-X-DATERANGE:ID="ad",CLASS="com.apple.hls.interstitial",START-DATE="2026-10-23T00:00:00Z",X-ASSET-URI="clip",X-ASSET-LIST="list"
+        #EXT-X-DATERANGE:ID="ad",CLASS="com.apple.hls.interstitial",START-DATE="2026-10-23T00:00:00Z",X-ASSET-LIST="list"
         """
         var roles: [URIRole] = []
         let mapped = try Playlist(text).mapURIs { uri, role in
             roles.append(role)
             return "proxy/" + uri
         }
-        #expect(roles == [.segment, .interstitialAsset, .interstitialAssetList])
-        #expect(try mapped.render().contains("X-ASSET-URI=\"proxy/clip\""))
+        #expect(roles == [.segment, .interstitialAssetList])
+        #expect(try mapped.render().contains("X-ASSET-LIST=\"proxy/list\""))
         let image = try Playlist("#EXTM3U\n#EXT-X-IMAGE-STREAM-INF:BANDWIDTH=2000,URI=\"tiles\"\n")
         #expect(image.multivariant?.imageVariants.count == 1)
         #expect(try Playlist(image.render()).multivariant?.imageVariants[0].uri == "tiles")

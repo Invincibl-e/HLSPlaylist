@@ -1,5 +1,10 @@
 # 标准对照实施记录
 
+2026-10-23 后续独立维护审计与最终复跑见
+[INDEPENDENT_REPORT.md](INDEPENDENT_REPORT.md)。规范段落目录见
+[NormativeInventory.json](NormativeInventory.json)，领域覆盖边界见
+[Coverage.md](Coverage.md)。下文保留前轮实施历史。
+
 用户要求：仔细对照标准，按标准处理；不兼容不合规输入。
 此文件记录实施规则，完成后的用户报告另存到 sibling player 的 verification。
 审计起始基线为 fix/uri-rewriting-cocoapods / 716ea587；以下记录提交前的审计过程。

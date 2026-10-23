@@ -123,7 +123,7 @@ private struct ParserState {
     var media = MediaPlaylist(targetDuration: 0)
     var pendingInf: (duration: Double, title: String?)?
     var pendingByteRange: ByteRange?
-    var pendingDiscontinuity = false
+    var pendingDiscontinuityCount: UInt64 = 0
     var pendingProgramDateTime: Date?
     var pendingDateRanges: [DateRange] = []
     var pendingGap = false
@@ -282,6 +282,7 @@ private struct ParserState {
             media.discontinuitySequence = try integer(value)
         case "#EXT-X-PLAYLIST-TYPE":
             isMedia = true
+            try HLSStandard.require(!value.isEmpty && !value.contains(where: { $0.isWhitespace || $0 == "\"" || $0 == "," }), "Invalid PLAYLIST-TYPE enumerated-string", line: lineNumber)
             media.playlistType = MediaPlaylist.PlaylistType(rawValue: String(value))
         case "#EXT-X-I-FRAMES-ONLY":
             isMedia = true
@@ -298,7 +299,9 @@ private struct ParserState {
             minimumVersion = max(minimumVersion, 4)
         case "#EXT-X-DISCONTINUITY":
             isMedia = true
-            pendingDiscontinuity = true
+            let (next, overflow) = pendingDiscontinuityCount.addingReportingOverflow(1)
+            try HLSStandard.require(!overflow, "Discontinuity count overflow", line: lineNumber)
+            pendingDiscontinuityCount = next
             sawDiscontinuity = true
         case "#EXT-X-KEY":
             isMedia = true
@@ -395,12 +398,13 @@ private struct ParserState {
             duration: inf.duration,
             title: inf.title,
             byteRange: pendingByteRange,
-            discontinuity: pendingDiscontinuity,
+            discontinuity: pendingDiscontinuityCount != 0,
             keys: currentKeys,
             map: currentMap,
             programDateTime: pendingProgramDateTime
         )
         segment.dateRanges = pendingDateRanges
+        segment.discontinuityCount = pendingDiscontinuityCount
         segment.gap = pendingGap
         segment.bitrate = currentBitrate
         segment.parts = pendingParts
@@ -409,7 +413,7 @@ private struct ParserState {
 
         pendingInf = nil
         pendingByteRange = nil
-        pendingDiscontinuity = false
+        pendingDiscontinuityCount = 0
         pendingProgramDateTime = nil
         pendingDateRanges = []
         pendingGap = false
@@ -503,7 +507,7 @@ private struct ParserState {
         media.trailingParts = pendingParts
         media.trailingKeys = currentKeys
         media.trailingMap = currentMap
-        media.trailingDiscontinuity = pendingDiscontinuity
+        media.trailingDiscontinuityCount = pendingDiscontinuityCount
         media.trailingProgramDateTime = pendingProgramDateTime
         media.trailingDateRanges = pendingDateRanges
         media.trailingUnknownTags = pendingUnknown
