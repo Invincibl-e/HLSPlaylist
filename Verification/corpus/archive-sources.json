@@ -1,0 +1,66 @@
+{
+  "apple_ts": {
+    "url": "https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_ts/master.m3u8",
+    "playlists": 19,
+    "kind": "public-snapshot"
+  },
+  "apple_fmp4": {
+    "url": "https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8",
+    "playlists": 19,
+    "kind": "public-snapshot"
+  },
+  "gcore_ll": {
+    "url": "https://demo.gvideo.io/cmaf/2675_19146/master.m3u8",
+    "playlists": 6,
+    "kind": "public-snapshot"
+  },
+  "variables": {
+    "kind": "controlled-structural",
+    "expectedNegative": false
+  },
+  "steering": {
+    "kind": "controlled-structural",
+    "expectedNegative": false
+  },
+  "interstitial": {
+    "kind": "controlled-structural",
+    "expectedNegative": false
+  },
+  "delta": {
+    "kind": "controlled-structural",
+    "expectedNegative": true,
+    "limitation": "Standalone delta response lacks the previous playlist needed for merging."
+  },
+  "daterange": {
+    "kind": "controlled-structural",
+    "expectedNegative": false
+  },
+  "fairplay": {
+    "kind": "controlled-structural",
+    "expectedNegative": false
+  },
+  "negative_missing_target": {
+    "kind": "controlled-structural",
+    "expectedNegative": true
+  },
+  "negative_duplicate_target": {
+    "kind": "controlled-structural",
+    "expectedNegative": true
+  },
+  "version12": {
+    "kind": "controlled-structural",
+    "expectedNegative": false
+  },
+  "ts_media": {
+    "kind": "public-media-trim",
+    "segments": 5,
+    "durationApproxSeconds": 30,
+    "origin": "apple_ts/v2"
+  },
+  "fmp4_media": {
+    "kind": "public-media-trim",
+    "segments": 5,
+    "durationApproxSeconds": 30,
+    "origin": "apple_fmp4/child18 (480\u00d7270 video)"
+  }
+}
