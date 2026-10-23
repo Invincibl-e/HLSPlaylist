@@ -29,8 +29,12 @@ URI 回归使用 `corpus/uri-oracles.json` 的 54 个固定预期（包含 RFC 3
 测试扩展到 17 个，包含编码后的点与实际 dot-segment 混用、路径分号。
 空引用只通过程序构造模型测试 RFC 工具行为，HLS `URI=""` 仍须拒绝。
 模拟器直接编译同一份 library/Probe 源码并在实际 iOS runtime 执行；
-`HLS_SIMULATOR_UDID` 可选定设备，否则复用已启动的 iOS 或启动可用设备，
-只关闭本次启动的模拟器。缺少可用 iOS runtime 会让离线回归失败。
+`HLS_SIMULATOR_UDID` 可选定设备，否则复用已启动的 iOS；没有已启动设备时
+按可用 runtime/type 创建干净的临时设备，退出时关闭并删除。显式指定设备
+只关闭本次启动的实例，不删除。冷启动包含系统数据迁移，预算 600 秒；
+整个模拟器步骤预算 1200 秒。超时仍失败，不能跳过 URI 断言。
+`run_simulator_probe.py --fresh` 可单独验证临时设备的冷启动和清理流程。
+缺少可用 iOS runtime 会让离线回归失败。
 full 的 `ios-extended` 追加同一批 URI 用例，真机先独立检查 gold，再检查
 与 Mac 完全相等。结果相等不能代替正确性断言。检查
 `mac-uri-summary.json`、`ios-simulator-uri-summary.json`、
@@ -39,6 +43,11 @@ full 的 `ios-extended` 追加同一批 URI 用例，真机先独立检查 gold�
 并把路径分号改写为 `%3B`；后续归一化会改变资源身份。解析链路按 RFC
 3986 §5.2/Appendix B 从原始编码字符串分解、合并和移除 dot-segments，
 不让 Foundation 重组 path/query/fragment。最终 URL 构造仍使用系统 API。
+
+`run.py` 将 work 路径规范为真实路径，避免 `/tmp` 与 `/private/tmp` 同时
+指向一个 Swift/Clang 模块缓存而导致 Darwin duplicate-module 崩溃。
+独立诊断重跑也应使用新的结果目录；不得覆盖 failed 的 suite 或把子集
+重跑写成整套 full passed。
 
 ## 2. 一次配置 localhost 证书，后续测试复用
 
