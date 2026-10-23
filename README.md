@@ -21,7 +21,7 @@ Parsing rejects invalid syntax and supported constraints observable in a playlis
 RFC 8216 and HLS bis-22. Unknown tags and enumerated values follow the standard's forward
 compatibility rules. Rendering validates the model and can throw. Decimal integers use
 `UInt64`; floating-point values retain their stored `Double` precision, and frame rates render
-to three decimal places. See [the standards audit](Verification/INDEPENDENT_REPORT.md) for
+to three decimal places. See [the current verification report](Verification/CERTIFICATE_WORKFLOW_REPORT.md) for
 verification evidence and scope.
 
 ```swift
@@ -65,9 +65,9 @@ only, no LL-HLS), or Objective-C.
 - **Effective state**: each segment carries the keys and `EXT-X-MAP` in effect for it, and the
   writer emits them only where they change.
 - **Variable substitution**: `EXT-X-DEFINE` with `NAME`/`VALUE`, `IMPORT` and `QUERYPARAM`.
-- **Lenient by default, strict on request**: problems are collected as `ParseWarning`s, and
-  `ParseOptions(strict: true)` throws instead. Handles BOMs, CRLF, whitespace, unterminated quotes
-  and colon-less time-zone offsets.
+- **Strict parsing**: invalid syntax and supported playlist constraints throw.
+  CRLF is accepted; BOMs, forbidden control characters and unterminated quotes are rejected.
+  Unknown tags and allowed enumerated values retain forward-compatible behavior.
 - **Utilities**: variant selection, rendition lookup, codec classification, segment timing and
   lookup by time, program-date-time extrapolation, live offset (`HOLD-BACK`/`PART-HOLD-BACK`),
   IV derivation, URI resolution and rewriting.
@@ -80,7 +80,7 @@ Add HLSPlaylist to your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/CreatureSurvive/HLSPlaylist.git", from: "1.0.0"),
+    .package(url: "https://github.com/Invincibl-e/HLSPlaylist.git", branch: "main"),
 ],
 targets: [
     .target(name: "MyApp", dependencies: ["HLSPlaylist"]),
@@ -88,14 +88,14 @@ targets: [
 ```
 
 Or in Xcode, choose **File › Add Package Dependencies…** and enter
-`https://github.com/CreatureSurvive/HLSPlaylist`.
+`https://github.com/Invincibl-e/HLSPlaylist`.
 
 ### CocoaPods
 
 Add the repository to your `Podfile`:
 
 ```ruby
-pod 'HLSPlaylist', :git => 'https://github.com/CreatureSurvive/HLSPlaylist.git', :branch => 'main'
+pod 'HLSPlaylist', :git => 'https://github.com/Invincibl-e/HLSPlaylist.git', :branch => 'main'
 ```
 
 Then run `pod install`. The pod compiles in Swift 6 language mode and supports the same
