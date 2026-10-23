@@ -46,7 +46,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-15, macos-26]
+        # macOS arm64 capacity can cancel queued jobs before acquiring a runner.
+        os: [macos-15, macos-26-intel]
     steps:
       - uses: actions/checkout@v4
       - name: Toolchain
@@ -63,7 +64,7 @@ jobs:
 
   cocoapods:
     name: CocoaPods (iOS, macOS)
-    runs-on: macos-26
+    runs-on: macos-26-intel
     steps:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
@@ -76,7 +77,7 @@ jobs:
 
   platforms:
     name: Build (iOS, tvOS)
-    runs-on: macos-26
+    runs-on: macos-26-intel
     steps:
       - uses: actions/checkout@v4
       - name: Toolchain
