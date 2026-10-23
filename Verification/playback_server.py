@@ -247,7 +247,7 @@ class Handler(http.server.BaseHTTPRequestHandler):
                     if row["status"] != "accepted":
                         with LOCK:
                             with (RESULTS / "playback-rejections.jsonl").open("a") as file:
-                                file.write(json.dumps({"source": source, "candidate": candidate, "error": row["error"]}) + "\n")
+                                file.write(json.dumps({"source": source, "candidate": candidate, "status": 422, "error": row["error"]}) + "\n")
                         self.send_error(422)
                         return
                     text = row["text"]
@@ -258,7 +258,7 @@ class Handler(http.server.BaseHTTPRequestHandler):
                     if row["status"] != "accepted":
                         with LOCK:
                             with (RESULTS / "playback-rejections.jsonl").open("a") as file:
-                                file.write(json.dumps({"source": source, "candidate": candidate, "error": row["error"]}) + "\n")
+                                file.write(json.dumps({"source": source, "candidate": candidate, "status": 422, "error": row["error"]}) + "\n")
                         self.send_error(422)
                         return
                     # Probe appends ?url=. Use normal query separators in this test server.

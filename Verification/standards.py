@@ -9,6 +9,12 @@ cases = []
 def case(name, text, accepted, reference):
     cases.append({"name": name, "text": text, "accepted": accepted, "reference": reference})
 
+for name, ids in [("empty", ""), ("tab-delimited", "ad-a\tad-b")]:
+    case("delta-v2-" + name, media(f'#EXT-X-SKIP:SKIPPED-SEGMENTS=2,RECENTLY-REMOVED-DATERANGES="{ids}"', 10),
+         True, "bis §4.4.5.2 empty quoted-string / TAB-delimited IDs")
+case("delta-v2-tab-outside-field", media('#EXT-X-SKIP:SKIPPED-SEGMENTS=2,RECENTLY-REMOVED-DATERANGES="a\tb",X-OTHER="c\td"', 10),
+     False, "bis §4.1 / §4.4.5.2 scoped TAB exception")
+
 for value in ["+1", "-1", "1e3", " 1", "１２", "18446744073709551616", "000000000000000000000"]:
     case("integer-" + value, media("#EXT-X-MEDIA-SEQUENCE:" + value), False, "bis §4.2 decimal-integer")
 case("uint64-max", media("#EXT-X-MEDIA-SEQUENCE:18446744073709551615\n#EXTINF:6,\ns"), True, "bis §4.2 / §4.4.3.2")

@@ -248,6 +248,7 @@
           "scope": "playlist; some obligations require media or cross-playlist context",
           "verification": "inventory only; no automatic clause-level compliance claim",
           "sectionOracleNames": [
+            "delta-v2-tab-outside-field",
             "BOM",
             "not-NFC"
           ]
@@ -260,6 +261,7 @@
           "scope": "playlist; some obligations require media or cross-playlist context",
           "verification": "inventory only; no automatic clause-level compliance claim",
           "sectionOracleNames": [
+            "delta-v2-tab-outside-field",
             "BOM",
             "not-NFC"
           ]
@@ -272,6 +274,7 @@
           "scope": "playlist; some obligations require media or cross-playlist context",
           "verification": "inventory only; no automatic clause-level compliance claim",
           "sectionOracleNames": [
+            "delta-v2-tab-outside-field",
             "BOM",
             "not-NFC"
           ]
@@ -284,6 +287,7 @@
           "scope": "playlist; some obligations require media or cross-playlist context",
           "verification": "inventory only; no automatic clause-level compliance claim",
           "sectionOracleNames": [
+            "delta-v2-tab-outside-field",
             "BOM",
             "not-NFC"
           ]
@@ -296,6 +300,7 @@
           "scope": "playlist; some obligations require media or cross-playlist context",
           "verification": "inventory only; no automatic clause-level compliance claim",
           "sectionOracleNames": [
+            "delta-v2-tab-outside-field",
             "BOM",
             "not-NFC"
           ]
@@ -1889,6 +1894,9 @@
           "scope": "playlist; some obligations require media or cross-playlist context",
           "verification": "inventory only; no automatic clause-level compliance claim",
           "sectionOracleNames": [
+            "delta-v2-empty",
+            "delta-v2-tab-delimited",
+            "delta-v2-tab-outside-field",
             "required-SKIP-SKIPPED-SEGMENTS"
           ]
         },
@@ -1900,6 +1908,9 @@
           "scope": "playlist; some obligations require media or cross-playlist context",
           "verification": "inventory only; no automatic clause-level compliance claim",
           "sectionOracleNames": [
+            "delta-v2-empty",
+            "delta-v2-tab-delimited",
+            "delta-v2-tab-outside-field",
             "required-SKIP-SKIPPED-SEGMENTS"
           ]
         },
@@ -1911,6 +1922,9 @@
           "scope": "playlist; some obligations require media or cross-playlist context",
           "verification": "inventory only; no automatic clause-level compliance claim",
           "sectionOracleNames": [
+            "delta-v2-empty",
+            "delta-v2-tab-delimited",
+            "delta-v2-tab-outside-field",
             "required-SKIP-SKIPPED-SEGMENTS"
           ]
         },

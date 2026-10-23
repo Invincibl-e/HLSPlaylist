@@ -16,7 +16,7 @@ import urllib.parse
 import urllib.request
 from run import CORPUS, RESULTS, probe, write
 
-TOOLS = pathlib.Path(os.environ.get("HLS_APPLE_BIN", "/tmp/hlsplaylist-validation/apple-tools-extracted/component.pkg/Payload/usr/local/bin"))
+TOOLS = pathlib.Path(os.environ.get("HLS_APPLE_BIN") or "/usr/local/bin")
 ROOT = CORPUS / "archive"
 
 class Handler(http.server.BaseHTTPRequestHandler):

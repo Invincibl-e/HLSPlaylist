@@ -8,6 +8,25 @@ struct StandardsTests {
         "#EXTM3U\n#EXT-X-VERSION:\(version)\n#EXT-X-TARGETDURATION:6\n" + tags + "\n"
     }
 
+    @Test(arguments: ["", "ad-a", "ad-a\tad-b"])
+    func deltaRemovedDateRanges(_ ids: String) throws {
+        let text = media("#EXT-X-SKIP:SKIPPED-SEGMENTS=2,RECENTLY-REMOVED-DATERANGES=\"\(ids)\"", version: 10)
+        let parsed = try #require(try Playlist(text).media)
+        #expect(parsed.recentlyRemovedDateRanges == ids)
+        #expect(try Playlist(parsed.render()).media == parsed)
+        #expect(try Playlist(text.replacingOccurrences(of: "\n", with: "\r\n")).media == parsed)
+    }
+
+    @Test(arguments: [
+        "#EXT-X-SKIP:SKIPPED-SEGMENTS=2,RECENTLY-REMOVED-DATERANGES=\"a\tb\",X-OTHER=\"c\td\"",
+        "#EXT-X-SKIP:SKIPPED-SEGMENTS=2,\tRECENTLY-REMOVED-DATERANGES=\"a\tb\"",
+        "#EXT-X-SKIP:SKIPPED-SEGMENTS=2,RECENTLY-REMOVED-DATERANGES=\"a\u{01}b\"",
+        "#EXT-X-SESSION-DATA:DATA-ID=\"a\",VALUE=\"a\tb\""
+    ])
+    func deltaTabExceptionIsScoped(_ tags: String) {
+        #expect(throws: PlaylistError.self) { try Playlist(media(tags)) }
+    }
+
     @Test(arguments: [
         "+1", "-1", "1e3", " 1", "1 ", "１２", "18446744073709551616",
         "000000000000000000000", ""

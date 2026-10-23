@@ -1,5 +1,8 @@
 # HLSPlaylist 独立维护与规范验证报告
 
+历史阶段报告；后续 HTTP/2、本地动态 LL 和整套真机补测见
+[FULL_REPORT.md](FULL_REPORT.md)。下文保留当时的失败和限制，不代表最新验收状态。
+
 日期：2026-10-23。实现基线：`7664216`，分支
 `fix/uri-rewriting-cocoapods`。本轮按照 RFC 8216 与
 draft-pantos-hls-rfc8216bis-22（2026-05，协议 v13）继续审计，

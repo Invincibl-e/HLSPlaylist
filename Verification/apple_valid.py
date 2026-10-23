@@ -16,6 +16,7 @@ import threading
 import urllib.parse
 from apple import TOOLS, codes
 from run import RESULTS, SCRATCH, probe, write
+from tls_transport import transport
 
 
 def run(fixtures):
@@ -28,7 +29,7 @@ def run(fixtures):
     # Six real MPEG-TS and six fMP4 segments; AES rotates key URI/bytes/IV.
     for kind in ["ts", "fmp4"]:
         entries = json.loads((fixtures / f"{kind}.json").read_text())
-        header = "#EXTM3U\n#EXT-X-VERSION:7\n#EXT-X-TARGETDURATION:7\n#EXT-X-PLAYLIST-TYPE:VOD\n"
+        header = "#EXTM3U\n#EXT-X-VERSION:7\n#EXT-X-INDEPENDENT-SEGMENTS\n#EXT-X-TARGETDURATION:7\n#EXT-X-PLAYLIST-TYPE:VOD\n"
         if kind == "fmp4":
             range_text = (fixtures / "range.m3u8").read_text()
             init_length = int(re.search(r'BYTERANGE="(\d+)@0"', range_text)[1])
@@ -72,8 +73,8 @@ def run(fixtures):
                     _, _, kind, candidate = path.path.split("/")
                     if kind == "ll-vod":
                         bandwidth = int(max((fixtures / x["file"]).stat().st_size * 8 / float(x["duration"]) for x in entries)) + 1
-                        text = "#EXTM3U\n#EXT-X-VERSION:7\n" + "".join(
-                            f"#EXT-X-STREAM-INF:BANDWIDTH={bandwidth}\n{base}/manifest/{rendition}/{candidate}\n"
+                        text = "#EXTM3U\n#EXT-X-VERSION:7\n#EXT-X-INDEPENDENT-SEGMENTS\n" + "".join(
+                            f"#EXT-X-STREAM-INF:BANDWIDTH={bandwidth},CLOSED-CAPTIONS=NONE\n{base}/manifest/{rendition}/{candidate}\n"
                             for rendition in ["ll-a", "ll-b"]
                         )
                     elif kind in ["ll-a", "ll-b"]:
@@ -131,7 +132,12 @@ def run(fixtures):
     thread = threading.Thread(target=server.serve_forever, daemon=True)
     thread.start()
     results = []
+    tls = transport(base, directory / "tls", TOOLS / "mediastreamvalidator")
+    tls_started = False
     try:
+        ready = tls.__enter__()
+        tls_started = True
+        base = ready["url"]
         for kind in manifests:
             for candidate in ["original", "render", "rewrite"]:
                 report = directory / f"{kind}-{candidate}.json"
@@ -151,42 +157,28 @@ def run(fixtures):
                                                   stdout=log, stderr=subprocess.STDOUT, timeout=30)
                     row["reportExit"] = rendered.returncode
                     row["met"] = process.returncode == 0 and rendered.returncode == 0 and html.is_file()
-                    # The local origin is HTTP/1.1. Never call this a complete
-                    # LL-HLS server pass. Keep the official transport failure.
-                    if kind == "ll-vod":
-                        required = []
-                        def collect(node):
-                            if isinstance(node, dict):
-                                required.extend(str(m["errorStatusCode"]) for m in node.get("messages", [])
-                                                if m.get("errorRequirementLevel", 99) <= 2)
-                                for key, value in node.items():
-                                    if key != "messages":
-                                        collect(value)
-                            elif isinstance(node, list):
-                                for value in node:
-                                    collect(value)
-                        collect(data)
-                        row["contentChecksMet"] = set(required) == {"551002"} and rendered.returncode == 0 and html.is_file()
-                        row["status"] = "transport-limited" if row["contentChecksMet"] else "failed"
-                        row["met"] = None
                 except Exception as error:
                     row.update(met=False, error=str(error))
                 results.append(row)
                 write(directory / "index.json", results)
                 print(json.dumps(row), flush=True)
     finally:
-        server.shutdown()
-        server.server_close()
-        thread.join()
-        write(directory / "server-errors.json", errors)
+        try:
+            if tls_started:
+                tls.__exit__(None, None, None)
+        finally:
+            server.shutdown()
+            server.server_close()
+            thread.join()
+            write(directory / "server-errors.json", errors)
     write(directory / "summary.json", {
         "positivePasses": sum(x["met"] is True for x in results),
-        "llContentChecks": sum(x.get("contentChecksMet") is True for x in results),
-        "llServerValidation": "not passed: local HTTP/1.1 origin; official HTTP/2 error 551002 retained",
+        "llContentChecks": sum(x["kind"] == "ll-vod" and x["met"] is True for x in results),
+        "llServerValidation": "HTTP/2 static PART validation; dynamic LL cases recorded separately",
         "aesDecryption": "not performed by mediastreamvalidator; requires AVPlayer device evidence",
     })
     if len(results) != len(manifests) * 3 or errors or any(
-        not x["met"] and not x.get("contentChecksMet", False) for x in results
+        not x["met"] for x in results
     ):
         raise RuntimeError("Apple positive-fixture validation failed")
 

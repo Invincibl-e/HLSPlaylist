@@ -143,7 +143,7 @@ public struct AttributeList: Sendable, Hashable, Sequence, ExpressibleByDictiona
                 value = .quoted(String(text[valueStart..<index]))
                 guard index < text.endIndex else { try fail("Unterminated quoted attribute: \(key)") }
                 index = text.index(after: index)
-                guard !value.rawValue.isEmpty || key == "VALUE" else { try fail("Empty quoted attribute: \(key)") }
+                guard !value.rawValue.isEmpty || key == "VALUE" || key == "RECENTLY-REMOVED-DATERANGES" else { try fail("Empty quoted attribute: \(key)") }
                 guard !value.rawValue.contains("\r"), !value.rawValue.contains("\n") else { try fail("Invalid quoted attribute: \(key)") }
                 guard index == text.endIndex || text[index] == "," else { try fail("Junk after quoted attribute: \(key)") }
             } else {

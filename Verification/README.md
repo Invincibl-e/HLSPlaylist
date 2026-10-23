@@ -4,24 +4,44 @@
 [MAINTENANCE.md](../MAINTENANCE.md)。本轮完整规范目录及覆盖边界见
 [Coverage.md](Coverage.md)、[NormativeInventory.json](NormativeInventory.json)。
 它们明确区分清单数据规则、实际媒体、跨刷新服务器和播放器义务。
-本轮最终结论和新证据见 [INDEPENDENT_REPORT.md](INDEPENDENT_REPORT.md)；
-旧报告及计数保留为历史记录。
+HTTP/2 与真机补齐结果见 [FULL_REPORT.md](FULL_REPORT.md)，运行行为逐项映射见
+[RuntimeCoverage.md](RuntimeCoverage.md)；旧报告及计数保留为历史记录。
 
 统一入口（Swift ASan/覆盖率、Release/性能、固定规范 oracle、归档、外部语料、
 属性/边界、验证器失败注入测试）：
 
 ```sh
 python3 Verification/suite.py
-HLS_APPLE_BIN=/usr/local/bin python3 Verification/suite.py \
-  --live --apple --fixtures /path/to/prepared/playback-fixtures
+HLS_APPLE_BIN=/usr/local/bin \
+HLS_DEVICE_UDID=<USB-device-UDID> \
+HLS_DEVICE_HELPER=<existing-trollstorehelper-path> \
+python3 Verification/suite.py --profile full --live
 ```
 
+完整入口自动建立 USB/SSH 连接、准备真实媒体、启动 HTTPS/HTTP/2 origin、
+运行官方验证和真机测试，结束后卸载测试壳、移除证书及临时上传、关闭自己的服务
+和连接。默认 USB SSH 本地端口为 2239，可用 `HLS_DEVICE_SSH_PORT` 修改。
+优先使用 runner 的 SSH 密钥；实验设备密码可经环境 `SSHPASS` 配合
+`sshpass -e` 使用，不写入源码或报告。已有连接可设置 `HLS_SSH_CONTROL`，
+此时跳过自动连接创建，结束后不关闭该外部连接。手机需解锁。
+`--fixtures /path/to/prepared/playback-fixtures` 可复用已准备的媒体。
+
+完整环境需要 macOS/Xcode、Swift、Python 3 + requests、Go、ffmpeg/ffprobe、
+支持 HTTP/2 的 curl、OpenSSL、iproxy、SSH，以及已安装的 Apple 验证工具。
+本轮真机安装方式要求已授权的 rootless/TrollStore 实验设备；普通 iPhone
+开发签名安装需要另行配置，不能直接当作同一个自动化环境。
+GitHub Actions 的 `workflow_dispatch` 勾选 `full` 使用
+`[self-hosted, macOS, hls-device]` runner；同名仓库变量提供上述路径、设备 ID
+和端口，SSH 密钥/依赖在 runner 上预置。托管 runner 的离线任务单独标名，
+不会冒充官方或真机验收。本仓库提交 workflow，远端 runner 需由维护者注册。
+
 每次生成独立的 `results/suite-<UTC timestamp>`，失败日志不会被覆盖。
-Apple 工具或媒体缺失时 `--apple` 会失败；未请求的实时/官方测试显式记为 skipped。
+完整 profile 缺工具、设备、用例或结果时失败，不静默跳过。
+离线入口未请求的实时/官方测试显式记为 skipped；`--apple` 可单独追加静态验证。
 `summary.json` 包含命令、退出码、耗时、Swift/Python 版本、源码与证据 SHA-256。
-有已知验收边界时状态为 `passed-with-limitations`，不可转述为完整协议认证。
-Apple LL 场景仍保留官方 HTTP/2 错误 551002，静态 PART 媒体检查与完整 LL
-服务端验收分开记录。Apple AES 工具不做解密，需看独立真机证据。
+`passed` 表示列出的测试和门槛通过，不表示完整协议认证。
+静态 PART 和动态 LL 都使用实际 HTTP/2，不再豁免官方错误 551002。
+Apple AES 工具不做解密，完整 profile 另用真机验证换钥和播放。
 原始媒体可先按本文后续 `playback_server.py --prepare` 的步骤准备；
 脚本不会自动下载或分发 Apple 官方验证工具。
 
@@ -29,8 +49,8 @@ Apple LL 场景仍保留官方 HTTP/2 错误 551002，静态 PART 媒体检查�
 `fix/uri-rewriting-cocoapods` 的
 `716ea58772b7ab2a274880d0d4ec33bdc68be4d4`。后续用户已授权本地提交；
 实际提交记录以 Git 历史为准。`results/` 是忽略版本管理的本地运行证据目录。
-**当前标准审计结论见 [STANDARDS_REPORT.md](STANDARDS_REPORT.md)，最新结果为
-[results/standards-strict](results/standards-strict)**。默认严格解析、render 抛错，
+较早的严格解析审计见 [STANDARDS_REPORT.md](STANDARDS_REPORT.md) 和
+[results/standards-strict](results/standards-strict)。默认严格解析、render 抛错，
 移除宽松选项，decimal-integer 模型使用 UInt64。旧宽松行为及旧通过计数仅为历史。
 FairPlay 原始流的后续排查与补测见 [FAIRPLAY_REPORT.md](FAIRPLAY_REPORT.md)；
 新原始记录独立保存在 `results/fairplay-investigation-20261023`。
@@ -191,9 +211,10 @@ python3 Verification/run_ios_probe.py --device-os <version> --extended
 复用上面的实验设备 SSH 连接。构建器编译本项目所有真实 Swift 库源码和同一份
 Probe；移除的只有 Probe 的模块 import，不替换解析实现。
 `--extended` 将 73 份归档、329 份外部输入和 11 个严格边界用例经 stdin
-发送至手机，并增加 51 个固定规范 oracle，共 464 份，完整 JSON 结果与 Mac 逐项对照。
+发送至手机，并增加当前 165 个固定规范 oracle，共 578 份，完整 JSON 结果与 Mac 逐项对照。
 UTF-8 正文使用 base64 传输至 Data 解析入口，防止旧 Foundation 去掉 BOM。
 标准审计修复在 iOS 15.5 的 464 份结果全部一致。
+该 464 份为早期运行记录，最新完整执行数量以 FULL_REPORT.md 为准。
 结束后删除测试目录 `/var/jb/tmp/hlsplaylist-verification`。
 
 ## 5. 与当前 Dart 接入对照
