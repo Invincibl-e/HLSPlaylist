@@ -27,6 +27,7 @@ jobs:
       HLS_DEVICE_SSH_PORT: ${{ vars.HLS_DEVICE_SSH_PORT }}
       HLS_SSH_CONTROL: ${{ vars.HLS_SSH_CONTROL }}
       HLS_DEVICE_UDID: ${{ vars.HLS_DEVICE_UDID }}
+      HLS_TLS_IDENTITY: ${{ vars.HLS_TLS_IDENTITY }}
     steps:
       - uses: actions/checkout@v4
       - name: Full profile (missing prerequisites fail)

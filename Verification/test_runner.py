@@ -10,6 +10,7 @@ from unittest.mock import patch
 import run
 from device_checks import verify
 from suite import run_step
+import tls_identity
 
 class RunnerTests(unittest.TestCase):
     def check_output(self, stdout="", returncode=0):
@@ -82,6 +83,24 @@ class RunnerTests(unittest.TestCase):
             with open(os.devnull, "w") as log, self.assertRaises(subprocess.TimeoutExpired):
                 run_step([sys.executable, "-c", script], os.environ, log, 1)
             self.assertEqual(marker.read_text(), "cleaned")
+
+    def test_missing_trust_fails_without_modifying_trust(self):
+        with patch.object(tls_identity.subprocess, "run",
+                          return_value=subprocess.CompletedProcess([], 1)) as called:
+            with self.assertRaisesRegex(RuntimeError, "one-time setup"):
+                tls_identity.require_trust(pathlib.Path("/lab/localhost.pem"))
+            self.assertEqual(called.call_count, 1)
+            self.assertEqual(called.call_args.args[0][:2], ["security", "verify-cert"])
+
+    def test_reinstall_trusted_identity_is_read_only(self):
+        with patch.object(sys, "argv", ["tls_identity.py", "install"]), \
+             patch.object(tls_identity, "identity", return_value=(pathlib.Path(__file__), None)), \
+             patch.object(tls_identity, "require_trust") as check, \
+             patch.object(tls_identity.subprocess, "run") as command, \
+             patch("builtins.print"):
+            tls_identity.main()
+            self.assertEqual(check.call_count, 2)
+            command.assert_not_called()
 
 if __name__ == "__main__":
     unittest.main()

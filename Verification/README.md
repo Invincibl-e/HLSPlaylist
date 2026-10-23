@@ -1,5 +1,10 @@
 # HLSPlaylist 完整验证入口
 
+维护者和其他 AI 请先读 [TESTING.md](TESTING.md)，其中包含统一测试步骤、
+一次性证书配置、CI 环境及结果判定规则。历史整套验收对应 `59db99d`；
+证书复用流程的完整复测见
+[CERTIFICATE_WORKFLOW_REPORT.md](CERTIFICATE_WORKFLOW_REPORT.md)，不能混用提交身份。
+
 本仓库现在独立维护，不再追踪 HLSPlaylist 上游实现；见
 [MAINTENANCE.md](../MAINTENANCE.md)。本轮完整规范目录及覆盖边界见
 [Coverage.md](Coverage.md)、[NormativeInventory.json](NormativeInventory.json)。
@@ -21,6 +26,9 @@ python3 Verification/suite.py --profile full --live
 完整入口自动建立 USB/SSH 连接、准备真实媒体、启动 HTTPS/HTTP/2 origin、
 运行官方验证和真机测试，结束后卸载测试壳、移除证书及临时上传、关闭自己的服务
 和连接。默认 USB SSH 本地端口为 2239，可用 `HLS_DEVICE_SSH_PORT` 修改。
+这里移除的是手机临时证书；Mac 预置的 localhost 身份不再每轮添加/撤销。
+首次运行 Apple/full 前按 TESTING.md 执行 `tls_identity.py prepare/install` 一次；
+后续入口只执行 `check`，缺信任就失败，不再反复弹出证书授权。
 优先使用 runner 的 SSH 密钥；实验设备密码可经环境 `SSHPASS` 配合
 `sshpass -e` 使用，不写入源码或报告。已有连接可设置 `HLS_SSH_CONTROL`，
 此时跳过自动连接创建，结束后不关闭该外部连接。手机需解锁。

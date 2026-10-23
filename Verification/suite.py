@@ -72,6 +72,9 @@ def main():
     ]
     if full:
         steps.insert(0, ("full-prerequisites", [sys.executable, "Verification/preflight.py"]))
+    if args.apple:
+        steps.insert(0, ("tls-identity", [sys.executable, "Verification/tls_identity.py", "check"]))
+        steps.insert(1, ("tls-transport", [sys.executable, "Verification/test_tls_transport.py"]))
     if args.apple and not args.fixtures:
         steps.append(("prepare-media", [sys.executable, "Verification/playback_server.py", "--prepare"]))
     if args.apple:

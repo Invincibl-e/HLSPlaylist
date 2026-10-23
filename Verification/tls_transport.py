@@ -1,26 +1,30 @@
-"""Task-owned HTTP/2 TLS proxy and localhost-only trust, cleaned on exit."""
+"""Task-owned HTTP/2 proxy; official validation reuses pre-provisioned trust."""
 import contextlib
 import json
-import os
-import pathlib
-import secrets
+import shutil
 import subprocess
 import time
 from run import HERE, SCRATCH
+from tls_identity import identity, require_trust
 
 
 @contextlib.contextmanager
 def transport(backend, directory, validator):
+    reusable = identity() if validator is not None else None
+    if reusable:
+        require_trust(reusable[0])  # Read-only. Missing trust fails without dialogs.
     directory.mkdir(parents=True, exist_ok=False)
     executable = SCRATCH / "http2proxy"
     subprocess.run(["go", "build", "-o", str(executable), str(HERE / "http2/main.go")], check=True)
-    keychain = directory / "test.keychain-db"
     log = (directory / "http2.log").open("w")
     process = None
-    cert = None
-    trusted = False
     try:
-        process = subprocess.Popen([str(executable), "-work", str(directory), "-backend", backend],
+        command = [str(executable), "-work", str(directory), "-backend", backend]
+        if reusable:
+            # Archive only the public certificate. Read the key from lab storage.
+            shutil.copyfile(reusable[0], directory / "localhost.pem")
+            command += ["-cert", str(directory / "localhost.pem"), "-key", str(reusable[1])]
+        process = subprocess.Popen(command,
                                    stdout=log, stderr=subprocess.STDOUT)
         deadline = time.monotonic() + 10
         while not (directory / "ready.json").exists():
@@ -29,12 +33,6 @@ def transport(backend, directory, validator):
             time.sleep(0.05)
         ready = json.loads((directory / "ready.json").read_text())
         cert = ready["certificate"]
-        if validator is not None:
-            subprocess.run(["security", "create-keychain", "-p", secrets.token_hex(24), str(keychain)], check=True)
-            # Limit this ephemeral trust to TLS localhost and the official validator.
-            subprocess.run(["security", "add-trusted-cert", "-r", "trustRoot", "-p", "ssl", "-s", "localhost",
-                            "-a", str(validator), "-k", str(keychain), cert], check=True, timeout=30)
-            trusted = True
         health = subprocess.check_output(["curl", "--noproxy", "*", "--http2", "--cacert", cert, "--fail", "--silent",
                                           ready["url"] + "/__http2_health"], text=True, timeout=10)
         if json.loads(health).get("http2") is not True:
@@ -49,13 +47,6 @@ def transport(backend, directory, validator):
                 process.kill()
                 process.wait(timeout=5)
         log.close()
-        try:
-            if trusted:
-                subprocess.run(["security", "remove-trusted-cert", cert], check=True, timeout=60)
-        finally:
-            try:
-                if keychain.exists():
-                    subprocess.run(["security", "delete-keychain", str(keychain)], check=True, timeout=30)
-            finally:
-                # Keep public certificate/wire log; never archive a private key.
-                (directory / "localhost-key.pem").unlink(missing_ok=True)
+        # Ephemeral identity is used only for the device's separate trust store.
+        # Never remove the runner's persistent certificate or private key.
+        (directory / "localhost-key.pem").unlink(missing_ok=True)
