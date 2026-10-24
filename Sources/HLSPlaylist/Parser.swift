@@ -208,7 +208,9 @@ private struct ParserState {
         if HLSStandard.parameterTags.contains(tag) {
             try HLSStandard.require(line.contains(":"), "\(tag) requires a value", line: lineNumber)
         }
-        if ["#EXT-X-DISCONTINUITY", "#EXT-X-KEY", "#EXT-X-MAP", "#EXT-X-PROGRAM-DATE-TIME"].contains(tag) {
+        // PDT annotates the parent segment even when emitted after its PARTs
+        // (Gcore live playlists). KEY/MAP/discontinuity ordering remains binding.
+        if ["#EXT-X-DISCONTINUITY", "#EXT-X-KEY", "#EXT-X-MAP"].contains(tag) {
             try HLSStandard.require(pendingParts.isEmpty, "\(tag) must precede first PART", line: lineNumber)
         }
         func integer(_ value: Substring) throws -> UInt64 {

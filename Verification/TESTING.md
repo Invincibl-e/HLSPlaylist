@@ -12,13 +12,14 @@
 允许 TAB、非 NUL 控制字符及非 NFC 文本；不扩大到 URI、时长或属性。
 旧报告把标题 TAB 判为负例的结果属于历史行为，不能继续作为当前成功门槛。
 当前设备矩阵将 TS/fMP4/FairPlay 的 render/rewrite 改为必须播放，
-仅保留 Gcore LL 的 PDT-after-PART 拒绝；实际完整运行状态以新报告为准。
+Gcore LL 的 PDT-after-PART 也保留并关联父分片；22 个真机场景全部要求播放。
 
 默认 suite 新增 `public-corpus` 和 `generated-combinations`。前者固定
-193 份公开清单（184 份不同正文、11 个来源系列），179 份要求接受与保真，
-14 份记录独立兼容边界：13 份旧版本 TARGETDURATION 小数上限、1 份缺失
-音轨组。网络采集失败单独归档，不能算解析负例。离线运行不得访问或刷新公网。
-接受契约包含旧归档的 66 份与外部语料的 95 份；回退为拒绝必须失败，
+193 份公开清单（184 份不同正文、11 个来源系列），全部要求接受与保真。
+超 TARGETDURATION 的有限非负时长保留原值，缺失 AUDIO 组保留引用且不创建音轨；
+二者是制作规范诊断，不再作为生产解析门禁。网络采集失败单独归档，不能算解析
+负例。离线运行不得访问或刷新公网。
+接受契约包含旧归档的 71 份与外部语料的 95 份；回退为拒绝必须失败，
 不再用 `try?` 后直接跳过。rewrite 必须重新解析、稳定渲染、反向还原语义。
 所有固定规范用例还有 CRLF/无末尾 LF 变体，并组合版本、容器、加密、范围、
 discontinuity 和 LL 快照；这不等于穷尽全部跨刷新状态。
@@ -131,8 +132,8 @@ offline job 不计作真机验收。不要在 CI job 内运行 install。
 
 真机同时核对 `device-checks.json`、`device-transport-checks.json`、
 完整 AVPlayer 记录和 `ios-extended-summary.json`。当前基线是 22 场景：
-16 个正常播放、6 个严格解析负例。负例必须有真实 server 422 和解析原因；
-任意网络失败不能算拒绝验证成功。三组本地 LL 必须有 HTTP/2 blocking/v2
+22 个正常播放，包含原始及改写 FairPlay；解析 422 或任意网络失败均为失败。
+三组本地 LL 必须有 HTTP/2 blocking/v2
 wire 记录，不能只根据首帧判断。
 新增规范 oracle 的预期必须独立取自规范；拒绝要求发生在 parse 阶段，
 不能用 render 失败、渲染器自动修正输入或被测库输出反推预期来代替。

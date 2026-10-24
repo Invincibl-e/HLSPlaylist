@@ -21,13 +21,16 @@ Parsing rejects invalid syntax and supported constraints observable in a playlis
 RFC 8216 and HLS bis-22. Unknown tags and enumerated values follow the standard's forward
 compatibility rules. Rendering validates the model and can throw. Decimal integers use
 `UInt64`; floating-point values retain their stored `Double` precision, and frame rates render
-to three decimal places. See [the current verification report](Verification/CERTIFICATE_WORKFLOW_REPORT.md) for
+to three decimal places. See [the current verification report](Verification/COMPATIBILITY_REPORT.md) for
 verification evidence and scope.
 
 Informative `EXTINF` titles have an explicit AVPlayer compatibility exception:
 their UTF-8 bytes, including TAB and non-NFC text, survive parsing and rewriting.
 NUL, CR and LF remain invalid title content. This exception does not relax URI,
 duration or attribute parsing and is not selected by `EXT-X-VERSION`.
+Additional playback compatibility preserves finite nonnegative EXTINF values
+above TARGETDURATION, unresolved AUDIO group references, and parent-segment PDT
+emitted after PART. The parser does not change durations or invent audio tracks.
 See [the compatibility contract and known boundaries](Verification/TESTING.md).
 
 ```swift

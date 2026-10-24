@@ -103,14 +103,14 @@ class RunnerTests(unittest.TestCase):
         row["errorLogs"] = [{"status": -15410, "comment": "Server must support http2 ECN and SACK"}]
         self.assertFalse(verify(report, ["local-ll/original"])[0]["met"])
 
-    def test_network_failure_is_not_expected_strict_rejection(self):
+    def test_network_or_parser_failure_is_not_playback(self):
         row = {"kind": "ll", "candidate": "rewrite", "firstFrame": False}
         report = {"simulator": False, "complete": True, "plannedCases": ["ll/rewrite"], "results": [row]}
         origins = {"ll": "https://fixture.test/ll/master.m3u8"}
         self.assertFalse(verify(report, ["ll/rewrite"], origins=origins)[0]["met"])
         rejection = {"source": "https://fixture.test/ll/video.m3u8", "candidate": "rewrite",
                      "status": 422, "error": "PDT must precede PART"}
-        self.assertTrue(verify(report, ["ll/rewrite"], [rejection], origins)[0]["met"])
+        self.assertFalse(verify(report, ["ll/rewrite"], [rejection], origins)[0]["met"])
 
     def test_timeout_allows_child_cleanup(self):
         with tempfile.TemporaryDirectory() as directory:

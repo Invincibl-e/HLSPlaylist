@@ -383,7 +383,9 @@ enum HLSStandard {
                 try require(uri(variant.uri), "Invalid variant URI")
                 // Validate the stored value before FRAME-RATE serialization rounds it.
                 try require(variant.frameRate == nil || (variant.frameRate!.isFinite && variant.frameRate! >= 0), "Invalid FRAME-RATE")
-                for (id, type) in [(variant.audioGroupID, Rendition.MediaType.audio), (variant.videoGroupID, .video), (variant.subtitlesGroupID, .subtitles), (variant.closedCaptionsGroupID, .closedCaptions)] {
+                // AVPlayer accepts an unresolved AUDIO group (castLabs uses this
+                // with muxed audio). Preserve the reference; never invent a track.
+                for (id, type) in [(variant.videoGroupID, Rendition.MediaType.video), (variant.subtitlesGroupID, .subtitles), (variant.closedCaptionsGroupID, .closedCaptions)] {
                     if let id { try require(playlist.renditions.contains { $0.groupID == id && $0.type == type }, "Missing rendition group \(id)") }
                 }
                 minimum = max(minimum, attributeVersion(tag, a))
@@ -455,8 +457,9 @@ enum HLSStandard {
             }
             try require(uri(segment.uri), "Invalid segment URI")
             try require(segment.duration.isFinite && segment.duration >= 0, "Invalid EXTINF duration")
-            let bounded = (playlist.version ?? 1) >= 6 ? segment.duration.rounded() : segment.duration
-            try require(bounded <= Double(playlist.targetDuration), "EXTINF exceeds TARGETDURATION")
+            // TARGETDURATION consistency is an authoring diagnostic, not a
+            // resource-parsing gate: AVPlayer accepts over-target EXTINF values.
+            // Preserve both values, including Apple's VERSION=4 WebVTT 98.432/98.
             if segment.duration.rounded(.towardZero) != segment.duration { minimum = max(minimum, 3) }
             if segment.byteRange != nil {
                 minimum = max(minimum, 4)

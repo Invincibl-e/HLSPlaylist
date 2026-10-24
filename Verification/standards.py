@@ -45,9 +45,10 @@ for name, tags, reference in [
 ]:
     case(name, media(tags), False, "bis " + reference)
 case("missing-version", media("#EXTINF:1.0,\ns", 1), False, "bis §8")
-case("duration-v5", media("#EXTINF:6.1,\ns", 5), False, "bis §8")
+case("duration-v5", media("#EXTINF:6.1,\ns", 5), True, "AVPlayer compatibility: preserve over-target duration; bis §8 authoring diagnostic")
 case("duration-v6", media("#EXTINF:6.1,\ns", 6), True, "bis §8")
-case("duration-v6-too-large", media("#EXTINF:6.5,\ns", 6), False, "bis §8")
+case("duration-v6-too-large", media("#EXTINF:6.5,\ns", 6), True, "AVPlayer compatibility: preserve over-target duration; bis §8 authoring diagnostic")
+case("missing-audio-group", '#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=100,AUDIO="aac"\nv.m3u8\n', True, "AVPlayer/castLabs compatibility: preserve unresolved AUDIO")
 case("ignored-preload-key", media('#EXT-X-PRELOAD-HINT:TYPE=KEY,URI="k"'), True, "bis §6.3.9")
 case("ignored-method", media('#EXT-X-KEY:METHOD=NEW,URI="k"\n#EXTINF:1,\ns'), True, "bis §6.3.1")
 case("short-iv", media('#EXT-X-KEY:METHOD=AES-128,URI="k",IV=0x1\n#EXTINF:1,\ns'), True, "bis §4.4.4.4")
@@ -146,8 +147,9 @@ for feature, minimum in [
 ]:
     case("version-below-" + str(minimum) + "-" + feature, media(feature, minimum - 1), False, "bis §8")
     case("version-at-" + str(minimum) + "-" + feature, media(feature, minimum), True, "bis §8")
-for tag in ["DISCONTINUITY", "KEY:METHOD=NONE", 'MAP:URI="init"', "PROGRAM-DATE-TIME:2026-01-01T00:00:00Z"]:
+for tag in ["DISCONTINUITY", "KEY:METHOD=NONE", 'MAP:URI="init"']:
     case("after-part-" + tag, media('#EXT-X-SERVER-CONTROL:PART-HOLD-BACK=2\n#EXT-X-PART-INF:PART-TARGET=1\n#EXT-X-PART:DURATION=1,URI="p"\n#EXT-X-' + tag), False, "bis §4.4.4.9")
+case("after-part-PROGRAM-DATE-TIME:2026-01-01T00:00:00Z", media('#EXT-X-SERVER-CONTROL:PART-HOLD-BACK=2\n#EXT-X-PART-INF:PART-TARGET=1\n#EXT-X-PART:DURATION=1,URI="p"\n#EXT-X-PROGRAM-DATE-TIME:2026-01-01T00:00:00Z'), True, "Gcore/AVPlayer compatibility: PDT annotates parent segment")
 
 for value, accepted in [("VOD", True), ("EVENT", True), ("NEW", True),
                         ('"VOD"', False), ("VOD,EVENT", False), (" VOD", False), ("", False)]:

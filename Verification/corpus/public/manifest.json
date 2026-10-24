@@ -205,9 +205,9 @@
       "sha256": "3f442b0afbcc1dc88b2cac6e88927aae833fe6a0ac10446933039a3ab1717904",
       "bytes": 152,
       "retrievedUTC": "2026-10-24T17:47:56.436707+00:00",
-      "accepted": false,
-      "reason": "Missing rendition group aac",
-      "reference": "RFC 8216 \u00a74.3.4.2 AUDIO must match EXT-X-MEDIA GROUP-ID; known compatibility boundary"
+      "accepted": true,
+      "reason": "Preserve unresolved AUDIO reference without inventing tracks",
+      "reference": "AVPlayer compatibility; RFC 8216 4.3.4.2 remains an authoring diagnostic"
     },
     {
       "name": "0010-theo.m3u8",
@@ -856,9 +856,9 @@
       "sha256": "3f013eaf61ec160691b84ebe36f9b07978750cf4d732dbdbbb328e263504fd50",
       "bytes": 168,
       "retrievedUTC": "2026-10-24T17:48:35.371490+00:00",
-      "accepted": false,
-      "reason": "EXTINF exceeds TARGETDURATION",
-      "reference": "bis \u00a78 pre-version-6 maximum-duration rule; known Apple subtitle compatibility boundary"
+      "accepted": true,
+      "reason": "Preserve Apple WebVTT duration 98.432 and target 98",
+      "reference": "AVPlayer and Apple tool compatibility; bis 8 authoring diagnostic"
     },
     {
       "name": "0060-apple-dolby.m3u8",
@@ -870,9 +870,9 @@
       "sha256": "07fee7e4836e177cbffdaf3ca3111061d87202dc7765c5e32fcc3328f8579e12",
       "bytes": 169,
       "retrievedUTC": "2026-10-24T17:48:36.438958+00:00",
-      "accepted": false,
-      "reason": "EXTINF exceeds TARGETDURATION",
-      "reference": "bis \u00a78 pre-version-6 maximum-duration rule; known Apple subtitle compatibility boundary"
+      "accepted": true,
+      "reason": "Preserve Apple WebVTT duration 98.432 and target 98",
+      "reference": "AVPlayer and Apple tool compatibility; bis 8 authoring diagnostic"
     },
     {
       "name": "0061-apple-dolby.m3u8",
@@ -884,9 +884,9 @@
       "sha256": "53f33d2742dfb758a059746fb1c42635edd1b4bf6f3481e660c21a149adaacfa",
       "bytes": 169,
       "retrievedUTC": "2026-10-24T17:48:37.313577+00:00",
-      "accepted": false,
-      "reason": "EXTINF exceeds TARGETDURATION",
-      "reference": "bis \u00a78 pre-version-6 maximum-duration rule; known Apple subtitle compatibility boundary"
+      "accepted": true,
+      "reason": "Preserve Apple WebVTT duration 98.432 and target 98",
+      "reference": "AVPlayer and Apple tool compatibility; bis 8 authoring diagnostic"
     },
     {
       "name": "0062-apple-dolby.m3u8",
@@ -898,9 +898,9 @@
       "sha256": "97e2a528fe1c33ae151b0455aa8b333f0dbb507a60be7b9b849b77d9078163de",
       "bytes": 169,
       "retrievedUTC": "2026-10-24T17:48:38.159059+00:00",
-      "accepted": false,
-      "reason": "EXTINF exceeds TARGETDURATION",
-      "reference": "bis \u00a78 pre-version-6 maximum-duration rule; known Apple subtitle compatibility boundary"
+      "accepted": true,
+      "reason": "Preserve Apple WebVTT duration 98.432 and target 98",
+      "reference": "AVPlayer and Apple tool compatibility; bis 8 authoring diagnostic"
     },
     {
       "name": "0063-apple-dolby.m3u8",
@@ -912,9 +912,9 @@
       "sha256": "3a3f9115a3242049a69b2b3e64b58f228fa8abb895b37a03746f7e1c02c5cf3a",
       "bytes": 169,
       "retrievedUTC": "2026-10-24T17:48:39.149910+00:00",
-      "accepted": false,
-      "reason": "EXTINF exceeds TARGETDURATION",
-      "reference": "bis \u00a78 pre-version-6 maximum-duration rule; known Apple subtitle compatibility boundary"
+      "accepted": true,
+      "reason": "Preserve Apple WebVTT duration 98.432 and target 98",
+      "reference": "AVPlayer and Apple tool compatibility; bis 8 authoring diagnostic"
     },
     {
       "name": "0064-apple-dolby.m3u8",
@@ -926,9 +926,9 @@
       "sha256": "ea273e93626bcd978631b0d5e2d9e043b7d1694a1d9111154aac933e085bfd96",
       "bytes": 169,
       "retrievedUTC": "2026-10-24T17:48:40.078050+00:00",
-      "accepted": false,
-      "reason": "EXTINF exceeds TARGETDURATION",
-      "reference": "bis \u00a78 pre-version-6 maximum-duration rule; known Apple subtitle compatibility boundary"
+      "accepted": true,
+      "reason": "Preserve Apple WebVTT duration 98.432 and target 98",
+      "reference": "AVPlayer and Apple tool compatibility; bis 8 authoring diagnostic"
     },
     {
       "name": "0065-apple-dolby.m3u8",
@@ -940,9 +940,9 @@
       "sha256": "6f5cccfcf9409d07225ee57cc3392fc3fdcce0066592bda8237a7342ea3dc642",
       "bytes": 169,
       "retrievedUTC": "2026-10-24T17:48:41.009551+00:00",
-      "accepted": false,
-      "reason": "EXTINF exceeds TARGETDURATION",
-      "reference": "bis \u00a78 pre-version-6 maximum-duration rule; known Apple subtitle compatibility boundary"
+      "accepted": true,
+      "reason": "Preserve Apple WebVTT duration 98.432 and target 98",
+      "reference": "AVPlayer and Apple tool compatibility; bis 8 authoring diagnostic"
     },
     {
       "name": "0066-apple-dolby.m3u8",
@@ -954,9 +954,9 @@
       "sha256": "250dfab7b03607015761c677d9382c73aea319fc113d1e1355ae9ed2425d348f",
       "bytes": 169,
       "retrievedUTC": "2026-10-24T17:48:41.944600+00:00",
-      "accepted": false,
-      "reason": "EXTINF exceeds TARGETDURATION",
-      "reference": "bis \u00a78 pre-version-6 maximum-duration rule; known Apple subtitle compatibility boundary"
+      "accepted": true,
+      "reason": "Preserve Apple WebVTT duration 98.432 and target 98",
+      "reference": "AVPlayer and Apple tool compatibility; bis 8 authoring diagnostic"
     },
     {
       "name": "0067-apple-dolby.m3u8",
@@ -968,9 +968,9 @@
       "sha256": "710f084dc4a08a49e3a8b5edf29edbb7b514db4783471b217b7f112912a03b4f",
       "bytes": 169,
       "retrievedUTC": "2026-10-24T17:48:42.899434+00:00",
-      "accepted": false,
-      "reason": "EXTINF exceeds TARGETDURATION",
-      "reference": "bis \u00a78 pre-version-6 maximum-duration rule; known Apple subtitle compatibility boundary"
+      "accepted": true,
+      "reason": "Preserve Apple WebVTT duration 98.432 and target 98",
+      "reference": "AVPlayer and Apple tool compatibility; bis 8 authoring diagnostic"
     },
     {
       "name": "0068-apple-dolby.m3u8",
@@ -982,9 +982,9 @@
       "sha256": "f54de4b363e518619ae4b74f6cd4ba16fc620c0996d880482e073ada961fa810",
       "bytes": 169,
       "retrievedUTC": "2026-10-24T17:48:43.837400+00:00",
-      "accepted": false,
-      "reason": "EXTINF exceeds TARGETDURATION",
-      "reference": "bis \u00a78 pre-version-6 maximum-duration rule; known Apple subtitle compatibility boundary"
+      "accepted": true,
+      "reason": "Preserve Apple WebVTT duration 98.432 and target 98",
+      "reference": "AVPlayer and Apple tool compatibility; bis 8 authoring diagnostic"
     },
     {
       "name": "0069-apple-dolby.m3u8",
@@ -996,9 +996,9 @@
       "sha256": "f930aefbe39e7bbbc03e99308cbb4221284ccd7a615276eb5323fd2b5563a855",
       "bytes": 169,
       "retrievedUTC": "2026-10-24T17:48:44.785810+00:00",
-      "accepted": false,
-      "reason": "EXTINF exceeds TARGETDURATION",
-      "reference": "bis \u00a78 pre-version-6 maximum-duration rule; known Apple subtitle compatibility boundary"
+      "accepted": true,
+      "reason": "Preserve Apple WebVTT duration 98.432 and target 98",
+      "reference": "AVPlayer and Apple tool compatibility; bis 8 authoring diagnostic"
     },
     {
       "name": "0070-apple-dolby.m3u8",
@@ -1010,9 +1010,9 @@
       "sha256": "b5dd7f68411d3c0926210fae23f23dc6228524c12783d3d80a096ea3026e1b89",
       "bytes": 169,
       "retrievedUTC": "2026-10-24T17:48:45.576755+00:00",
-      "accepted": false,
-      "reason": "EXTINF exceeds TARGETDURATION",
-      "reference": "bis \u00a78 pre-version-6 maximum-duration rule; known Apple subtitle compatibility boundary"
+      "accepted": true,
+      "reason": "Preserve Apple WebVTT duration 98.432 and target 98",
+      "reference": "AVPlayer and Apple tool compatibility; bis 8 authoring diagnostic"
     },
     {
       "name": "0071-apple-dolby.m3u8",
@@ -1024,9 +1024,9 @@
       "sha256": "0d72664eab0abffec76777694b85fc5089a6eb07fbd26f00e6d90e3e495923ec",
       "bytes": 169,
       "retrievedUTC": "2026-10-24T17:48:45.968677+00:00",
-      "accepted": false,
-      "reason": "EXTINF exceeds TARGETDURATION",
-      "reference": "bis \u00a78 pre-version-6 maximum-duration rule; known Apple subtitle compatibility boundary"
+      "accepted": true,
+      "reason": "Preserve Apple WebVTT duration 98.432 and target 98",
+      "reference": "AVPlayer and Apple tool compatibility; bis 8 authoring diagnostic"
     },
     {
       "name": "0072-apple-dolby.m3u8",

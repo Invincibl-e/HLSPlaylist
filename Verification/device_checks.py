@@ -3,11 +3,6 @@ CANDIDATES = {kind: (["original", "render", "rewrite"] if kind in ["local-ll", "
                      else ["original", "rewrite"])
               for kind in ["local-ll", "ts", "fmp4", "aes", "range", "live", "ll", "fairplay", "tracks"]}
 CASES = [f"{kind}/{candidate}" for kind, candidates in CANDIDATES.items() for candidate in candidates] + ["recovery/recovery"]
-# The title compatibility fix makes Apple TS/fMP4 and DRMtoday positive cases.
-# Gcore's archived/current LL fixture places PDT after PART (a separate rule).
-NEGATIVE = {"ll/rewrite"}
-
-
 def verify(report, expected, rejections=(), origins=None):
     if not expected or report.get("simulator") is not False or report.get("complete") is not True:
         raise AssertionError("Requires completed, nonempty real-device results")
@@ -17,22 +12,15 @@ def verify(report, expected, rejections=(), origins=None):
     checks = []
     for row in rows:
         name = row["kind"] + "/" + row["candidate"]
-        if name in NEGATIVE:
-            prefix = origins[row["kind"]].rsplit("/", 1)[0] + "/"
-            mode = "render-relative" if row["candidate"] == "render" else row["candidate"]
-            met = row.get("firstFrame") is False and any(
-                x.get("status") == 422 and x["candidate"] == mode and x["source"].startswith(prefix) and x.get("error")
-                for x in rejections)
-        else:
-            keys = ["firstFrame", "progress10s", "pause", "resume"]
-            if row["kind"] not in ["local-ll", "live", "ll"]:
-                keys.append("seek")
-            if row["kind"] == "tracks":
-                keys += ["audioSwitchCovered", "subtitleSwitchCovered", "audioSelection", "subtitleSelection", "afterTrackSwitch"]
-            met = all(row.get(key) is True for key in keys)
-            if row["kind"] == "fairplay":
-                met = met and row.get("licenses", 0) >= 1 and not row.get("keyErrors")
-            if row["kind"] == "local-ll":
-                met = met and not any("http2" in x.get("comment", "").lower() for x in row.get("errorLogs", []))
-        checks.append({"name": name, "expectation": "strict-reject-422" if name in NEGATIVE else "playback", "met": bool(met)})
+        keys = ["firstFrame", "progress10s", "pause", "resume"]
+        if row["kind"] not in ["local-ll", "live", "ll"]:
+            keys.append("seek")
+        if row["kind"] == "tracks":
+            keys += ["audioSwitchCovered", "subtitleSwitchCovered", "audioSelection", "subtitleSelection", "afterTrackSwitch"]
+        met = all(row.get(key) is True for key in keys)
+        if row["kind"] == "fairplay":
+            met = met and row.get("licenses", 0) >= 1 and not row.get("keyErrors")
+        if row["kind"] == "local-ll":
+            met = met and not any("http2" in x.get("comment", "").lower() for x in row.get("errorLogs", []))
+        checks.append({"name": name, "expectation": "playback", "met": bool(met)})
     return checks

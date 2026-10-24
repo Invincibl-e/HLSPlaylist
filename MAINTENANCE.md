@@ -14,7 +14,7 @@ The current specification baseline is RFC 8216 and
 draft-pantos-hls-rfc8216bis-22 (protocol version 13). A later specification
 revision requires an explicit standards audit and regression update.
 
-Playback compatibility has one deliberately scoped exception: EXTINF text after
+Playback compatibility includes deliberately scoped exceptions: EXTINF text after
 the first comma is informative UTF-8. Preserve its scalar bytes (including TAB,
 other non-NUL controls and non-NFC text); continue rejecting NUL and title CR/LF.
 This follows recorded AVPlayer/Apple-tool observations, not a normative exception
@@ -22,11 +22,19 @@ or an EXT-X-VERSION threshold. Duration, tag, URI and attribute syntax retain
 their validation. The production TODO records the remaining older-OS character
 matrix; no finite sample proves every Unicode sequence or future OS.
 
+Finite, nonnegative EXTINF durations are preserved even when exceeding
+TARGETDURATION, including Apple's VERSION=4 WebVTT samples. Unresolved AUDIO
+group IDs are preserved without manufacturing renditions (castLabs). PDT after
+PART annotates the same parent segment (Gcore); KEY/MAP/discontinuity ordering
+still matters. These are compatibility policies, not claims of normative
+compliance. AVPlayer owns playback decisions; authoring diagnostics must not
+prevent resource rewriting for these inputs.
+
 The default suite includes 193 public provider manifest snapshots with URLs and
 SHA-256, an acceptance floor for the existing archive/external corpus, and
 generated grammar/feature combinations. Each accepted manifest must parse,
 render, rewrite, reparse and restore its pre-rewrite semantics. Expected public
-rejections are explicit known compatibility boundaries, not successful playback.
+rejections are not successful playback; all 193 public snapshots must now pass.
 Never refresh acceptance expectations automatically from the implementation.
 
 Run `python3 Verification/suite.py` before accepting parser, model, serializer,

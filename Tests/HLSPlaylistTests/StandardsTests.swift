@@ -158,7 +158,7 @@ struct StandardsTests {
     @Test(arguments: [
         "#EXT-X-STREAM-INF:BANDWIDTH=\"1\"\nv",
         "#EXT-X-STREAM-INF:BANDWIDTH=1,RESOLUTION=1X1\nv",
-        "#EXT-X-STREAM-INF:BANDWIDTH=1,AUDIO=\"missing\"\nv",
+        "#EXT-X-STREAM-INF:BANDWIDTH=1,VIDEO=\"missing\"\nv",
         "#EXT-X-I-FRAME-STREAM-INF:BANDWIDTH=1,URI=\"v\",FRAME-RATE=30",
         "#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"g\"",
         "#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"g\",NAME=\"n\"",
@@ -264,9 +264,14 @@ struct StandardsTests {
         #expect(throws: PlaylistError.self) { try Playlist(media("#EXTINF:1.0,\ns", version: 1)) }
         #expect(throws: PlaylistError.self) { try Playlist(media("#EXT-X-MAP:URI=\"init\"\n#EXTINF:1,\ns", version: 5)) }
         #expect(throws: PlaylistError.self) { try Playlist(media("#EXT-X-SKIP:SKIPPED-SEGMENTS=1", version: 8)) }
-        #expect(throws: PlaylistError.self) { try Playlist(media("#EXTINF:6.1,\ns", version: 5)) }
-        #expect(try Playlist(media("#EXTINF:6.1,\ns", version: 6)).media?.segments[0].duration == 6.1)
-        #expect(throws: PlaylistError.self) { try Playlist(media("#EXTINF:6.5,\ns", version: 6)) }
+        for version in [3, 4, 5, 6, 13] {
+            for duration in [6.1, 6.5, 98.432] {
+                let parsed = try Playlist(media("#EXTINF:\(duration),\ns", version: UInt64(version)))
+                let rendered = try Playlist(parsed.render())
+                #expect(rendered.media?.segments[0].duration == duration)
+                #expect(rendered.media?.targetDuration == 6)
+            }
+        }
         let constructed = MediaPlaylist(targetDuration: 6, segments: [Segment(uri: "s", duration: 0.123456789)])
         #expect(try constructed.render().contains("#EXT-X-VERSION:3"))
     }
@@ -319,6 +324,26 @@ struct StandardsTests {
         _ = try playlist.render()
         playlist.contentSteering = ["SERVER-URI": .quoted("s"), "PATHWAY-ID": .quoted("missing")]
         #expect(throws: PlaylistError.self) { try playlist.render() }
+    }
+
+    @Test func unresolvedAudioReferenceAndLatePDTKeepTheirSemantics() throws {
+        let master = try Playlist("#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=100,AUDIO=\"aac\"\nv.m3u8\n")
+        let rewritten = try Playlist(master.render())
+        #expect(rewritten.multivariant?.variants[0].audioGroupID == "aac")
+        #expect(rewritten.multivariant?.renditions.isEmpty == true)
+        for tail in ["", "#EXTINF:1,\ns\n"] {
+            let input = media("#EXT-X-SERVER-CONTROL:PART-HOLD-BACK=2\n#EXT-X-PART-INF:PART-TARGET=1\n#EXT-X-PART:DURATION=1,URI=\"p\"\n#EXT-X-PROGRAM-DATE-TIME:2026-01-01T00:00:00Z\n" + tail)
+            let parsed = try Playlist(input)
+            let roundtrip = try Playlist(parsed.render())
+            #expect(try roundtrip.render() == parsed.render())
+            if tail.isEmpty {
+                #expect(roundtrip.media?.trailingProgramDateTime != nil)
+                #expect(roundtrip.media?.trailingParts.count == 1)
+            } else {
+                #expect(roundtrip.media?.segments[0].programDateTime != nil)
+                #expect(roundtrip.media?.segments[0].parts.count == 1)
+            }
+        }
     }
 
     @Test func sessionDataFormatForwardCompatibility() throws {

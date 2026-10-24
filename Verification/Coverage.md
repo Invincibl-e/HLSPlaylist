@@ -14,16 +14,19 @@ standards; do not use HTML copies whose navigation text pollutes the inventory.
 The executable checks below apply to constraints observable in this library.
 All fixed normative inputs and expected acceptance/rejection are authored
 independently of Probe's decisions in [standards.py](standards.py).
+Explicit playback compatibility cases are labelled separately: informative
+EXTINF text, over-target durations, unresolved AUDIO groups, and PDT after PART.
+Their acceptance proves the compatibility contract, not normative compliance.
 
 | Area / bis-22 section | Executable checks | External obligations |
 |---|---|---|
 | Text, attributes, numbers, URI (§4.1–4.3) | Swift StandardsTests, AttributeList tests; fixed grammar/BOM/NFC/UTF-8/numeric oracles; 54 shared URI gold vectors (all 42 RFC 3986 §5.4 strict examples), 2,000 constructed properties, 4 deep paths; three public APIs checked independently on Mac/iOS simulator and full-profile iOS device; 31 HLS attribute vectors and 17 direct dot-segment vectors | HTTP Content-Type, redirect URL passed by caller; untested OS versions and URI inputs |
 | Basic/shared tags (§4.4.1–4.4.2) | Header, singleton flags, START, DEFINE scope, imports/query decoding, substitution | Matching START across parent/child responses |
 | Media playlist tags (§4.4.3) | Required target, integer bounds, sequences/order/overflow, versions, LL target/control bounds | Across-refresh target stability, EVENT/VOD immutability |
-| Segment tags (§4.4.4) | EXTINF precision/version/target; range predecessor; KEY/MAP declaration context; PDT/calendar; PART bounds/order/exceptions | Actual media duration, discontinuities, byte layout, BITRATE accuracy |
+| Segment tags (§4.4.4) | EXTINF precision/version and preservation above target; range predecessor; KEY/MAP declaration context; PDT/calendar including after PART; PART bounds/order/exceptions | Target consistency, actual media duration, discontinuities, byte layout, BITRATE accuracy |
 | DATERANGE (§4.4.5.1) | Required/merged attributes, date arithmetic, END-ON-NEXT overlap, CUE conflict, extension value types | SCTE-35 message semantics, date-to-media timing, ID reuse across refreshes |
 | Delta/preload/report (§4.4.5.2–4.4.5.4) | SKIP versions/order; empty and TAB-delimited removed IDs; scoped TAB exception; ENDLIST/preload; relative report URI, counters, unknown TYPE ignore | Dynamic origin and device tests below exercise delta merge, hint future identity, blocking timing and rendition state |
-| Renditions/variants (§4.4.6.1–4.4.6.3) | Required/typed attributes, group links, default/name uniqueness, same-type group equivalence, CHANNELS syntax, I-frame forbidden fields | Codec/sample correspondence, aggregate bandwidth, resolution and channel count |
+| Renditions/variants (§4.4.6.1–4.4.6.3) | Required/typed attributes, non-AUDIO group links, unresolved AUDIO preservation, default/name uniqueness, same-type group equivalence, CHANNELS syntax, I-frame forbidden fields | AUDIO group completeness, codec/sample correspondence, aggregate bandwidth, resolution and channel count |
 | Session data/keys (§4.4.6.4–4.4.6.5) | VALUE/URI exclusivity/uniqueness; FORMAT syntax/unknown enum; key method/duplicate identity | External JSON/RAW contents; parent/child key agreement |
 | Steering tag (§4.4.6.6) | URI syntax, uniqueness, initial pathway reference, URI rewrite | Steering Manifest protocol/JSON, cloning and network scheduling (§7) |
 | Forward compatibility (§6.3.1, §6.3.9) | Unknown tags/attributes, unknown enum, REQ- handling, associated STREAM-INF URI ignore | Player stopping/decoder handling when no usable streams remain |
