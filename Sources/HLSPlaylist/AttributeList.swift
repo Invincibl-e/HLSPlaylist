@@ -122,6 +122,7 @@ public struct AttributeList: Sendable, Hashable, Sequence, ExpressibleByDictiona
     ///
     public static func parse(_ text: Substring) throws -> AttributeList {
         var list = AttributeList()
+        var names: Set<String> = []
         var index = text.startIndex
         func fail(_ message: String) throws -> Never {
             throw PlaylistError.invalidTag(message, line: 0)
@@ -133,7 +134,7 @@ public struct AttributeList: Sendable, Hashable, Sequence, ExpressibleByDictiona
             let key = String(text[keyStart..<index])
             guard !key.isEmpty, key.utf8.allSatisfy({ (65...90).contains($0) || (48...57).contains($0) || $0 == 45 }),
                   index < text.endIndex, text[index] == "=" else { try fail("Invalid attribute name or separator: \(key)") }
-            guard list[key] == nil else { try fail("Duplicate attribute: \(key)") }
+            guard names.insert(key).inserted else { try fail("Duplicate attribute: \(key)") }
             index = text.index(after: index)
             let value: AttributeValue
             if index < text.endIndex, text[index] == "\"" {
