@@ -49,7 +49,7 @@ extension MultivariantPlaylist {
 
     /// Returns a copy with relative URIs made absolute against `baseURL`.
     public func resolvingURIs(against baseURL: URL) -> MultivariantPlaylist {
-        mapURIs { uri, _ in resolve(uri, against: baseURL) }
+        mapURIs { uri, _ in resolveURI(uri, against: baseURL) }
     }
 }
 
@@ -121,12 +121,12 @@ extension MediaPlaylist {
 
     /// Returns a copy with relative URIs made absolute against `baseURL`.
     public func resolvingURIs(against baseURL: URL) -> MediaPlaylist {
-        mapURIs { uri, role in role == .renditionReport ? uri : resolve(uri, against: baseURL) }
+        mapURIs { uri, role in role == .renditionReport ? uri : resolveURI(uri, against: baseURL) }
     }
 
     /// Absolute URLs of every segment, resolved against `baseURL`.
     public func segmentURLs(relativeTo baseURL: URL) -> [URL] {
-        segments.compactMap { URL(string: resolve($0.uri, against: baseURL)) }
+        segments.compactMap { URL(string: resolveURI($0.uri, against: baseURL)) }
     }
 }
 
@@ -141,11 +141,14 @@ extension Playlist {
 
     /// Returns a copy with relative URIs made absolute against `baseURL`.
     public func resolvingURIs(against baseURL: URL) -> Playlist {
-        mapURIs { uri, role in role == .renditionReport ? uri : resolve(uri, against: baseURL) }
+        mapURIs { uri, role in role == .renditionReport ? uri : resolveURI(uri, against: baseURL) }
     }
 }
 
-private func resolve(_ uri: String, against baseURL: URL) -> String {
+/// Resolves an individual reference using RFC 3986 encoded component semantics.
+/// Useful to transports that must resolve RENDITION-REPORT for fetching while
+/// keeping its rewritten playlist reference relative. Does not validate HLS text.
+public func resolveURI(_ uri: String, against baseURL: URL) -> String {
     // Encode only characters outside RFC 3986, retaining existing escapes and
     // delimiters. Foundation's implicit encoding differs across OS versions.
     let allowed = CharacterSet(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~:/?#[]@!$&'()*+,;=%")
