@@ -11,15 +11,23 @@ struct VerificationTests {
             .deletingLastPathComponent().deletingLastPathComponent()
     }
 
+    private func requiredInputs(_ name: String) throws -> Set<String> {
+        let object = try JSONSerialization.jsonObject(with: Data(contentsOf:
+            root.appendingPathComponent("Verification/corpus/acceptance-contract.json"))) as! [String: Any]
+        return Set(object[name] as! [String])
+    }
+
     @Test func acceptedArchivedInputsRoundTrip() throws {
         let directory = root.appendingPathComponent("Verification/corpus/archive")
         let files = FileManager.default.enumerator(at: directory, includingPropertiesForKeys: nil)!
         var count = 0
+        let required = try requiredInputs("archive")
         for case let url as URL in files where url.pathExtension == "m3u8" {
             count += 1
-            // Archived packager output includes nonconforming inputs. Acceptance
-            // is audited separately; this test checks preservation when accepted.
-            guard let parsed = try? PlaylistParser().parse(Data(contentsOf: url)) else { continue }
+            let name = String(url.path.dropFirst(directory.path.count + 1))
+            let result = try? PlaylistParser().parse(Data(contentsOf: url))
+            #expect(!required.contains(name) || result != nil, "Previously accepted: \(name)")
+            guard let parsed = result else { continue }
             #expect(try Playlist(parsed.playlist.render()).render() == parsed.playlist.render(), "\(url.lastPathComponent)")
         }
         #expect(count == 73)
@@ -29,10 +37,13 @@ struct VerificationTests {
         let data = try Data(contentsOf: root.appendingPathComponent("Verification/corpus/external-inputs.json"))
         let rows = try JSONSerialization.jsonObject(with: data) as! [[String: String]]
         #expect(rows.count == 329)
+        let required = try requiredInputs("external")
         for row in rows {
             let text = row["text"]!
             let name = row["name"]!
-            guard let playlist = try? Playlist(text) else { continue }
+            let parsed = try? Playlist(text)
+            #expect(!required.contains(name) || parsed != nil, "Previously accepted: \(name)")
+            guard let playlist = parsed else { continue }
             let output = try playlist.render()
             let again = try Playlist(output).render()
             #expect(again == output, "\(name)")

@@ -27,17 +27,8 @@ struct LiveStreamTests {
             let mediaURL = try #require(URL(string: uri))
             let (mediaData, response) = try await URLSession.shared.data(from: mediaURL)
             #expect((response as? HTTPURLResponse)?.statusCode == 200, "\(uri)")
-            // Apple's current sample bodies contain TAB in EXTINF titles.
-            // RFC 8216 §4 and bis §4.1 prohibit it. Keep raw bytes; do not trim.
-            let text = try #require(String(data: mediaData, encoding: .utf8))
-            if text.unicodeScalars.contains(where: {
-                ($0.value < 32 && $0.value != 10 && $0.value != 13) || (127...159).contains($0.value)
-            }) {
-                #expect(throws: PlaylistError.invalidTag("Control character in playlist", line: 0)) {
-                    try PlaylistParser(options: ParseOptions(playlistURL: mediaURL)).parse(mediaData)
-                }
-                continue
-            }
+            // Keep Apple's original title bytes, including TAB. A rejection is
+            // a compatibility regression, not a reason to skip the playlist.
             let parsed = try PlaylistParser(options: ParseOptions(playlistURL: mediaURL)).parse(mediaData)
             let media = try #require(parsed.playlist.media, "\(uri)")
             #expect(!media.segments.isEmpty, "\(uri)")

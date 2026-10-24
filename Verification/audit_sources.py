@@ -10,7 +10,13 @@ for path in sorted((CORPUS / "archive").rglob("*.m3u8")):
     data = path.read_bytes()
     text = data.decode("utf-8")
     violations = []
-    controls = [ord(char) for char in text if (ord(char) < 32 and char not in "\r\n") or 127 <= ord(char) <= 159]
+    # The production compatibility contract exempts informative EXTINF titles.
+    # Preserve the original bytes and still inspect the duration/tag/URI fields.
+    syntax = "\n".join(line.split(",", 1)[0] if line.startswith("#EXTINF:") and "," in line else line
+                       for line in text.split("\n"))
+    controls = [ord(char) for char in syntax if (ord(char) < 32 and char not in "\r\n") or 127 <= ord(char) <= 159]
+    if "\0" in text:
+        controls.append(0)
     if controls:
         violations.append({"rule": "bis-22 §4.1", "reason": "forbidden control characters",
                            "codepoints": sorted(set(controls)), "count": len(controls)})

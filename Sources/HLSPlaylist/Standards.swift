@@ -27,20 +27,30 @@ enum HLSStandard {
         }
     }
     static func text(_ text: String) throws {
-        try require(!text.hasPrefix("\u{FEFF}") && text.utf8.elementsEqual(text.precomposedStringWithCanonicalMapping.utf8), "Playlist must be NFC without BOM")
-        // bis §4.4.5.2 explicitly permits TAB delimiters in this one field.
-        // Validate the full attribute list first; never exempt unrelated TABs.
+        try require(!text.hasPrefix("\u{FEFF}"), "Playlist must be NFC without BOM")
+        try require(!text.replacingOccurrences(of: "\r\n", with: "\n").contains("\r"), "Isolated CR line ending")
         let controls = try text.components(separatedBy: "\n").map { line in
+            if line.hasPrefix("#EXTINF:"), let comma = line.unicodeScalars.firstIndex(of: ",") {
+                // AVPlayer compatibility: the informative title is opaque UTF-8,
+                // not a URI or attribute list. Preserve it, including TAB and
+                // non-NFC text; never exempt duration, tag, URI or other fields.
+                // TODO: Extend the recorded iOS 26.5 C0/C1/Unicode matrix to
+                // older OS versions; this is observed behavior, not an RFC exception.
+                try require(!line[comma...].contains("\0"), "NUL in EXTINF title")
+                return String(line[..<comma])
+            }
+            // bis §4.4.5.2 explicitly permits TAB delimiters in this field.
+            // Validate the full attribute list before exempting its TABs.
             guard line.hasPrefix("#EXT-X-SKIP:"), line.contains("\t") else { return line }
             let attributes = try AttributeList.parse(Substring(line.dropFirst("#EXT-X-SKIP:".count).trimmingCharacters(in: .newlines)))
             guard case .quoted(let value)? = attributes["RECENTLY-REMOVED-DATERANGES"] else { return line }
             return line.replacingOccurrences(of: "RECENTLY-REMOVED-DATERANGES=\"\(value)\"",
                                             with: "RECENTLY-REMOVED-DATERANGES=\"\(value.replacingOccurrences(of: "\t", with: ""))\"")
         }.joined(separator: "\n")
+        try require(controls.utf8.elementsEqual(controls.precomposedStringWithCanonicalMapping.utf8), "Playlist must be NFC without BOM")
         try require(controls.unicodeScalars.allSatisfy {
             $0.value == 10 || $0.value == 13 || !((0...31).contains($0.value) || (127...159).contains($0.value))
         }, "Control character in playlist")
-        try require(!text.replacingOccurrences(of: "\r\n", with: "\n").contains("\r"), "Isolated CR line ending")
     }
     static func require(_ condition: Bool, _ message: String, line: Int = 0) throws {
         guard condition else { throw PlaylistError.invalidTag(message, line: line) }

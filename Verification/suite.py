@@ -38,7 +38,8 @@ def source_hashes():
         str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest()
         for pattern in ["Package.swift", "HLSPlaylist.podspec", "Sources/**/*.swift", "Tests/**/*.swift",
                         "Verification/*.py", "Verification/*.swift", "Verification/*.m", "Verification/http2/*.go",
-                        "Verification/Sources/**/*.swift", "Verification/corpus/uri-oracles.json", ".github/workflows/*.yml"]
+                        "Verification/Sources/**/*.swift", "Verification/corpus/**/*.json",
+                        "Verification/corpus/**/*.m3u8", ".github/workflows/*.yml"]
         for path in sorted(ROOT.glob(pattern))
     }
 
@@ -68,6 +69,8 @@ def main():
         ("uri-oracles", [sys.executable, "Verification/uri_oracles.py"]),
         ("ios-simulator-uris", [sys.executable, "Verification/run_simulator_probe.py"]),
         ("properties-corpus-boundaries", [sys.executable, "Verification/run.py", "corpus", "tail", "boundaries", "properties"]),
+        ("generated-combinations", [sys.executable, "Verification/generated.py"]),
+        ("public-corpus", [sys.executable, "Verification/public_corpus.py"]),
         ("archive-independent", [sys.executable, "Verification/audit_sources.py"]),
         ("swift-release", ["env", "HLS_LIVE_TESTS=0", "HLS_PERFORMANCE_TESTS=1", "swift", "test", "-c", "release",
                            "--scratch-path", str(work / "release-build")]),

@@ -8,6 +8,45 @@ struct StandardsTests {
         "#EXTM3U\n#EXT-X-VERSION:\(version)\n#EXT-X-TARGETDURATION:6\n" + tags + "\n"
     }
 
+    @Test func informativeTitleCompatibilityAndRewrite() throws {
+        let scalars = (1...159).filter { $0 != 10 && $0 != 13 }
+        let titles = scalars.map { "a" + String(UnicodeScalar($0)!) + "b" }
+            + ["cafe\u{301}", "\u{301}x", "\u{FE0F}x", "\u{200D}x", "\u{1F3FB}x",
+               "中文 العربية 🎬", "\u{2028}\u{2029}", "\u{FEFF}",
+               "#EXT-X-KEY:URI=\"https://not-a-resource.test/\",\ttext"]
+        for title in titles {
+            for ending in ["\n", "\r\n"] {
+                let text = media("#EXTINF:6,\(title)\ns.ts\n#EXT-X-ENDLIST").replacingOccurrences(of: "\n", with: ending)
+                let parsed = try Playlist(data: Data(text.utf8))
+                #expect(parsed.media?.segments[0].title?.utf8.elementsEqual(title.utf8) == true)
+                var calls: [String] = []
+                let mapped = parsed.mapURIs { uri, _ in calls.append(uri); return "proxy/" + uri }
+                let again = try Playlist(mapped.render())
+                #expect(calls == ["s.ts"])
+                #expect(again.media?.segments[0].title?.utf8.elementsEqual(title.utf8) == true)
+                #expect(again.media?.segments[0].uri == "proxy/s.ts")
+                #expect(try again.render() == mapped.render())
+            }
+        }
+    }
+
+    @Test func titleExceptionDoesNotLeakIntoSyntax() throws {
+        for code in Array(0...31) + Array(127...159) where code != 10 && code != 13 {
+            let char = String(UnicodeScalar(code)!)
+            for tags in ["#EXTINF:6\(char),\ns.ts", "#EXTINF:6,\ns\(char).ts",
+                         "#comment\(char)", "#EXT-X-KEY:METHOD=AES-128,URI=\"key\(char)\""] {
+                #expect(throws: PlaylistError.self) { try Playlist(media(tags)) }
+            }
+        }
+        for title in ["a\0b", "a\rb", "a\nb"] {
+            #expect(throws: PlaylistError.self) {
+                try MediaPlaylist(targetDuration: 6, segments: [Segment(uri: "s.ts", duration: 6, title: title)]).render()
+            }
+        }
+        #expect(throws: PlaylistError.self) { try Playlist(media("#EXTINF:6,a\0b\ns.ts")) }
+        #expect(throws: PlaylistError.self) { try Playlist(media("#EXT-X-KEY:METHOD=AES-128,URI=\"key\",X-TEXT=\"e\u{301}\"\n#EXTINF:6,\ns")) }
+    }
+
     @Test(arguments: ["", "ad-a", "ad-a\tad-b"])
     func deltaRemovedDateRanges(_ ids: String) throws {
         let text = media("#EXT-X-SKIP:SKIPPED-SEGMENTS=2,RECENTLY-REMOVED-DATERANGES=\"\(ids)\"", version: 10)
@@ -401,7 +440,7 @@ struct StandardsTests {
         "#EXTM3U\n#EXT-X-TARGETDURATION:1\n#EXTINF:1,\nbad uri\n",
         "#EXTM3U\n#EXT-X-TARGETDURATION:1\n#EXTINF:1,\ns%Q0\n",
         "#EXTM3U\n#EXT-X-TARGETDURATION:1\n#EXTINF:1,\ns\t\n",
-        "#EXTM3U\n#EXT-X-TARGETDURATION:1\n#EXTINF:1,e\u{301}\ns\n"
+        "#EXTM3U\n#EXT-X-TARGETDURATION:1\n#EXT-X-VENDOR:NAME=\"e\u{301}\"\n#EXTINF:1,\ns\n"
     ])
     func rejectsInvalidText(_ text: String) {
         #expect(throws: PlaylistError.self) { try Playlist(text) }

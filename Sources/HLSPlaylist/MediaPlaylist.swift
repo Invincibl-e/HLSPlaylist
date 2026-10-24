@@ -45,6 +45,8 @@ public struct Segment: Sendable, Hashable {
     /// `EXTINF` duration in seconds.
     public var duration: Double
     /// `EXTINF` title (after the comma).
+    /// Preserved as informative UTF-8, including TAB and non-NFC text for
+    /// AVPlayer compatibility. NUL, CR and LF are not permitted in a title.
     public var title: String?
     public var byteRange: ByteRange?
     /// Number of `EXT-X-DISCONTINUITY` tags preceding this segment.

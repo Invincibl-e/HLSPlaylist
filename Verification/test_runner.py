@@ -6,12 +6,14 @@ import pathlib
 import sys
 import tempfile
 import unittest
+import json
 from unittest.mock import patch
 import run
 from device_checks import verify
 from suite import run_step
 import tls_identity
 import uri_oracles
+import public_corpus
 
 class RunnerTests(unittest.TestCase):
     def check_output(self, stdout="", returncode=0):
@@ -44,6 +46,23 @@ class RunnerTests(unittest.TestCase):
     def test_expected_rejection_is_valid_response(self):
         with self.check_output('{"name":"a","status":"rejected"}\n'):
             self.assertEqual(run.probe([{"name": "a", "text": "#EXTM3U"}])[0]["status"], "rejected")
+
+    def test_unicode_title_does_not_split_ndjson_records(self):
+        row = {"name": "a", "status": "accepted", "title": "a\u0085b\u2028c\u2029d"}
+        with self.check_output(json.dumps(row, ensure_ascii=False) + "\n"):
+            self.assertEqual(run.probe([{"name": "a", "text": "#EXTM3U"}]), [row])
+
+    def test_public_corpus_cannot_turn_rejection_or_loss_into_pass(self):
+        inputs = [{"name": "public", "accepted": True, "reason": "must parse and preserve"}]
+        valid = {"name": "public", "status": "accepted", "idempotent": True,
+                 "rewriteIdempotent": True, "rewritePreserved": True}
+        self.assertEqual(public_corpus.verify(inputs, [valid]), [])
+        for key in ["idempotent", "rewriteIdempotent", "rewritePreserved"]:
+            self.assertTrue(public_corpus.verify(inputs, [{**valid, key: False}]))
+        self.assertTrue(public_corpus.verify(inputs, [{"name": "public", "status": "rejected"}]))
+        for outputs in [[], [valid, valid]]:
+            with self.assertRaises(RuntimeError):
+                public_corpus.verify(inputs, outputs)
 
     def test_uri_oracle_requires_gold_for_each_public_api(self):
         expected = [{"input": {"name": "a"}, "expected": ["https://a/g"]}]
@@ -85,13 +104,13 @@ class RunnerTests(unittest.TestCase):
         self.assertFalse(verify(report, ["local-ll/original"])[0]["met"])
 
     def test_network_failure_is_not_expected_strict_rejection(self):
-        row = {"kind": "ts", "candidate": "rewrite", "firstFrame": False}
-        report = {"simulator": False, "complete": True, "plannedCases": ["ts/rewrite"], "results": [row]}
-        origins = {"ts": "https://fixture.test/ts/master.m3u8"}
-        self.assertFalse(verify(report, ["ts/rewrite"], origins=origins)[0]["met"])
-        rejection = {"source": "https://fixture.test/ts/video.m3u8", "candidate": "rewrite",
-                     "status": 422, "error": "Control character"}
-        self.assertTrue(verify(report, ["ts/rewrite"], [rejection], origins)[0]["met"])
+        row = {"kind": "ll", "candidate": "rewrite", "firstFrame": False}
+        report = {"simulator": False, "complete": True, "plannedCases": ["ll/rewrite"], "results": [row]}
+        origins = {"ll": "https://fixture.test/ll/master.m3u8"}
+        self.assertFalse(verify(report, ["ll/rewrite"], origins=origins)[0]["met"])
+        rejection = {"source": "https://fixture.test/ll/video.m3u8", "candidate": "rewrite",
+                     "status": 422, "error": "PDT must precede PART"}
+        self.assertTrue(verify(report, ["ll/rewrite"], [rejection], origins)[0]["met"])
 
     def test_timeout_allows_child_cleanup(self):
         with tempfile.TemporaryDirectory() as directory:

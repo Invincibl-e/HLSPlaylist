@@ -33,7 +33,9 @@ def probe(rows, timeout=60):
                        text=True, capture_output=True, timeout=timeout, env=environment)
     if p.returncode:
         raise RuntimeError(f"Probe exited {p.returncode}: {p.stderr[-6000:]}")
-    output = [json.loads(x) for x in p.stdout.splitlines()]
+    # JSON permits literal U+0085/U+2028/U+2029 inside strings. Only LF
+    # delimits NDJSON records; str.splitlines() corrupts those title inputs.
+    output = [json.loads(x) for x in p.stdout.split("\n") if x]
     if len(output) != len(rows) or [x.get("name") for x in output] != [x.get("name") for x in rows]:
         raise RuntimeError("Probe output count or input identity mismatch")
     if any(x.get("status") not in ("accepted", "rejected") for x in output):
@@ -121,14 +123,23 @@ def prepare():
 def corpus():
     rows = [{"name": str(p.relative_to(CORPUS / "archive")), "text": p.read_text(), "rewrite": True}
             for p in sorted((CORPUS / "archive").rglob("*.m3u8"))]
+    contract = json.loads((CORPUS / "acceptance-contract.json").read_text())
     for label, inputs in [("archive", rows), ("external", json.loads((CORPUS / "external-inputs.json").read_text()))]:
+        inputs = [{**row, "rewrite": True} for row in inputs]
         outputs = probe(inputs)
         write(RESULTS / (label + ".json"), outputs)
         if isinstance(outputs, list):
             print(label, len(outputs), {s: sum(x["status"] == s for x in outputs) for s in ["accepted", "rejected"]},
                   "non-idempotent", sum(x.get("idempotent") is False for x in outputs), flush=True)
-            if any(x["status"] == "accepted" and x.get("idempotent") is not True for x in outputs):
-                raise RuntimeError(f"{label}: accepted input did not round-trip")
+            expected = set(contract[label])
+            by_name = {x["name"]: x for x in outputs}
+            if not expected or not expected.issubset(by_name):
+                raise RuntimeError(f"{label}: missing acceptance contract inputs")
+            if any(by_name[name]["status"] != "accepted" for name in expected):
+                raise RuntimeError(f"{label}: previously accepted manifest rejected")
+            if any(x["status"] == "accepted" and not all(x.get(key) is True for key in
+                   ["idempotent", "rewriteIdempotent", "rewritePreserved"]) for x in outputs):
+                raise RuntimeError(f"{label}: parse/render/rewrite preservation failed")
 
 def player():
     rows = [{"name": str(p.relative_to(CORPUS / "archive")), "text": p.read_text()}

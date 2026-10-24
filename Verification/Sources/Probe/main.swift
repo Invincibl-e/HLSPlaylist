@@ -43,26 +43,41 @@ while let line = readLine() {
             playlist = playlist.resolvingURIs(against: url)
         }
         var roles: [String] = []
+        var mappings: [[String: String]] = []
         if input.rewrite == true {
+            let before = try playlist.render()
+            var originals: [String: String] = [:]
             playlist = playlist.mapURIs { uri, role in
                 roles.append(String(describing: role))
                 // Preserve opaque key schemes for FairPlay/data keys.
                 guard let resolved = URL(string: uri, relativeTo: url)?.absoluteURL,
-                      ["http", "https"].contains(resolved.scheme) else { return uri }
+                      ["http", "https"].contains(resolved.scheme) else {
+                    mappings.append(["uri": uri, "role": String(describing: role), "mapped": uri])
+                    return uri
+                }
                 var proxy = input.proxy ?? "https://routed.test/resource"
                 if role == .renditionReport, let components = URLComponents(string: proxy) {
                     // Report URIs must stay relative even in a proxy playlist.
                     proxy = components.percentEncodedPath + (components.percentEncodedQuery.map { "?" + $0 } ?? "")
                 }
-                return proxy + "?url=" +
+                let mapped = proxy + "?url=" +
                     resolved.absoluteString.addingPercentEncoding(withAllowedCharacters: .alphanumerics)!
+                originals[mapped] = uri
+                mappings.append(["uri": uri, "role": String(describing: role), "mapped": mapped])
+                return mapped
             }
+            let rewritten = try playlist.render()
+            let reparsed = try Playlist(rewritten, options: options)
+            row["rewriteIdempotent"] = try reparsed.render() == rewritten
+            row["rewritePreserved"] = try reparsed.mapURIs { uri, _ in originals[uri] ?? uri }.render() == before
         }
         row["stage"] = "rewrite-render"
         row["text"] = try playlist.render()
         row["roles"] = roles
+        row["mappings"] = mappings
         if let media = parsed.playlist.media {
             row["segments"] = media.segments.count
+            row["titles"] = media.segments.map { $0.title ?? "" }
             row["durations"] = media.segments.map { $0.duration.isFinite ? String($0.duration) : "nonfinite" }
             row["discontinuityCounts"] = media.segments.map { String($0.discontinuityCount) }
             row["trailingDiscontinuityCount"] = String(media.trailingDiscontinuityCount)

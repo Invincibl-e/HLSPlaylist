@@ -24,6 +24,12 @@ compatibility rules. Rendering validates the model and can throw. Decimal intege
 to three decimal places. See [the current verification report](Verification/CERTIFICATE_WORKFLOW_REPORT.md) for
 verification evidence and scope.
 
+Informative `EXTINF` titles have an explicit AVPlayer compatibility exception:
+their UTF-8 bytes, including TAB and non-NFC text, survive parsing and rewriting.
+NUL, CR and LF remain invalid title content. This exception does not relax URI,
+duration or attribute parsing and is not selected by `EXT-X-VERSION`.
+See [the compatibility contract and known boundaries](Verification/TESTING.md).
+
 ```swift
 import HLSPlaylist
 
@@ -66,7 +72,7 @@ only, no LL-HLS), or Objective-C.
   writer emits them only where they change.
 - **Variable substitution**: `EXT-X-DEFINE` with `NAME`/`VALUE`, `IMPORT` and `QUERYPARAM`.
 - **Strict parsing**: invalid syntax and supported playlist constraints throw.
-  CRLF is accepted; BOMs, forbidden control characters and unterminated quotes are rejected.
+  CRLF is accepted; BOMs, controls outside documented fields and unterminated quotes are rejected.
   Unknown tags and allowed enumerated values retain forward-compatible behavior.
 - **Utilities**: variant selection, rendition lookup, codec classification, segment timing and
   lookup by time, program-date-time extrapolation, live offset (`HOLD-BACK`/`PART-HOLD-BACK`),
@@ -205,6 +211,9 @@ try playlist.render().write(to: outputURL, atomically: true, encoding: .utf8)
 substitution, date edge cases, and a 20k-segment performance check.
 `HLS_LIVE_TESTS=1 swift test` also fetches, parses and round-trips every playlist in Apple's public
 example streams.
+`python3 Verification/suite.py` additionally runs ASan, fixed public corpus
+acceptance contracts, generated grammar/feature combinations and real iOS
+simulator probes. Accepted inputs must also survive rewrite and semantic restoration.
 
 ## Changelog
 

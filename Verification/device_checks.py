@@ -3,7 +3,9 @@ CANDIDATES = {kind: (["original", "render", "rewrite"] if kind in ["local-ll", "
                      else ["original", "rewrite"])
               for kind in ["local-ll", "ts", "fmp4", "aes", "range", "live", "ll", "fairplay", "tracks"]}
 CASES = [f"{kind}/{candidate}" for kind, candidates in CANDIDATES.items() for candidate in candidates] + ["recovery/recovery"]
-NEGATIVE = {"ts/render", "ts/rewrite", "fmp4/render", "fmp4/rewrite", "ll/rewrite", "fairplay/rewrite"}
+# The title compatibility fix makes Apple TS/fMP4 and DRMtoday positive cases.
+# Gcore's archived/current LL fixture places PDT after PART (a separate rule).
+NEGATIVE = {"ll/rewrite"}
 
 
 def verify(report, expected, rejections=(), origins=None):

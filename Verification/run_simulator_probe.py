@@ -7,6 +7,8 @@ import sys
 import argparse
 from run import HERE, SCRATCH, RESULTS, probe_input, write
 from uri_oracles import cases, require
+import generated
+import public_corpus
 
 def main():
     parser = argparse.ArgumentParser()
@@ -56,12 +58,30 @@ def main():
         (RESULTS / "simulator-probe.stderr.log").write_text(process.stderr)
         if process.returncode:
             raise RuntimeError(f"Simulator Probe exited {process.returncode}")
-        output = [json.loads(line) for line in process.stdout.splitlines()]
+        output = [json.loads(line) for line in process.stdout.split("\n") if line]
         write(RESULTS / "simulator-uri-output.json", output)
         summary = require(expected, output, "ios-simulator")
         write(RESULTS / "simulator-summary.json",
               {**summary, "runtime": runtime, "device": device, "ownedBoot": owned,
                "createdDisposable": created, "bootTimeoutSeconds": 600})
+        generated_cases, public_cases = generated.cases(), public_corpus.cases()
+        playlist_cases = [{**row, "rewrite": True} for row in generated_cases + public_cases]
+        process = subprocess.run(["xcrun", "simctl", "spawn", udid, str(SCRATCH / "simulator-probe/Probe")],
+                                 input="".join(probe_input(row) for row in playlist_cases),
+                                 text=True, capture_output=True, timeout=300)
+        (RESULTS / "simulator-playlists.stderr.log").write_text(process.stderr)
+        if process.returncode:
+            raise RuntimeError(f"Simulator playlist Probe exited {process.returncode}")
+        output = [json.loads(line) for line in process.stdout.split("\n") if line]
+        if [row.get("name") for row in output] != [row["name"] for row in playlist_cases]:
+            raise RuntimeError("Simulator playlist output identity/count mismatch")
+        failures = (generated.verify(generated_cases, output[:len(generated_cases)])
+                    + public_corpus.verify(public_cases, output[len(generated_cases):]))
+        write(RESULTS / "simulator-playlists-output.json", output)
+        write(RESULTS / "simulator-playlists.json",
+              {"runtime": runtime, "cases": len(playlist_cases), "failures": failures})
+        if failures:
+            raise RuntimeError("Simulator playlist compatibility/preservation failed")
     finally:
         if owned:
             try:

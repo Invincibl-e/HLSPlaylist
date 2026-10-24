@@ -72,7 +72,8 @@ public struct PlaylistParser: Sendable {
 
     public func parse(_ text: String) throws -> ParseResult {
         var state = ParserState(options: options)
-        // RFC 8216 §4 / bis §4.1: UTF-8, NFC, no BOM or control characters.
+        // RFC 8216 §4 / bis §4.1, with the documented informative-title
+        // compatibility exception in HLSStandard.text.
         try HLSStandard.text(text)
         let normalized = text.replacingOccurrences(of: "\r\n", with: "\n")
         var lines = normalized.split(separator: "\n", omittingEmptySubsequences: false).makeIterator()
@@ -254,15 +255,17 @@ private struct ParserState {
         case "#EXTINF":
             isMedia = true
             try HLSStandard.require(pendingInf == nil, "Duplicate EXTINF without URI", line: lineNumber)
-            let parts = value.split(separator: ",", maxSplits: 1, omittingEmptySubsequences: false)
-            guard parts.count == 2, let duration = parts.first.flatMap({ HLSNumber.decimal(String($0)) }),
+            // A title may start with a combining scalar; Swift Character
+            // splitting would then treat the comma and that scalar as one unit.
+            guard let comma = value.unicodeScalars.firstIndex(of: ","),
+                  let duration = HLSNumber.decimal(String(value[..<comma])),
                   duration.isFinite, duration >= 0 else {
                 try warn("Invalid EXTINF duration", lineNumber)
                 return
             }
-            if parts[0].contains(".") { minimumVersion = max(minimumVersion, 3) }
-            let title = parts.count > 1 ? String(parts[1]) : nil
-            pendingInf = (duration, title?.isEmpty == true ? nil : title)
+            if value[..<comma].contains(".") { minimumVersion = max(minimumVersion, 3) }
+            let title = String(value[value.unicodeScalars.index(after: comma)...])
+            pendingInf = (duration, title.isEmpty ? nil : title)
         case "#EXT-X-TARGETDURATION":
             isMedia = true
             if targetDurationLine != nil { try warn("Duplicate EXT-X-TARGETDURATION", lineNumber) }

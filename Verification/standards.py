@@ -59,7 +59,7 @@ case("ll-valid", media('#EXT-X-SERVER-CONTROL:PART-HOLD-BACK=2\n#EXT-X-PART-INF:
 case("ll-short-part", cases[-1]["text"].replace("DURATION=0.85", "DURATION=0.84"), False, "bis §4.4.4.9")
 case("bad-percent", media("#EXTINF:1,\ns%Q0"), False, "RFC 3986 §2.1")
 case("BOM", "\ufeff" + media(""), False, "bis §4.1")
-case("not-NFC", media("#EXTINF:1,e\u0301\ns"), False, "bis §4.1")
+case("not-NFC", media('#EXT-X-KEY:METHOD=AES-128,URI="k",X-TEXT="e\u0301"\n#EXTINF:1,\ns'), False, "bis §4.1 outside informative title")
 
 def master(tags, version=13):
     return f"#EXTM3U\n#EXT-X-VERSION:{version}\n{tags}\n"
@@ -184,13 +184,26 @@ cases[-1]["expectedTrailingDiscontinuityCount"] = "2"
 case("consecutive-discontinuity-overflow", cases[-1]["text"].replace("SEQUENCE:5", "SEQUENCE:18446744073709551612"),
      False, "bis §4.4.3.3 / §6.2.2")
 
+# Compatibility exceptions have empirical provenance, never a fabricated RFC rule.
+for code in list(range(0, 32)) + list(range(127, 160)):
+    character = chr(code)
+    case(f"title-control-{code:02x}", media(f"#EXTINF:1,a{character}b\ns\n#EXT-X-ENDLIST"),
+         code not in (0, 10, 13), "AVPlayer iOS 26.5 / Apple validator 2.0.284 title matrix; compatibility")
+for title in ["cafe\u0301", "\u0301x", "\ufe0fx", "\u200dx", "\U0001f3fbx",
+              "中文 العربية 🎬", "\u2028\u2029", "\ufeff"]:
+    case("title-unicode-" + title, media(f"#EXTINF:1,{title}\ns\n#EXT-X-ENDLIST"), True,
+         "AVPlayer iOS 26.5 title matrix; compatibility")
+for version in [1, 2, 3, 5, 6, 7, 9, 12, 13]:
+    case(f"title-tab-version-{version}", media("#EXTINF:1,a\tb\ns\n#EXT-X-ENDLIST", version), True,
+         "EXTINF informative title compatibility is independent of feature version")
+
 if __name__ == "__main__":
     output = probe([{**row, "rewrite": True} for row in cases])
     results = []
     for source, row in zip(cases, output):
         met = (row["status"] == "accepted") == source["accepted"]
         if source["accepted"]:
-            met = met and row["idempotent"]
+            met = met and row["idempotent"] and row.get("rewriteIdempotent") and row.get("rewritePreserved")
             met = met and all(row.get("roles", []).count(role) == count
                               for role, count in source.get("expectedRoleCounts", {}).items())
             if "expectedDiscontinuityCounts" in source:

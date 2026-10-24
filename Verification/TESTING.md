@@ -8,6 +8,23 @@
 
 ## 1. 选择正确的验证范围
 
+2026-10-24 兼容性更新：`EXTINF` 标题采用保留原文的字段级兼容，
+允许 TAB、非 NUL 控制字符及非 NFC 文本；不扩大到 URI、时长或属性。
+旧报告把标题 TAB 判为负例的结果属于历史行为，不能继续作为当前成功门槛。
+当前设备矩阵将 TS/fMP4/FairPlay 的 render/rewrite 改为必须播放，
+仅保留 Gcore LL 的 PDT-after-PART 拒绝；实际完整运行状态以新报告为准。
+
+默认 suite 新增 `public-corpus` 和 `generated-combinations`。前者固定
+193 份公开清单（184 份不同正文、11 个来源系列），179 份要求接受与保真，
+14 份记录独立兼容边界：13 份旧版本 TARGETDURATION 小数上限、1 份缺失
+音轨组。网络采集失败单独归档，不能算解析负例。离线运行不得访问或刷新公网。
+接受契约包含旧归档的 66 份与外部语料的 95 份；回退为拒绝必须失败，
+不再用 `try?` 后直接跳过。rewrite 必须重新解析、稳定渲染、反向还原语义。
+所有固定规范用例还有 CRLF/无末尾 LF 变体，并组合版本、容器、加密、范围、
+discontinuity 和 LL 快照；这不等于穷尽全部跨刷新状态。
+模拟器除 URI oracle 外也执行完整生成用例和公共语料；真机 extended 同样追加。
+NDJSON 只能按 LF 切分，不能使用会切断标题 U+0085/U+2028/U+2029 的 splitlines。
+
 | 范围 | 命令 | 能证明什么 |
 |---|---|---|
 | 离线回归 | `python3 Verification/suite.py` | Swift ASan/Release、固定语料、独立 oracle、属性/边界、真实 iOS 模拟器 URI 断言、runner 失败判定 |
