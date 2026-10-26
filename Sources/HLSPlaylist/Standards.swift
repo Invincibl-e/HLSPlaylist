@@ -85,7 +85,12 @@ enum HLSStandard {
             }
         }
         guard let components = URLComponents(string: text),
-              components.string?.utf8.elementsEqual(text.utf8) == true,
+              let rendered = components.string,
+              // iOS 15 Foundation escapes legal path semicolons (including
+              // EZDRM's skd://host/;content-id). Compare those spellings only
+              // for validation; parsing/render/rewrite retain the original URI.
+              rendered.replacingOccurrences(of: "%3B", with: ";", options: .caseInsensitive).utf8
+                .elementsEqual(text.replacingOccurrences(of: "%3B", with: ";", options: .caseInsensitive).utf8),
               URL(string: text) != nil else { return false }
         if relative && components.scheme != nil { return false }
         // A colon in the first path segment requires a valid URI scheme.

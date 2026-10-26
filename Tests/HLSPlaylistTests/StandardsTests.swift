@@ -4,6 +4,25 @@ import Testing
 
 @Suite("RFC 8216 and bis-22 observable constraints")
 struct StandardsTests {
+    @Test func semicolonURIValidationPreservesEncodedBytes() throws {
+        for uri in [
+            "skd://fps.ezdrm.com/;09cc0377-6dd4-40cb-b09d-b582236e70fe",
+            "skd://fps.ezdrm.com/%3Bcontent",
+            "skd://fps.ezdrm.com/%3bcontent",
+            "skd://fps.ezdrm.com/;content?x=;%3B%3b",
+            "https://origin.test/a;b.ts?signature=a;%3B",
+            "a;b.ts",
+        ] {
+            #expect(HLSStandard.uri(uri))
+            let text = media("#EXT-X-KEY:METHOD=SAMPLE-AES,URI=\"\(uri)\",KEYFORMAT=\"com.apple.streamingkeydelivery\",KEYFORMATVERSIONS=\"1\"\n#EXTINF:6,\ns.ts")
+            let playlist = try Playlist(text)
+            #expect(try playlist.render().contains("URI=\"\(uri)\""))
+        }
+        for uri in ["skd://host/;%Z0", "skd://host/;%3", "skd://host/; bad", "skd://[broken/;id"] {
+            #expect(!HLSStandard.uri(uri))
+        }
+    }
+
     private func media(_ tags: String, version: UInt64 = 13) -> String {
         "#EXTM3U\n#EXT-X-VERSION:\(version)\n#EXT-X-TARGETDURATION:6\n" + tags + "\n"
     }
