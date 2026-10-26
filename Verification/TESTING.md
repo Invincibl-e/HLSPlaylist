@@ -124,9 +124,10 @@ GitHub Actions full 使用 `[self-hosted, macOS, hls-device]`，先由所有者�
 offline job 不计作真机验收。不要在 CI job 内运行 install。
 普通开发签名 iPhone 不具备此实验手机部署方式，需要另行配置安装适配。
 
-托管 CI 使用 macos-15 与官方标准 macos-26-intel 池，后者也用于 CocoaPods
+托管 CI 使用官方标准 macos-15-intel 与 macos-26-intel 池，后者也用于 CocoaPods
 和 iOS/tvOS 构建。macOS arm64 池曾因容量限制在排队后直接取消任务，
 日志是 `The job was not acquired by Runner of type hosted even after multiple attempts`。
+`macos-15` 当前对应 ARM64，必须显式指定 `macos-15-intel` 才会进入 Intel 池。
 切换架构保留相同 suite 和 URI 金标；本地 macOS 26 ARM64 与真机记录另行保留。
 
 ## 4. 新结果的验收与交付

@@ -46,8 +46,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # macOS arm64 capacity can cancel queued jobs before acquiring a runner.
-        os: [macos-15, macos-26-intel]
+        # Explicit Intel labels avoid the macos-15 ARM runner capacity failures.
+        os: [macos-15-intel, macos-26-intel]
     steps:
       - uses: actions/checkout@v4
       - name: Toolchain
