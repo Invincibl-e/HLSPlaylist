@@ -87,6 +87,7 @@ struct StandardsTests {
             root.appendingPathComponent("Verification/corpus/uri-oracles.json")))
         #expect(cases.count >= 54)
         for row in cases {
+            #expect(resolveURI(row.reference, against: row.base) == row.expected)
             let base = try #require(URL(string: row.base))
             let media = MediaPlaylist(targetDuration: 1, segments: [Segment(uri: row.reference, duration: 1)])
             #expect(media.resolvingURIs(against: base).segments[0].uri == row.expected)

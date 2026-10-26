@@ -57,48 +57,7 @@ enum HLSStandard {
     }
 
     static func uri(_ text: String, relative: Bool = false) -> Bool {
-        let allowed = Set("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~:/?#[]@!$&'()*+,;=%".utf8)
-        let bytes = Array(text.utf8)
-        guard !bytes.isEmpty, bytes.allSatisfy({ allowed.contains($0) }) else { return false }
-        for i in bytes.indices where bytes[i] == 37 {
-            guard i + 2 < bytes.count,
-                  bytes[(i + 1)...(i + 2)].allSatisfy({ (48...57).contains($0) || (65...70).contains($0) || (97...102).contains($0) }) else { return false }
-        }
-        // Older Foundation rejects valid opaque URIs such as data:text/plain;
-        // validate their RFC 3986 path/query/fragment grammar directly.
-        if let colon = text.firstIndex(of: ":"),
-           !text[..<colon].contains(where: { "/?#".contains($0) }) {
-            let scheme = text[..<colon]
-            let letters = Set("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".utf8)
-            guard let first = scheme.utf8.first, letters.contains(first),
-                  scheme.utf8.allSatisfy({ letters.contains($0) || (48...57).contains($0) || [43, 45, 46].contains($0) }),
-                  !relative else { return false }
-            let remainder = text[text.index(after: colon)...]
-            if !remainder.hasPrefix("//") {
-                let components = remainder.split(separator: "#", omittingEmptySubsequences: false)
-                guard components.count <= 2 else { return false }
-                let pathQuery = components[0].split(separator: "?", maxSplits: 1, omittingEmptySubsequences: false)
-                let pchar = Set("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~!$&'()*+,;=:@%".utf8)
-                guard pathQuery[0].utf8.allSatisfy({ pchar.contains($0) || $0 == 47 }) else { return false }
-                return (pathQuery.count == 1 || pathQuery[1].utf8.allSatisfy({ pchar.contains($0) || $0 == 47 || $0 == 63 }))
-                    && (components.count == 1 || components[1].utf8.allSatisfy({ pchar.contains($0) || $0 == 47 || $0 == 63 }))
-            }
-        }
-        guard let components = URLComponents(string: text),
-              let rendered = components.string,
-              // iOS 15 Foundation escapes legal path semicolons (including
-              // EZDRM's skd://host/;content-id). Compare those spellings only
-              // for validation; parsing/render/rewrite retain the original URI.
-              rendered.replacingOccurrences(of: "%3B", with: ";", options: .caseInsensitive).utf8
-                .elementsEqual(text.replacingOccurrences(of: "%3B", with: ";", options: .caseInsensitive).utf8),
-              URL(string: text) != nil else { return false }
-        if relative && components.scheme != nil { return false }
-        // A colon in the first path segment requires a valid URI scheme.
-        if components.scheme == nil && !text.hasPrefix("/") {
-            let first = text.prefix { $0 != "/" && $0 != "?" && $0 != "#" }
-            if first.contains(":") { return false }
-        }
-        return true
+        !text.isEmpty && URIReference(text)?.valid(relative: relative) == true
     }
 
     static func variableName(_ text: String) -> Bool {

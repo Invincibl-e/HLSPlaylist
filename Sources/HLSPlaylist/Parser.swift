@@ -448,8 +448,8 @@ private struct ParserState {
                 try warn("Imported variable \"\(name)\" is not available", lineNumber)
             }
         case .queryParameter(let name):
-            let items = options.playlistURL.flatMap { URLComponents(url: $0, resolvingAgainstBaseURL: false)?.queryItems }
-            if let value = items?.first(where: { $0.name == name })?.value {
+            let value = options.playlistURL.flatMap { URIReference($0.absoluteString)?.queryValue(named: name) }
+            if let value {
                 try HLSStandard.require(!value.contains("\"") && value.unicodeScalars.allSatisfy { $0.value >= 32 && !((127...159).contains($0.value)) }, "Invalid query variable value", line: lineNumber)
                 variables[name] = value
             } else {

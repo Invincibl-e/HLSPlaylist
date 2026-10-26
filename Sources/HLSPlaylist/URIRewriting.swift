@@ -149,12 +149,15 @@ extension Playlist {
 /// Useful to transports that must resolve RENDITION-REPORT for fetching while
 /// keeping its rewritten playlist reference relative. Does not validate HLS text.
 public func resolveURI(_ uri: String, against baseURL: URL) -> String {
+    resolveURI(uri, against: baseURL.absoluteURL.absoluteString)
+}
+
+/// Resolves against an original encoded base URI without Foundation URL parsing.
+public func resolveURI(_ uri: String, against baseURI: String) -> String {
     // Encode only characters outside RFC 3986, retaining existing escapes and
     // delimiters. Foundation's implicit encoding differs across OS versions.
-    let allowed = CharacterSet(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~:/?#[]@!$&'()*+,;=%")
-    guard let encoded = uri.addingPercentEncoding(withAllowedCharacters: allowed),
-          var reference = URIReference(encoded),
-          let base = URIReference(baseURL.absoluteURL.absoluteString) else { return uri }
+    guard var reference = URIReference(URIReference.encode(uri)),
+          let base = URIReference(baseURI), base.scheme != nil, base.valid() else { return uri }
     // RFC 3986 §5.2.2, on encoded bytes. Legacy URLComponents(url:) decodes
     // escaped dots/slashes and re-encodes semicolons while normalizing paths.
     if reference.scheme != nil {
@@ -179,34 +182,6 @@ public func resolveURI(_ uri: String, against baseURL: URL) -> String {
         }
     }
     return reference.string
-}
-
-/// RFC 3986 Appendix B component boundaries; nil and empty query/fragment differ.
-private struct URIReference {
-    private static let pattern = try! NSRegularExpression(
-        pattern: #"^(?:([A-Za-z][A-Za-z0-9+.-]*):)?(?://([^/?#]*))?([^?#]*)(?:\?([^#]*))?(?:#(.*))?$"#)
-    var scheme: String?
-    var authority: String?
-    var path: String
-    var query: String?
-    var fragment: String?
-
-    init?(_ string: String) {
-        guard let match = Self.pattern.firstMatch(in: string, range: NSRange(string.startIndex..., in: string)) else { return nil }
-        func component(_ index: Int) -> String? {
-            Range(match.range(at: index), in: string).map { String(string[$0]) }
-        }
-        scheme = component(1)
-        authority = component(2)
-        path = component(3) ?? ""
-        query = component(4)
-        fragment = component(5)
-    }
-
-    var string: String {
-        (scheme.map { $0 + ":" } ?? "") + (authority.map { "//" + $0 } ?? "") + path
-            + (query.map { "?" + $0 } ?? "") + (fragment.map { "#" + $0 } ?? "")
-    }
 }
 
 /// RFC 3986 §5.2.4. Older Foundation leaves absolute /./ and /../ paths intact.
