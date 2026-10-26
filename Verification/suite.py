@@ -36,7 +36,8 @@ def run_step(command, env, log, timeout):
 def source_hashes():
     return {
         str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest()
-        for pattern in ["Package.swift", "HLSPlaylist.podspec", "Sources/**/*.swift", "Tests/**/*.swift",
+        for pattern in ["Package.swift", "HLSPlaylist.podspec", "Sources/**/*.swift", "Sources/**/*.c",
+                        "Sources/**/*.h", "Sources/**/module.modulemap", "Tests/**/*.swift",
                         "Verification/*.py", "Verification/*.swift", "Verification/*.m", "Verification/http2/*.go",
                         "Verification/Sources/**/*.swift", "Verification/corpus/**/*.json",
                         "Verification/corpus/**/*.m3u8", ".github/workflows/*.yml"]

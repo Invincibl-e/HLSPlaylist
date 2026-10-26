@@ -1,7 +1,10 @@
 import Foundation
 
 /// The role of a URI inside a playlist, passed to URI transforms.
-public enum URIRole: Sendable, Hashable {
+#if canImport(ObjectiveC)
+@objc
+#endif
+public enum URIRole: Int, Sendable, Hashable, CustomStringConvertible {
     case variant
     case iFrameVariant
     case imageVariant
@@ -16,6 +19,25 @@ public enum URIRole: Sendable, Hashable {
     case contentSteering
     case interstitialAsset
     case interstitialAssetList
+
+    public var description: String {
+        switch self {
+        case .variant: "variant"
+        case .iFrameVariant: "iFrameVariant"
+        case .imageVariant: "imageVariant"
+        case .rendition: "rendition"
+        case .segment: "segment"
+        case .partialSegment: "partialSegment"
+        case .initializationSection: "initializationSection"
+        case .key: "key"
+        case .sessionData: "sessionData"
+        case .preloadHint: "preloadHint"
+        case .renditionReport: "renditionReport"
+        case .contentSteering: "contentSteering"
+        case .interstitialAsset: "interstitialAsset"
+        case .interstitialAssetList: "interstitialAssetList"
+        }
+    }
 }
 
 extension MultivariantPlaylist {
@@ -154,72 +176,5 @@ public func resolveURI(_ uri: String, against baseURL: URL) -> String {
 
 /// Resolves against an original encoded base URI without Foundation URL parsing.
 public func resolveURI(_ uri: String, against baseURI: String) -> String {
-    // Encode only characters outside RFC 3986, retaining existing escapes and
-    // delimiters. Foundation's implicit encoding differs across OS versions.
-    guard var reference = URIReference(URIReference.encode(uri)),
-          let base = URIReference(baseURI), base.scheme != nil, base.valid() else { return uri }
-    // RFC 3986 §5.2.2, on encoded bytes. Legacy URLComponents(url:) decodes
-    // escaped dots/slashes and re-encodes semicolons while normalizing paths.
-    if reference.scheme != nil {
-        reference.path = removingDotSegments(reference.path)
-    } else {
-        reference.scheme = base.scheme
-        if reference.authority != nil {
-            reference.path = removingDotSegments(reference.path)
-        } else {
-            reference.authority = base.authority
-            if reference.path.isEmpty {
-                reference.path = base.path
-                reference.query = reference.query ?? base.query
-            } else {
-                if !reference.path.hasPrefix("/") {
-                    let directory = base.path.lastIndex(of: "/").map { String(base.path[...$0]) }
-                        ?? (base.authority != nil && base.path.isEmpty ? "/" : "")
-                    reference.path = directory + reference.path
-                }
-                reference.path = removingDotSegments(reference.path)
-            }
-        }
-    }
-    return reference.string
-}
-
-/// RFC 3986 §5.2.4. Older Foundation leaves absolute /./ and /../ paths intact.
-/// Operate on encoded path bytes: escaped dots, slashes, queries and fragments
-/// must not acquire path-navigation semantics.
-func removingDotSegments(_ path: String) -> String {
-    var input = path[...]
-    var output = ""
-    func removeLastSegment() {
-        if let slash = output.lastIndex(of: "/") {
-            output.removeSubrange(slash...)
-        } else {
-            output.removeAll(keepingCapacity: true)
-        }
-    }
-    while !input.isEmpty {
-        if input.hasPrefix("../") {
-            input = input.dropFirst(3)
-        } else if input.hasPrefix("./") {
-            input = input.dropFirst(2)
-        } else if input.hasPrefix("/./") {
-            input = input.dropFirst(2)
-        } else if input == "/." {
-            input = "/"
-        } else if input.hasPrefix("/../") {
-            input = input.dropFirst(3)
-            removeLastSegment()
-        } else if input == "/.." {
-            input = "/"
-            removeLastSegment()
-        } else if input == "." || input == ".." {
-            input = ""
-        } else {
-            let start = input.hasPrefix("/") ? input.index(after: input.startIndex) : input.startIndex
-            let end = input[start...].firstIndex(of: "/") ?? input.endIndex
-            output.append(contentsOf: input[..<end])
-            input = input[end...]
-        }
-    }
-    return output
+    URIReference(URIReference.encode(uri))?.resolving(against: baseURI) ?? uri
 }

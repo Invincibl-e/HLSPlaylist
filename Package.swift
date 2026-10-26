@@ -15,7 +15,17 @@ let package = Package(
     ],
     targets: [
         .target(
+            name: "CURIParser",
+            exclude: ["LICENSE", "README.md"],
+            publicHeadersPath: "include",
+            cSettings: [
+                .define("URI_NO_UNICODE"),
+                .define("URI_STATIC_BUILD"),
+            ]
+        ),
+        .target(
             name: "HLSPlaylist",
+            dependencies: ["CURIParser"],
             swiftSettings: [.enableUpcomingFeature("ExistentialAny")]
         ),
         .testTarget(

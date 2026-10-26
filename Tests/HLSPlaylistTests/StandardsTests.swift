@@ -472,12 +472,13 @@ struct StandardsTests {
         ("/a//b/../g", "/a//g"), ("/a/.", "/a/"), ("/a/..", "/"),
         ("/.%2e/g", "/.%2e/g"), ("/a/%2e%2E/g", "/a/%2e%2E/g"),
         ("/a/%2F/../g", "/a/g"), ("", ""), (".", ""), ("..", ""),
-        ("a/../../g", "/g"), ("a//./b/../c", "a//c")
+        ("a/../../g", "/g"), ("a//./b/../c", "a//c"),
+        ("a/../g", "/g"), ("a/..", "/")
     ])
     func rfc3986EncodedPathOracle(_ path: String, _ expected: String) {
-        // Exercise legacy normalization directly even when the host Foundation
-        // has already removed dot segments before the public resolver sees them.
-        #expect(removingDotSegments(path) == expected)
+        // Exercise encoded absolute paths through the public RFC resolver;
+        // the synthetic scheme avoids involving Foundation or a base directory.
+        #expect(resolveURI("path:" + path, against: "path:/") == "path:" + expected)
     }
 
     @Test(arguments: [

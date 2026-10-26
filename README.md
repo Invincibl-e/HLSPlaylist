@@ -6,10 +6,10 @@
 [![Swift Package Manager](https://img.shields.io/badge/SwiftPM-compatible-brightgreen)](#installation)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 
-A pure-Swift parser and writer for HTTP Live Streaming (`.m3u8`) playlists.
+A Swift parser and writer for HTTP Live Streaming (`.m3u8`) playlists.
 
-URI grammar, component splitting, percent decoding and RFC 3986 reference
-resolution operate on the original encoded bytes, without Foundation `URL` /
+URI grammar, query decoding and RFC 3986 reference resolution use the bundled
+BSD-3-Clause uriparser 1.0.2 C library on original encoded bytes, without Foundation `URL` /
 `URLComponents` parsing. Use `resolveURI(reference, against: originalBaseString)`
 to keep base URI spelling intact. The existing `URL` overload and `segmentURLs`
 remain convenience boundaries for callers that explicitly want Foundation URL objects.

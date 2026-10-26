@@ -1,0 +1,4 @@
+module CURIParser {
+    header "CURIParser.h"
+    export *
+}

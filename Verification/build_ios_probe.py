@@ -18,9 +18,19 @@ main = directory / "main.swift"
 main.write_text((HERE / "Sources/Probe/main.swift").read_text().replace("import HLSPlaylist\n", ""))
 sdk = subprocess.check_output(["xcrun", "--sdk", sdk_name, "--show-sdk-path"], text=True).strip()
 sources = sorted((HERE.parent / "Sources/HLSPlaylist").glob("*.swift"))
+uri_root = HERE.parent / "Sources/CURIParser"
+objects = []
+for source in sorted((uri_root / "src").glob("*.c")):
+    obj = directory / (source.stem + ".o")
+    subprocess.run(["xcrun", "--sdk", sdk_name, "clang", "-target", target,
+                    "-isysroot", sdk, "-std=c99", "-O2",
+                    "-DURI_NO_UNICODE", "-DURI_STATIC_BUILD",
+                    "-I", str(uri_root / "include"), "-c", str(source), "-o", str(obj)], check=True)
+    objects.append(obj)
 subprocess.run(["xcrun", "--sdk", sdk_name, "swiftc", "-swift-version", "6",
-                "-enable-upcoming-feature", "ExistentialAny", "-target", target,
-                "-sdk", sdk, "-O", "-module-cache-path", str(SCRATCH / (sdk_name + "-probe-module-cache")),
-                *map(str, sources), str(main), "-o", str(directory / "Probe")], check=True)
+                "-D", "SWIFT_PACKAGE", "-enable-upcoming-feature", "ExistentialAny", "-target", target,
+                "-sdk", sdk, "-O", "-I", str(uri_root / "include"),
+                "-module-cache-path", str(SCRATCH / (sdk_name + "-probe-module-cache")),
+                *map(str, sources), str(main), *map(str, objects), "-o", str(directory / "Probe")], check=True)
 subprocess.run(["codesign", "-f", "-s", "-", str(directory / "Probe")], check=True)
 print(directory / "Probe")
