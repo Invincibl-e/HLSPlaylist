@@ -1881,6 +1881,8 @@ static int URI_FUNC(ParseUriExMm)(URI_TYPE(ParserState) * state, const URI_CHAR 
         if (state->errorPos && (state->errorPos > afterLast)) {
             state->errorPos = afterLast;
         }
+        /* Members were freed; discard ranges still borrowing the input. */
+        URI_FUNC(ResetUri)(uri);
         return state->errorCode;
     }
     if (afterUriReference != afterLast) {
@@ -1889,6 +1891,7 @@ static int URI_FUNC(ParseUriExMm)(URI_TYPE(ParserState) * state, const URI_CHAR 
         } else {
             URI_FUNC(StopSyntax)(state, afterLast, memory);
         }
+        URI_FUNC(ResetUri)(uri);
         return state->errorCode;
     }
     return URI_SUCCESS;

@@ -57,4 +57,17 @@ struct URIReferenceTests {
         #expect(resolveURI("中文 空格", against: "https://host/dir/file") ==
                 "https://host/dir/%E4%B8%AD%E6%96%87%20%E7%A9%BA%E6%A0%BC")
     }
+
+    @Test(arguments: [
+        ("scheme:..///foo/bar?query#fragment", "scheme:.///foo/bar?query#fragment"),
+        ("scheme:a/..///foo/bar", "scheme:/.///foo/bar"),
+        ("scheme:/a/..//foo/bar", "scheme:/.//foo/bar"),
+        ("/a/..//foo/bar", "base:/.//foo/bar"),
+        ("scheme:/a/..", "scheme:/"),
+        ("/a/..", "base:/"),
+        ("scheme://host/a/..//foo/bar", "scheme://host//foo/bar")
+    ])
+    func resolutionPreservesAuthority(_ input: String, _ expected: String) {
+        #expect(resolveURI(input, against: "base:/root/file") == expected)
+    }
 }

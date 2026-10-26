@@ -38,7 +38,7 @@ def source_hashes():
         str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest()
         for pattern in ["Package.swift", "HLSPlaylist.podspec", "Sources/**/*.swift", "Sources/**/*.c",
                         "Sources/**/*.h", "Sources/**/module.modulemap", "Tests/**/*.swift",
-                        "Verification/*.py", "Verification/*.swift", "Verification/*.m", "Verification/http2/*.go",
+                        "Verification/*.py", "Verification/*.swift", "Verification/*.m", "Verification/*.c", "Verification/http2/*.go",
                         "Verification/Sources/**/*.swift", "Verification/corpus/**/*.json",
                         "Verification/corpus/**/*.m3u8", ".github/workflows/*.yml"]
         for path in sorted(ROOT.glob(pattern))
@@ -64,6 +64,7 @@ def main():
            "HLS_LIVE_TESTS": "1" if args.live else "0", "HLS_PERFORMANCE_TESTS": "0"}
     steps = [
         ("harness", [sys.executable, "Verification/test_runner.py"]),
+        ("native-uri-sanitizers", [sys.executable, "Verification/native_uri.py"]),
         ("swift-asan", ["swift", "test", "--scratch-path", str(work / "swift-build"), "--sanitize", "address", "--enable-code-coverage"]),
         ("probe-asan", ["swift", "build", "--package-path", "Verification", "--scratch-path", str(work / "probe-build"), "--sanitize", "address", "--enable-code-coverage"]),
         ("oracles", [sys.executable, "Verification/standards.py"]),

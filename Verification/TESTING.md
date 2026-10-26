@@ -42,6 +42,12 @@ URI 回归使用 `corpus/uri-oracles.json` 的 54 个固定预期（包含 RFC 3
 §5.4.1/§5.4.2 的全部 42 个 strict 示例），以及 seed 3986 的 2,000 个
 路径构造用例（相对、根路径、network-path、绝对引用及重复斜杠）和
 4 个深度边界；三项公开 API 均须与独立预期一致。
+suite 的 `native-uri-sanitizers` 另外用 ASan/UBSan 直接编译 vendored C 源码，
+检查 14 组 URI/query 整数边界、失败解析后的复用、owned/borrowed 规范化、
+无 host 路径合并与结构 round-trip，以及 dot 插入的分配失败。
+整数计数用虚拟地址范围和共享 query 文本构造，不实际分配数 GB 字符串；
+`native-uri-summary.json` 保存每组退出码和 sanitizer 输出。
+`Verification/*.c` 也计入 suite 的 sourceSHA256。
 预期不使用 Foundation、被测库或 Python urljoin 生成。Swift 单元测试也
 读取相同固定预期；HLS URI 属性测试扩展到 31 个，直接 encoded-path
 测试扩展到 17 个，包含编码后的点与实际 dot-segment 混用、路径分号。

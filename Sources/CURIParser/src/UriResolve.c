@@ -332,9 +332,6 @@ static int URI_FUNC(AddBaseUriImpl)(URI_TYPE(Uri) * absDest,
                                     return URI_ERROR_MALLOC;
                                 }
 
-                                if (!URI_FUNC(FixAmbiguity)(absDest, memory)) {
-                                    return URI_ERROR_MALLOC;
-                                }
                                 /* clang-format off */
     /* [25/32]             endif; */
                             }
@@ -346,7 +343,6 @@ static int URI_FUNC(AddBaseUriImpl)(URI_TYPE(Uri) * absDest,
     /* [27/32]         endif; */
                             /* clang-format on */
                         }
-                        URI_FUNC(FixEmptyTrailSegment)(absDest, memory);
                         /* clang-format off */
     /* [29/32]     endif; */
                         /* clang-format on */
@@ -365,6 +361,11 @@ static int URI_FUNC(AddBaseUriImpl)(URI_TYPE(Uri) * absDest,
                 absDest->fragment = relSource->fragment;
             }
         }
+    }
+    /* Apply to absolute references and absolute paths as well as merged paths. */
+    URI_FUNC(FixEmptyTrailSegment)(absDest, memory);
+    if (!URI_FUNC(HasHost)(absDest) && !URI_FUNC(FixAmbiguity)(absDest, memory)) {
+        return URI_ERROR_MALLOC;
     }
     return URI_SUCCESS;
 }
